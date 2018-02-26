@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2018-02-26
+  location: MyString
+  user: one
+  hike: one
+  description: MyText
+
+two:
+  date: 2018-02-26
+  location: MyString
+  user: two
+  hike: two
+  description: MyText

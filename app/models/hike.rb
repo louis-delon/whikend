@@ -1,0 +1,2 @@
+class Hike < ApplicationRecord
+end

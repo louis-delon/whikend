@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  duration: 2018-02-26 14:45:12
+  location: MyString
+
+two:
+  duration: 2018-02-26 14:45:12
+  location: MyString

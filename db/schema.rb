@@ -10,16 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226133900) do
+ActiveRecord::Schema.define(version: 20180226134726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "hikes", force: :cascade do |t|
+    t.time "duration"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "submissions", force: :cascade do |t|
     t.string "content"
     t.boolean "accepted"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_submissions_on_user_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.date "date"
+    t.string "location"
+    t.bigint "user_id"
+    t.bigint "hike_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hike_id"], name: "index_trips_on_hike_id"
+    t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,4 +62,6 @@ ActiveRecord::Schema.define(version: 20180226133900) do
   end
 
   add_foreign_key "submissions", "users"
+  add_foreign_key "trips", "hikes"
+  add_foreign_key "trips", "users"
 end
