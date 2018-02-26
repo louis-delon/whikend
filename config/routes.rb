@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'trips/new'
+
+  get 'trips/create'
+
+  get 'trips/destroy'
+
+  get 'trips/update'
+
+  get 'trips/edit'
+
+  get 'trips/show'
+
   root to: 'pages#home'
   devise_for :users
 
