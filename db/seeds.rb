@@ -18,8 +18,9 @@ puts "Creating users..."
   User.create!(
     email: Faker::Internet.email,
     password: Faker::Internet.password,
-    firstname: Faker::Name.first_name,
-    lastname: Faker::Name.last_name
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    description: Faker::Hipster.paragraph,
   )
 end
 
@@ -27,15 +28,15 @@ puts "Creating hikes..."
 
 10.times do
   Hike.create!(
-    duration: [1..10].sample
-    location: Faker::Address.city,
+    duration: [1..10].sample,
+    location: Faker::Address.city
   )
 end
 
 puts "Creating trips..."
 10.times do
   Trip.create!(
-    title: Faker::Hipster.sentence,
+    # title: Faker::Hipster.sentence,
     description: Faker::Hipster.paragraph,
     location: Faker::Address.city,
     hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
@@ -49,7 +50,7 @@ puts "Creating reviews..."
 10.times do
   Review.create!(
     content: Faker::Hipster.paragraph,
-    rating: [1..5].sample
+    rating: (1..5).to_a.sample,
     sender_id: ((User.first.id)..(User.last.id)).to_a.sample,
     receiver_id: ((User.first.id)..(User.last.id)).to_a.sample,
     trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample
@@ -72,7 +73,7 @@ puts "Creating submissions..."
   Submission.create!(
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample
+    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
     accepted: true
   )
 end
@@ -81,7 +82,7 @@ end
   Submission.create!(
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample
+    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
     accepted: false
   )
 end
