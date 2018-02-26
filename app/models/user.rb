@@ -3,4 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_many :trips
+  has_many :submissions
+  has_many :messages
+  has_many :reviews, foreign_key: "sender_id"
+  has_many :reviews, foreign_key: "receiver_id", dependent: :destroy
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :description, presence: true
 end

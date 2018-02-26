@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226135202) do
+ActiveRecord::Schema.define(version: 20180226135600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(version: 20180226135202) do
     t.datetime "updated_at", null: false
     t.index ["trip_id"], name: "index_messages_on_trip_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "content"
+    t.bigint "trip_id"
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_reviews_on_receiver_id"
+    t.index ["sender_id"], name: "index_reviews_on_sender_id"
+    t.index ["trip_id"], name: "index_reviews_on_trip_id"
   end
 
   create_table "submissions", force: :cascade do |t|
@@ -75,6 +88,9 @@ ActiveRecord::Schema.define(version: 20180226135202) do
 
   add_foreign_key "messages", "trips"
   add_foreign_key "messages", "users"
+  add_foreign_key "reviews", "trips"
+  add_foreign_key "reviews", "users", column: "receiver_id"
+  add_foreign_key "reviews", "users", column: "sender_id"
   add_foreign_key "submissions", "trips"
   add_foreign_key "submissions", "users"
   add_foreign_key "trips", "hikes"
