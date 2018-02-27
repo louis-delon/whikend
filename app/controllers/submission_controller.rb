@@ -27,14 +27,14 @@ class SubmissionController < ApplicationController
 
 private
 
-  def
+  def submission_params
     params
       .require(:submission)
       .permit(
         :content,
         :user_id,
         :trip_id
-        )
+      )
   end
 
 end
