@@ -11,8 +11,8 @@
 }
 
 /* Logo */
-.navbar-wagon-brand img {
-  height: 50px;
+.logo img {
+  height: 25px;
 }
 
 /* User Avatar */
@@ -37,11 +37,12 @@
 
 /* Navbar link */
 .navbar-wagon-link {
-  color: #616668;
-  font-size: 14px;
+  color: $text-color;
+  font-size: 1rem;
+  transition: $transition;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: $primary-color;
   text-decoration: none;
 }
 
