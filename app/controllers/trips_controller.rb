@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
 
-  before_action :set_trip, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
     # @trips = Trip.all
@@ -8,15 +8,14 @@ class TripsController < ApplicationController
   end
 
   def show
-    authorize @trip
   end
 
   def new
     @trip = Trip.new
-    authorize @trip
   end
 
   def create
+    @trip = Trip.new(trip_params)
     authorize @trip
     if @trip.save
       redirect_to trip_path(@trip), notice: "Your trip was successfuly created!"
@@ -25,20 +24,36 @@ class TripsController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
-  def update
-  end
-
   def edit
   end
 
+  def update
+    @trip.update(trip_params)
+    redirect_to trip_path(@trip), notice: "Your trip was successfuly updated!"
+  end
+
+  def destroy
+    @trip.destroy
+    redirect_to root_path
+  end
 
 private
 
   def set_trip
     @trip = Trip.find(params[:id])
+    authorize @trip
+  end
+
+ def trip_params
+    params
+      .require(:trip)
+      .permit(
+        :date,
+        :description,
+        :location,
+        :user_id,
+        :hike_id
+      )
   end
 
 end
