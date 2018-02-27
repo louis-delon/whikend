@@ -1,2 +1,43 @@
-<h1>Trips#show</h1>
-<p>Find me in app/views/trips/show.html.erb</p>
+<h1><%= "Join the trip of #{@trip.user.first_name}" %></h1>
+<p><%= @trip.description %></p><br>
+
+<p><%= @trip.location %></p><br>
+
+<p><%= @trip.date %></p><br>
+
+<p><% @submissions.where(accepted:true).each do |submission| %>
+    <%= submission.user.first_name  %>
+   <% end %>
+</p>
+
+<br>
+
+<ul>
+  <% @messages.each do |message| %>
+     <li><%= message.content %></li><br>
+  <% end %>
+</ul>
+
+<br>
+
+<div>
+  <% if policy(@trip).update? %>
+    <%= link_to(edit_trip_path(@trip), class: "btn btn--secondary") do %>
+      <%= icon('fas', 'edit') %>Edit
+    <% end %>
+  <% end %>
+  <% if policy(@trip).destroy?%>
+    <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
+      <%= icon('fas', 'trash') %>Delete
+    <% end %>
+  <% end %>
+</div>
+
+<!-- titre du trip
+
+description du trip
+inscrits à la balade
+messages
+
+button submission
+button create a hike -->

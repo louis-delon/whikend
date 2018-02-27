@@ -9,6 +9,8 @@ class TripsController < ApplicationController
   end
 
   def show
+    @submissions = @trip.submissions
+    @messages = @trip.messages
   end
 
   def new
