@@ -1,9 +1,10 @@
 class ReviewsController < ApplicationController
 
   def new
-    @trip = Trip.find(params[trip_id])
-    @receiver_id = @trip.user
-    @review = Review.new(@receiver_id)
+    @trip = Trip.find(params[:trip_id])
+    @review = Review.new
+    @receiver = @trip.user
+    authorize(@trip, :add_review?)
   end
 
   def create
