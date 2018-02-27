@@ -55,5 +55,4 @@ private
         :hike_id
       )
   end
-
 end
