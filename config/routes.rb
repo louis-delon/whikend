@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'messages/new'
+
   root to: 'pages#home'
   devise_for :users
 
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :trips do
     resources :submissions, except: [:update, :edit, :show]
-    resources :messages, only: [:create]
+    resources :messages, only: [:new, :create]
     resources :reviews, only: [:new, :create]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

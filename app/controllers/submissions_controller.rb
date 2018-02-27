@@ -1,15 +1,20 @@
-class SubmissionController < ApplicationController
+class SubmissionsController < ApplicationController
 
   def index
     @submission = policy_scope(Submission)
   end
 
   def new
+    @trip = Trip.find(params[:trip_id])
     @submission = Submission.new
+    authorize @submission
   end
 
   def create
     @submission = Submission.new(submission_params)
+    @trip = Trip.find(params[:trip_id])
+    @submission.trip = @trip
+    @submission.user = current_user
     authorize @submission
     if @submission.save
       redirect_to trip_path(params[:trip_id]), notice: "Your submission was successfuly send!"

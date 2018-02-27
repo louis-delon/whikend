@@ -1,0 +1,11 @@
+<h1>Send your message</h1>
+
+<div>
+  <p><strong> <%= @trip.location %></strong></p>
+  <p> <%= @trip.description %></p>
+
+  <%= simple_form_for [@trip, @message] do |f| %>
+    <%= f.input :content %>
+    <%= f.submit "Submit", class: "btn btn--primary" %>
+  <% end %>
+</div>
