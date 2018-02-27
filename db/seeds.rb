@@ -14,6 +14,23 @@ User.destroy_all
 
 puts "Creating users..."
 
+louis = User.create!(
+  email: 'louis@gmail.com',
+  password: 'aaaaaa',
+  first_name: 'louis',
+  last_name: 'delon',
+  description: 'je suis un passionné de montagne',
+  )
+
+etienne = User.create!(
+  email: 'etienne@gmail.com',
+  password: 'aaaaaa',
+  first_name: 'etienne',
+  last_name: 'delorieux',
+  description: 'je suis un passionné de rando',
+  )
+
+
 10.times do
   User.create!(
     email: Faker::Internet.email,
