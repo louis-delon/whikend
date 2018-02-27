@@ -55,7 +55,7 @@ puts "Creating trips..."
   Trip.create!(
     # title: Faker::Hipster.sentence,
     description: Faker::Hipster.paragraph,
-    location: Faker::Address.city,
+    start_location: Faker::Address.city,
     hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
     date: Date.today
