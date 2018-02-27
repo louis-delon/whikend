@@ -1,1 +1,27 @@
-// Specific CSS for your home-page
+.banner--home {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), asset-url("background-home2.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.banner--home {
+  height: calc(100vh - 70px);
+  color: #fff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.banner--home h1 {
+  font-size: 4rem;
+  // font-weight: 700;
+}
+
+.banner--home p {
+  font-weight: 300;
+  font-size: 1.5rem;
+  margin-bottom: 70px;
+}

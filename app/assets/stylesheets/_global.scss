@@ -1,0 +1,60 @@
+*,
+html,
+body,
+h1,
+h2,
+h3,
+p,
+input,
+div,
+span {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  font-size: 1rem;
+  color: $text-color;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 900;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 50px;
+}
+
+a {
+  color: $primary-color;
+  transition: $transition;
+
+  &:hover {
+    color: adjust-color($primary-color, $saturation: 10, $lightness: 5);
+    text-decoration: none;
+  }
+}
+
+::selection {
+  background: $primary-color;
+}
+::-moz-selection {
+  background: $primary-color;
+}
+
+button,
+input[type="submit"] {
+  transition: $transition;
+}
+
+section {
+  padding: 50px 0;
+}
