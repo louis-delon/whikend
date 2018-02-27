@@ -1,12 +1,15 @@
 class ReviewsController < ApplicationController
 
   def new
-    @review = Review.new
+    @trip = Trip.find(params[trip_id])
+    @receiver_id = @trip.user
+    @review = Review.new(@receiver_id)
   end
 
   def create
     @trip = Trip.find(params[trip_id])
     @review = Review.new(params_review)
+    authorize(@review)
     @sender_id = current_user
     @receiver_id = @trip.user
 
@@ -21,15 +24,6 @@ class ReviewsController < ApplicationController
 
   def params_review
     params.require(:review).permit(:content, :rating)
-  end
-
-  def user_was_in_trip
-    @trip = Trip.find(params[trip_id])
-    @users = []
-    @users << @trip.submissions.user + @trip.user
-    if
-
-    end
   end
 
 end
