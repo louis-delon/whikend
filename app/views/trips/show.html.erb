@@ -1,7 +1,24 @@
 <h1><%= "Join the trip of #{@trip.user.first_name}" %></h1>
 <p><%= @trip.description %></p><br>
+
 <p><%= @trip.location %></p><br>
+
 <p><%= @trip.date %></p><br>
+
+<p><% @submissions.where(accepted:true).each do |submission| %>
+    <%= submission.user.first_name  %>
+   <% end %>
+</p>
+
+<br>
+
+<ul>
+  <% @messages.each do |message| %>
+     <li><%= message.content %></li><br>
+  <% end %>
+</ul>
+
+<br>
 
 <div>
   <% if policy(@trip).update? %>
