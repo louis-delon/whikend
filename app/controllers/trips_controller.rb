@@ -5,7 +5,7 @@ class TripsController < ApplicationController
 
   def index
     # @trips = Trip.all
-    @trip = policy_scope(Trip)
+    @trips = policy_scope(Trip)
   end
 
   def show

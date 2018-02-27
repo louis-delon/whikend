@@ -8,10 +8,10 @@ class ReviewsController < ApplicationController
 
   def create
     @trip = Trip.find(params[trip_id])
-    @review = Review.new(params_review)
-    authorize(@review)
     @sender_id = current_user
     @receiver_id = @trip.user
+    @review = Review.new(params_review)
+    authorize(@review)
 
     if @review.save
       redirect_to trip_path(@trip)
@@ -23,7 +23,13 @@ class ReviewsController < ApplicationController
   private
 
   def params_review
-    params.require(:review).permit(:content, :rating)
+    params.require(:review)
+    .permit(
+      :content,
+      :rating,
+      :sender_id,
+      :receiver_id
+       )
   end
 
 end

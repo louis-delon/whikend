@@ -1,0 +1,11 @@
+<% @trips.each do |trip| %>
+    <%= link_to(trip_path(trip)) do %>
+      <div>
+        <h2><%= trip.description %></h2>
+        <p>
+          <%= link_to "Edit this project", edit_trip_path(trip.id) %> |
+          <%= link_to "Delete this project", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" } %>
+        </p>
+      </div>
+    <% end %>
+<% end %>
