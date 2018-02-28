@@ -68,7 +68,8 @@ trip = Trip.create!(
     start_location: "Lyon",
     hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
     user_id: louis.id,
-    date: Date.today
+    date: Date.today,
+    title: "Rando dans le vercors"
   )
 
 

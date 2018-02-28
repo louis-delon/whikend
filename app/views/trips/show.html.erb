@@ -1,7 +1,17 @@
+
+<div class="banner project__banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<%= trip_image_path_for(@trip) %>)">
+  <div class="container">
+    <h1 class="project__title"><%= @project.title %></h1>
+  </div>
+</div>
+
+
+
+
 <h1><%= "Join the trip of #{@trip.user.first_name}" %></h1>
 <p><%= @trip.description %></p><br>
 
-<p><%= @trip.location %></p><br>
+<p><%= @trip.start_location %></p><br>
 
 <p><%= @trip.date %></p><br>
 

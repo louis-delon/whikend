@@ -53,6 +53,7 @@ private
       .require(:trip)
       .permit(
         :date,
+        :title,
         :description,
         :location,
         :user_id,
