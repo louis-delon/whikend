@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228102138) do
+ActiveRecord::Schema.define(version: 20180228111151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20180228102138) do
     t.string "alt_min"
     t.string "alt_max"
     t.string "difficulty"
-    t.boolean "type"
+    t.boolean "hike_type"
     t.text "description"
     t.string "department"
   end
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20180228102138) do
     t.integer "seats"
     t.boolean "auto_accept"
     t.string "title"
-    t.string "type"
+    t.string "trip_type"
     t.index ["hike_id"], name: "index_trips_on_hike_id"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end

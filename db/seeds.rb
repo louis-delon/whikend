@@ -46,7 +46,16 @@ puts "Creating hikes..."
 10.times do
   Hike.create!(
     duration: [1..10].sample,
-    location: Faker::Address.city
+    location: Faker::Address.city,
+    distance: "20 km",
+    asc_elevation: "1500",
+    desc_elevation: "700",
+    alt_min: "550",
+    alt_max: "900",
+    difficulty: "easy",
+    hike_type: true,
+    description: "randonnée exceptionnelle avec superbe vue sur la vallée",
+    department: "69"
   )
 end
 
@@ -56,7 +65,7 @@ puts "Creating trips..."
 trip = Trip.create!(
     # title: Faker::Hipster.sentence,
     description: "j'organise une rando dans le vercors",
-    location: "Lyon",
+    start_location: "Lyon",
     hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
     user_id: louis.id,
     date: Date.today
