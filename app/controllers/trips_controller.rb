@@ -63,8 +63,8 @@ class TripsController < ApplicationController
   end
 
   def new_submission
-    @submission = Submission.new
-    authorize @submission
+    @submission = Submission.new(trip: @trip, user: current_user)
+    # @submission = Trip.submissions.build
   end
 
 end

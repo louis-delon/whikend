@@ -13,6 +13,10 @@ class TripPolicy < ApplicationPolicy
     true
   end
 
+  def new_submission?
+    true
+  end
+
   def add_review?
     return true if current_user?
     submission = Submission.find_by(user_id: user.id, trip_id: @record.id)

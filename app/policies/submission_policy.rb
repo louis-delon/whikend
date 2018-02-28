@@ -5,12 +5,10 @@ class SubmissionPolicy < ApplicationPolicy
     end
   end
 
-  def new?
-    true
-  end
-
   def create?
     true
+    # raise
+    # scope.where(trip_id: "params[:id]", accepted: true).size < 3
   end
 
   def destroy?
