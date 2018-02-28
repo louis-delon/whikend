@@ -26,11 +26,20 @@
       <%= icon('fas', 'edit') %>Edit
     <% end %>
   <% end %>
+
   <% if policy(@trip).destroy?%>
     <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
       <%= icon('fas', 'trash') %>Delete
     <% end %>
   <% end %>
+
+  <% if policy(@trip).add_review?%>
+    <%= link_to(new_trip_review_path(@trip), class: "btn btn--secondary") do %>
+      <%= icon('fas', 'trash') %>Add a Review
+    <% end %>
+  <% end %>
+
+
 </div>
 
 <!-- titre du trip

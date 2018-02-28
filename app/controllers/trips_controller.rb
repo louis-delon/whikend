@@ -5,12 +5,13 @@ class TripsController < ApplicationController
 
   def index
     # @trips = Trip.all
-    @trip = policy_scope(Trip)
+    @trips = policy_scope(Trip)
   end
 
   def show
     @submissions = @trip.submissions
     @messages = @trip.messages
+    @review = Review.where(trip_id: @trip).first
   end
 
   def new
