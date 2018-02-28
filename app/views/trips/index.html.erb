@@ -3,8 +3,12 @@
       <div>
         <h2><%= trip.description %></h2>
         <p>
-          <%= link_to "Edit this project", edit_trip_path(trip.id) %> |
-          <%= link_to "Delete this project", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% if policy(trip).edit? %>
+            <%= link_to "Edit this project", edit_trip_path(trip.id) %>
+          <% end %>
+          <% if policy(trip).destroy? %> |
+            <%= link_to "Delete this project", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
         </p>
       </div>
     <% end %>
