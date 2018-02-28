@@ -45,7 +45,7 @@
       <div class="row">
         <div class="col-lg-4">
           <br>
-          <h3>2 sits available</h3>
+          <h3>no sits available</h3><br>
           <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
             <%= @trip.user.first_name %>
           </span>
@@ -54,6 +54,20 @@
           </span>
           <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
             <%= @trip.user.first_name %>
+          </span>
+          <br>
+          <span>
+            <br>
+            <p>Add a message to <%= @trip.user.first_name %> </p>
+            <%= simple_form_for([@trip, @submission]) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+              <%= f.input :content %>
+            </div>
+            <div class="form-actions">
+              <%= f.submit "Submit", class: "btn btn--primary" %>
+            </div>
+            <% end %>
           </span>
         </div>
       </div>
