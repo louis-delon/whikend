@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227171201) do
+ActiveRecord::Schema.define(version: 20180228131440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checkpoints", force: :cascade do |t|
+    t.float "lat"
+    t.float "lng"
+    t.float "ele"
+    t.integer "order"
+    t.bigint "hike_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hike_id"], name: "index_checkpoints_on_hike_id"
+  end
 
   create_table "hikes", force: :cascade do |t|
     t.time "duration"
@@ -26,7 +37,7 @@ ActiveRecord::Schema.define(version: 20180227171201) do
     t.string "alt_min"
     t.string "alt_max"
     t.string "difficulty"
-    t.boolean "type"
+    t.boolean "hike_type"
     t.text "description"
     t.string "department"
   end
@@ -71,6 +82,10 @@ ActiveRecord::Schema.define(version: 20180227171201) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "seats"
+    t.boolean "auto_accept"
+    t.string "title"
+    t.string "trip_type"
     t.index ["hike_id"], name: "index_trips_on_hike_id"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
@@ -91,10 +106,13 @@ ActiveRecord::Schema.define(version: 20180227171201) do
     t.string "first_name"
     t.string "last_name"
     t.string "description"
+    t.integer "age"
+    t.string "avatar_url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "checkpoints", "hikes"
   add_foreign_key "messages", "trips"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "trips"

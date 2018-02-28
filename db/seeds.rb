@@ -46,11 +46,32 @@ puts "Creating hikes..."
 10.times do
   Hike.create!(
     duration: [1..10].sample,
-    location: Faker::Address.city
+    location: Faker::Address.city,
+    distance: "20 km",
+    asc_elevation: "1500",
+    desc_elevation: "700",
+    alt_min: "550",
+    alt_max: "900",
+    difficulty: "easy",
+    hike_type: true,
+    description: "randonnée exceptionnelle avec superbe vue sur la vallée",
+    department: "69"
   )
 end
 
 puts "Creating trips..."
+
+#creation of a trip by Louis
+trip = Trip.create!(
+    # title: Faker::Hipster.sentence,
+    description: "j'organise une rando dans le vercors",
+    start_location: "Lyon",
+    hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+    user_id: louis.id,
+    date: Date.today
+  )
+
+
 10.times do
   Trip.create!(
     # title: Faker::Hipster.sentence,
@@ -62,7 +83,44 @@ puts "Creating trips..."
   )
 end
 
+puts "Creating submissions..."
+
+#etienne make a submission request to louis which is accepted
+Submission.create!(
+    content: "je suis tres interessé par votre randonnée",
+    user_id: etienne.id.to_i,
+    trip_id: trip.id.to_i,
+    accepted: true
+  )
+
+66.times do
+  Submission.create!(
+    content: Faker::Hipster.paragraph,
+    user_id: ((User.first.id)..(User.last.id)).to_a.sample,
+    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
+    accepted: true
+  )
+end
+
+34.times do
+  Submission.create!(
+    content: Faker::Hipster.paragraph,
+    user_id: ((User.first.id)..(User.last.id)).to_a.sample,
+    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
+    accepted: false
+  )
+end
+
 puts "Creating reviews..."
+
+#Etienne add a review to louis
+Review.create!(
+    content: "mec super cool, super balade",
+    rating: 5,
+    sender_id: etienne.id.to_i,
+    receiver_id: louis.id.to_i,
+    trip_id: trip.id.to_i
+  )
 
 10.times do
   Review.create!(
@@ -84,25 +142,6 @@ puts "Creating messages..."
   )
 end
 
-puts "Creating submissions..."
-
-66.times do
-  Submission.create!(
-    content: Faker::Hipster.paragraph,
-    user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
-    accepted: true
-  )
-end
-
-34.times do
-  Submission.create!(
-    content: Faker::Hipster.paragraph,
-    user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
-    accepted: false
-  )
-end
 
 
 

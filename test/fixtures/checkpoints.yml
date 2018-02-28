@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lat: 1.5
+  lon: 1.5
+  ele: 1.5
+  order: 1
+  hike: one
+
+two:
+  lat: 1.5
+  lon: 1.5
+  ele: 1.5
+  order: 1
+  hike: two
