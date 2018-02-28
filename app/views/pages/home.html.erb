@@ -21,7 +21,6 @@
 
       <% @trips.each do |trip| %>
         <div class="col-lg-6">
-          <%= trip.start_location %>
            <%= render "trips/trip-card", trip: trip %>
         </div>
       <% end %>
