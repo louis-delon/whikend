@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228124815) do
+ActiveRecord::Schema.define(version: 20180228131440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checkpoints", force: :cascade do |t|
     t.float "lat"
-    t.float "lon"
+    t.float "lng"
     t.float "ele"
     t.integer "order"
     t.bigint "hike_id"
