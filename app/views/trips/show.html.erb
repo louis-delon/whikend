@@ -1,55 +1,91 @@
 
-<div class="banner project__banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<%= trip_image_path_for(@trip) %>)">
+<div class="banner trip__banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://unsplash.com/photos/Bkci_8qcdvQ')">
   <div class="container">
-    <h1 class="project__title"><%= @project.title %></h1>
+    <% if policy(@trip).update? %>
+      <%= link_to(edit_trip_path(@trip), class: "btn btn--secondary") do %>
+      <%= icon('fas', 'edit') %>Edit
+      <% end %>
+    <% end %>
+    <% if policy(@trip).destroy?%>
+      <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
+      <%= icon('fas', 'trash') %>Delete
+      <% end %>
+    <% end %>
   </div>
 </div>
 
+<section class="trip__details">
+  <div class="trip_container">
+    <div class="trip__details__container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1 class="trip__details__title"><%= @trip.title %></h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8  trip__details_row">
+          <span class="trip__details__creator">
+            <%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= @trip.user.first_name %>
+          </span>
+          <span class="trip__details__creator"><%= @trip.date %></span>
+          <span class="trip__details__creator"><%= @trip.start_location %></span>
+          <span class="trip__details__creator"><%= @trip.hike.location %></span>
+          <span class="trip__details__creator"><%= @trip.hike.difficulty %></span>
+          <span class="trip__details__creator"><%= @trip.hike.duration %></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 trip__details_row">
+          <span class="trip__details__creator"><%= @trip.description %></span>
+        </div>
+      </div>
+    </div>
+    <div class="trip__submitters__container">
+      <div class="row">
+        <div class="col-lg-4">
+          <br>
+          <h3>2 sits available</h3>
+          <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= @trip.user.first_name %>
+          </span>
+          <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= @trip.user.first_name %>
+          </span>
+          <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= @trip.user.first_name %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="trip_container">
+     <div class="row">
+        <div class="col-lg-8 trip__details_row">
+          <span class="trip__details__creator">
+           <ul>
+            <% @messages.each do |message| %>
+               <li><%= message.content %></li><br>
+            <% end %>
+            </ul>
+          </span>
+        </div>
+      </div>
+    </div>
+</section>
 
-
-
-<h1><%= "Join the trip of #{@trip.user.first_name}" %></h1>
-<p><%= @trip.description %></p><br>
-
-<p><%= @trip.start_location %></p><br>
-
-<p><%= @trip.date %></p><br>
 
 <p><% @submissions.where(accepted:true).each do |submission| %>
     <%= submission.user.first_name  %>
    <% end %>
 </p>
-
 <br>
-
-<ul>
-  <% @messages.each do |message| %>
-     <li><%= message.content %></li><br>
-  <% end %>
-</ul>
-
-<br>
-
 <div>
-  <% if policy(@trip).update? %>
-    <%= link_to(edit_trip_path(@trip), class: "btn btn--secondary") do %>
-      <%= icon('fas', 'edit') %>Edit
-    <% end %>
-  <% end %>
-
-  <% if policy(@trip).destroy?%>
-    <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
-      <%= icon('fas', 'trash') %>Delete
-    <% end %>
-  <% end %>
-
   <% if policy(@trip).add_review?%>
     <%= link_to(new_trip_review_path(@trip), class: "btn btn--secondary") do %>
       <%= icon('fas', 'trash') %>Add a Review
     <% end %>
   <% end %>
-
-
 </div>
 
 <!-- titre du trip
