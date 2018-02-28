@@ -9,19 +9,23 @@
             class: "form-control",
             placeholder: "Find a hike"
           %>
+          <%= submit_tag "Search" %>
         <% end %>
       </p>
   </div>
 </div>
+
 <section class="trip__presentation">
   <div class="container">
     <div class="row">
+
       <% @trips.each do |trip| %>
         <div class="col-lg-6">
           <%= trip.start_location %>
+           <%= render "trips/trip-card", trip: trip %>
         </div>
       <% end %>
+
     </div>
   </div>
-
 </section>

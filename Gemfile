@@ -18,6 +18,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'faker'
 gem 'pundit'
+gem 'pg_search'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

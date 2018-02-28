@@ -1,0 +1,16 @@
+<%= link_to(trip_path(trip), class: "trip__card") do %>
+  <div class="trip__card__body" style="background: url(background-home.jpg)">
+    <div class="trip__card__content">
+      <h2 class="trip__card__title"><%= trip.start_location %></h2>
+      <span class="trip__card__user">
+        <%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <%= "#{trip.user.first_name.capitalize} #{trip.user.last_name}" %>
+      </span>
+    </div>
+    <span class="trip__card__filter"></span>
+  </div>
+  <div class="trip__card__footer">
+    <p class="trip__card__category"><%= icon('fas', 'tag') %><%= trip.hike.duration %></p>
+    <p class="trip__card__city"><%= icon('fas', 'map-marker-alt') %><%= trip.hike.department %></p>
+  </div>
+<% end %>

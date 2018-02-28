@@ -1,4 +1,5 @@
 class Trip < ApplicationRecord
+  include PgSearch
   belongs_to :user
   belongs_to :hike
   has_many :reviews
@@ -9,4 +10,13 @@ class Trip < ApplicationRecord
   validates :description, presence: true
   validates :user, presence: true
   validates :hike, presence: true
+
+  pg_search_scope :global_search,
+  against: [ :start_location, :description  ],
+  associated_against: {
+    hike: [ :department, :description ]
+  },
+  using: {
+    tsearch: { prefix: true }
+  }
 end
