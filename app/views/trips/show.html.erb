@@ -33,11 +33,13 @@
     <% end %>
   <% end %>
 
-  <% if policy(@review).create?%>
+  <% if policy(@trip).add_review?%>
     <%= link_to(new_trip_review_path(@trip), class: "btn btn--secondary") do %>
       <%= icon('fas', 'trash') %>Add a Review
     <% end %>
   <% end %>
+
+
 </div>
 
 <!-- titre du trip
