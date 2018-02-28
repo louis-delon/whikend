@@ -1,9 +1,30 @@
 <div class="banner banner--home">
   <div class="container">
     <h1>Find your next hiking buddies</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
+    <p>People like you are looking for a hike</p>
+      <p>
+        <%= form_tag root_path, method: :get do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a hike"
+          %>
+          <%= submit_tag "Search" %>
+        <% end %>
+      </p>
   </div>
 </div>
-<section class="home__presentation">
 
+<section class="trip__presentation">
+  <div class="container">
+    <div class="row">
+
+      <% @trips.each do |trip| %>
+        <div class="col-lg-6">
+           <%= render "trips/trip-card", trip: trip %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
 </section>
