@@ -12,10 +12,7 @@ class User < ApplicationRecord
   has_many :reviews, foreign_key: "sender_id", dependent: :destroy
   has_many :reviews, foreign_key: "receiver_id", dependent: :destroy
 
-  validates :email, presence: true
-  validates :password, presence: true
-
-  # after_create :send_welcome_email
+  after_create :send_welcome_email
 
   private
 
