@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'messages/new'
-
   root to: 'pages#home'
   devise_for :users
 

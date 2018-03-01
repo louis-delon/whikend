@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228131440) do
+ActiveRecord::Schema.define(version: 20180228152026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180228131440) do
     t.boolean "hike_type"
     t.text "description"
     t.string "department"
+    t.string "photo"
   end
 
   create_table "messages", force: :cascade do |t|
