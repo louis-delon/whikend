@@ -1,7 +1,4 @@
 puts "Cleaning database..."
-# COMMENT THIS LINE v AFTER FIRST SEED
-HikeScrap.departments_list
-
 Submission.destroy_all
 Message.destroy_all
 Review.destroy_all
@@ -117,6 +114,9 @@ def self.checkpoints_gatherer(hike)
   end
 end
 end
+
+# COMMENT THIS LINE AFTER FIRST SEED
+HikeScrap.departments_list
 
 
 
