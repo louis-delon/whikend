@@ -18,6 +18,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'faker'
 gem 'pundit'
+gem 'pg_search'
 gem 'jquery-rails'
 
 group :development do
