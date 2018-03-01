@@ -1,21 +1,28 @@
 class Trip < ApplicationRecord
   include PgSearch
+
   belongs_to :user
   belongs_to :hike
+
   has_many :reviews
   has_many :messages
   has_many :submissions
   has_many :users, through: :submissions
+
   validates :date, presence: true
   validates :start_location, presence: true
   validates :description, presence: true
   validates :user, presence: true
   validates :hike, presence: true
+  validates :trip_type, presence: true
+  validates :title, presence: true
+  validates :seats, presence: true
+  validates_inclusion_of :auto_accept, in: [true, false]
 
   pg_search_scope :global_search,
-  against: [ :start_location, :description  ],
+  against: [ :start_location, :description, :title ],
   associated_against: {
-    hike: [ :department, :description ]
+    hike: [ :department, :description, :title, :location ]
   },
   using: {
     tsearch: { prefix: true }
