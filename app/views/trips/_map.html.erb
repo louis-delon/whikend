@@ -19,7 +19,7 @@
     </style>
   </head>
   <body>
-    <div id="map"></div>
+    <div class="container" id="map"></div>
     <script>
 
       // This example creates a 2-pixel-wide red polyline showing the path of
@@ -28,10 +28,27 @@
       var array_coordinates = <%= raw @trip.hike.coordinates.to_json %>
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: array_coordinates[0],
+          zoom: 13,
           mapTypeId: 'terrain'
         });
+
+
+        var lat_min = <%= @trip.hike.coordinates.min_by{|x| x["lat"]}["lat"] %>;
+        var lat_max = <%= @trip.hike.coordinates.max_by{|x| x["lat"]}["lat"] %>;
+        var lng_min = <%= @trip.hike.coordinates.min_by{|x| x["lng"]}["lng"] %>;
+        var lng_max = <%= @trip.hike.coordinates.max_by{|x| x["lng"]}["lng"] %>;
+
+        map.setCenter(new google.maps.LatLng(
+          ((lat_max + lat_min) / 2.0),
+          ((lng_max + lng_min) / 2.0)
+        ));
+        map.fitBounds(new google.maps.LatLngBounds(
+          //bottom left
+          new google.maps.LatLng(lat_min, lng_min),
+          //top right
+          new google.maps.LatLng(lat_max, lng_max)
+        ));
+
         var flightPlanCoordinates = array_coordinates;
 
 
@@ -55,19 +72,3 @@
 
 
 
-
-<!-- var lat_min = 1.3049337;
-var lat_max = 1.3053515;
-var lng_min = 103.2103116;
-var lng_max = 103.8400188;
-
-map.setCenter(new google.maps.LatLng(
-  ((lat_max + lat_min) / 2.0),
-  ((lng_max + lng_min) / 2.0)
-));
-map.fitBounds(new google.maps.LatLngBounds(
-  //bottom left
-  new google.maps.LatLng(lat_min, lng_min),
-  //top right
-  new google.maps.LatLng(lat_max, lng_max)
-)); -->
