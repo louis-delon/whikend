@@ -12,6 +12,7 @@ class TripsController < ApplicationController
     @submissions = @trip.submissions
     @messages = @trip.messages
     @review = Review.where(trip_id: @trip).first
+    new_submission
   end
 
   def new
@@ -41,22 +42,29 @@ class TripsController < ApplicationController
     redirect_to root_path
   end
 
-private
+  private
 
   def set_trip
     @trip = Trip.find(params[:id])
     authorize @trip
   end
 
- def trip_params
+  def trip_params
     params
       .require(:trip)
       .permit(
         :date,
+        :title,
         :description,
         :location,
         :user_id,
         :hike_id
       )
   end
+
+  def new_submission
+    @submission = Submission.new(trip: @trip, user: current_user)
+    # @submission = Trip.submissions.build
+  end
+
 end

@@ -1,7 +1,8 @@
 <% @trips.each do |trip| %>
     <%= link_to(trip_path(trip)) do %>
       <div>
-        <h2><%= trip.description %></h2>
+        <h2><%= trip.title %></h2><br>
+        <p><%= trip.description %></p><br>
         <p>
           <% if policy(trip).edit? %>
             <%= link_to "Edit this project", edit_trip_path(trip.id) %>
