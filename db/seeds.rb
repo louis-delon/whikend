@@ -116,7 +116,7 @@ end
 end
 
 # COMMENT THIS LINE AFTER FIRST SEED
-HikeScrap.departments_list
+# HikeScrap.departments_list
 
 
 
