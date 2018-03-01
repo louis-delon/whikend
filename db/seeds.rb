@@ -80,7 +80,8 @@ trip = Trip.create!(
     start_location: Faker::Address.city,
     hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    date: Date.today
+    date: Date.today,
+    title: "Rando xxxxxxxxxxxxxxx"
   )
 end
 

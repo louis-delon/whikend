@@ -1,16 +1,18 @@
 
-<div class="banner trip__banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://unsplash.com/photos/Bkci_8qcdvQ')">
+<div class="banner trip__banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://unsplash.com/photos/Bkci_8qcdvQ')" >
   <div class="container">
-    <% if policy(@trip).update? %>
-      <%= link_to(edit_trip_path(@trip), class: "btn btn--secondary") do %>
-      <%= icon('fas', 'edit') %>Edit
+    <div class="trip__banner__actions">
+      <% if policy(@trip).update? %>
+        <%= link_to(edit_trip_path(@trip), class: "btn btn--secondary") do %>
+        <%= icon('fas', 'edit') %>Edit
+        <% end %>
       <% end %>
-    <% end %>
-    <% if policy(@trip).destroy?%>
-      <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
-      <%= icon('fas', 'trash') %>Delete
+      <% if policy(@trip).destroy?%>
+        <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
+        <%= icon('fas', 'trash') %>Delete
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
 
@@ -71,6 +73,14 @@
               <% end %>
             <% end %>
           </span>
+          <br>
+          <span>
+            <% if policy(@trip).add_review?%>
+              <%= link_to(new_trip_review_path(@trip), class: "btn btn-success") do %>
+              Add a Review
+              <% end %>
+            <% end %>
+          </span>
         </div>
       </div>
     </div>
@@ -92,19 +102,13 @@
     </div>
 </section>
 
-<!-- doesn't work -->
+
 <p><% @submissions.where(trip_id: @trip.id, accepted:false).each do |submission| %>
     <%= submission.user.first_name  %>
    <% end %>
 </p>
 <br>
-<div>
-  <% if policy(@trip).add_review?%>
-    <%= link_to(new_trip_review_path(@trip), class: "btn btn--secondary") do %>
-      <%= icon('fas', 'trash') %>Add a Review
-    <% end %>
-  <% end %>
-</div>
+
 
 <!-- titre du trip
 

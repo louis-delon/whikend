@@ -4,11 +4,21 @@
   background-size: cover;
   text-align: center;
   color: #fff;
-  position: relative;
   height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.trip__banner .container {
+  position: relative;
+  height: 100%;
+}
+
+.trip__banner__actions {
+  position:absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 h1.trip__details__title {
