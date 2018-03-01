@@ -5,10 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :trips
-  has_many :submissions
-  has_many :messages
-  has_many :reviews, foreign_key: "sender_id"
+  has_many :trips, dependent: :destroy
+  has_many :submissions, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :reviews, foreign_key: "sender_id", dependent: :destroy
   has_many :reviews, foreign_key: "receiver_id", dependent: :destroy
 
   validates :email, presence: true

@@ -4,10 +4,10 @@ class Trip < ApplicationRecord
   belongs_to :user
   belongs_to :hike
 
-  has_many :reviews
-  has_many :messages
-  has_many :submissions
-  has_many :users, through: :submissions
+  has_many :reviews, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :submissions, dependent: :destroy
+  has_many :users, through: :submissions, dependent: :destroy
 
   validates :date, presence: true
   validates :start_location, presence: true
