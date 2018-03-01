@@ -24,6 +24,7 @@ gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 
 group :development do
+  gem 'letter_opener'
   gem 'web-console', '>= 3.3.0'
 end
 
