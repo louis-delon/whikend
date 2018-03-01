@@ -48,15 +48,11 @@
         <div class="col-lg-12">
           <br>
           <h3>No seats available</h3><br>
-          <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-            <%= @trip.user.first_name %>
-          </span>
-          <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-            <%= @trip.user.first_name %>
-          </span>
-          <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-            <%= @trip.user.first_name %>
-          </span>
+          <% @submissions.where(accepted: true).each do |submission| %>
+            <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= submission.user.first_name  %>
+            </span>
+          <% end %>
           <br>
           <span>
             <% if policy(@submission).create? %>
