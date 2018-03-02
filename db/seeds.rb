@@ -15,7 +15,8 @@ louis = User.create!(
   first_name: 'louis',
   last_name: 'delon',
   description: 'je suis un passionné de montagne',
-  age: 40
+  age: 40,
+  avatar_url: 'http://kitt.lewagon.com/placeholder/users/loulouman34'
 )
 
 etienne = User.create!(
@@ -24,7 +25,8 @@ etienne = User.create!(
   first_name: 'etienne',
   last_name: 'delorieux',
   description: 'je suis un passionné de rando',
-  age: 27
+  age: 27,
+  avatar_url: 'http://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
 )
 
 10.times do
@@ -35,6 +37,7 @@ etienne = User.create!(
     last_name: Faker::Name.last_name,
     description: Faker::Hipster.paragraph,
     age: (25..40).to_a.sample
+    avatar_url: 'http://kitt.lewagon.com/placeholder/users/random'
   )
 end
 
@@ -233,8 +236,8 @@ Review.create!(
   Review.create!(
     content: Faker::Hipster.paragraph,
     rating: (1..5).to_a.sample,
-    sender_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    receiver_id: ((User.first.id)..(User.last.id)).to_a.sample,
+    sender_id: ((User.first.id)..(User.last.id)).to_a.first(5)sample,
+    receiver_id: ((User.first.id)..(User.last.id)).to_a.last(5).sample,
     trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample
   )
 end
