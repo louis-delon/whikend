@@ -42,7 +42,6 @@ etienne = User.create!(
 end
 
 
-
 # HIKES
 require 'open-uri'
 
@@ -146,8 +145,6 @@ class HikeScrap
     hike.coordinates = coordinates
     hike.save
   end
-
-
 end
 
 
@@ -172,6 +169,7 @@ trip = Trip.create!(
   seats: (2..6).to_a.sample,
   auto_accept: true
 )
+
 
 10.times do
   Trip.create!(
