@@ -27,8 +27,8 @@
       <div class="row">
         <div class="col-lg-8  trip__details_row">
           <span class="trip__details__creator">
-            <%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-            <%= @trip.user.first_name %>
+            <%= link_to (image_tag "http://kitt.lewagon.com/placeholder/users/louleman34", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown"), user_path(@user) %>
+            <% @user.first_name %>
           </span>
           <span class="trip__details__creator"><%= @trip.date %></span>
           <span class="trip__details__creator"><%= @trip.start_location %></span>

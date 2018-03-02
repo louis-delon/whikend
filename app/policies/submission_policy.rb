@@ -5,9 +5,6 @@ class SubmissionPolicy < ApplicationPolicy
     end
   end
 
-
-
-
   def create?
     (current_user_is_driver? || status_already_applied? || seat_full?) ? false : true
     # return false if current_user_is_driver? || status_already_accepted?

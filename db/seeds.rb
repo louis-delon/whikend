@@ -16,8 +16,8 @@ louis = User.create!(
   last_name: 'delon',
   description: 'je suis un passionné de montagne',
   age: 40,
-  avatar_url: 'http://kitt.lewagon.com/placeholder/users/loulouman34'
-)
+  remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/loulouman34'
+  )
 
 etienne = User.create!(
   email: 'etienne@gmail.com',
@@ -26,7 +26,7 @@ etienne = User.create!(
   last_name: 'delorieux',
   description: 'je suis un passionné de rando',
   age: 27,
-  avatar_url: 'http://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
+  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
 )
 
 30.times do
@@ -37,10 +37,10 @@ etienne = User.create!(
     last_name: Faker::Name.last_name,
     description: Faker::Hipster.paragraph,
     age: (25..40).to_a.sample,
-    avatar_url: 'http://kitt.lewagon.com/placeholder/users/random'
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/random'
+
   )
 end
-
 
 
 # HIKES
@@ -146,12 +146,11 @@ class HikeScrap
     hike.coordinates = coordinates
     hike.save
   end
-
-
 end
 
 
-# COMMENT THIS LINE AFTER FIRST SEED
+
+# COMMENT THIS LINE FOR SHORT SEED
 HikeScrap.departments_list
 
 
@@ -167,7 +166,7 @@ trip = Trip.create!(
   start_location: "Lyon",
   hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
   user_id: louis.id,
-  date: [Date.today,Date.today+(1),Date.today+(3),Date.today+(7)].sample,
+  date: Date.today+(1),
   trip_type: TRIP_TYPES.sample,
   seats: (2..6).to_a.sample,
   auto_accept: true
@@ -180,7 +179,7 @@ trip = Trip.create!(
     start_location: Faker::Address.city,
     hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    date: Date.today,
+    date: [Date.today-(7),Date.today+(1),Date.today+(3),Date.today+(7)].sample,
     trip_type: TRIP_TYPES.sample,
     seats: (2..5).to_a.sample,
     auto_accept: [true, false].sample
