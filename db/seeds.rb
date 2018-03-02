@@ -151,8 +151,8 @@ class HikeScrap
 end
 
 
-# COMMENT THIS LINE AFTER FIRST SEED
-# HikeScrap.departments_list
+# COMMENT THIS LINE FOR SHORT SEED
+HikeScrap.departments_list
 
 
 
