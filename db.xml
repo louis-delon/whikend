@@ -62,7 +62,7 @@
 <row name="age" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
-<row name="avatar_url" null="1" autoincrement="0">
+<row name="avatar" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <row name="facebook_picture_url" null="1" autoincrement="0">

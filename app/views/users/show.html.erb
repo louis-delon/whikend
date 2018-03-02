@@ -1,10 +1,25 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<p>je suis la</p>
-<span>
- <% if policy(@user).edit?  %>
-    <%= link_to(edit_user_path(@user), class: "btn btn--secondary") do %>
-    <%= icon('fas', 'edit') %>Edit
+<h1>Profile of <%= @user.first_name %> </h1>
+
+<% if policy(@user).edit? %>
+<div class="container">
+  <ul>
+   <li><%= @user.avatar_url%></li>
+   <li><%= " First name: #{@user.first_name}" %></li>
+   <li><%= " Last name: #{@user.last_name}" %></li>
+   <li><%= " Email: #{@user.email}" %></li>
+   <li><%= " Age: #{@user.age}" %></li>
+   <li><%= link_to(edit_user_path(@user), class: "btn btn--secondary") do %>
+    <%= icon('fas', 'edit') %>Edit</li>
     <% end %>
-  <% end %>
-</span>
+  </ul>
+</div>
+
+<% else %>
+<div>
+  <ul>
+   <li><%= @user.avatar_url%></li>
+   <li><%= " #{@user.first_name}" %></li>
+   <li><%= " #{@user.age}" %></li>
+  </ul>
+</div>
+<% end %>

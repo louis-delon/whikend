@@ -2,9 +2,9 @@ puts "Cleaning database..."
 Submission.destroy_all
 Message.destroy_all
 Review.destroy_all
-Trip.destroy_all
+# Trip.destroy_all
 User.destroy_all
-Hike.destroy_all
+# Hike.destroy_all
 
 # USERS
 puts "Creating users..."
@@ -170,19 +170,19 @@ trip = Trip.create!(
   auto_accept: true
 )
 
-10.times do
-  Trip.create!(
-    title: Faker::Hipster.sentence,
-    description: Faker::Hipster.paragraph,
-    start_location: Faker::Address.city,
-    hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
-    user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    date: Date.today,
-    trip_type: TRIP_TYPES.sample,
-    seats: (2..6).to_a.sample,
-    auto_accept: [true, false].sample
-  )
-end
+# 10.times do
+#   Trip.create!(
+#     title: Faker::Hipster.sentence,
+#     description: Faker::Hipster.paragraph,
+#     start_location: Faker::Address.city,
+#     hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+#     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
+#     date: Date.today,
+#     trip_type: TRIP_TYPES.sample,
+#     seats: (2..6).to_a.sample,
+#     auto_accept: [true, false].sample
+#   )
+# end
 
 
 
