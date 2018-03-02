@@ -9,7 +9,7 @@ Hike.destroy_all
 # USERS
 puts "Creating users..."
 
-louis = User.new(
+louis = User.create!(
   email: 'louis@gmail.com',
   password: 'aaaaaa',
   first_name: 'louis',
