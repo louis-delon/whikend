@@ -164,7 +164,7 @@ trip = Trip.create!(
   start_location: "Lyon",
   hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
   user_id: louis.id,
-  date: Date.today,
+  date: [Date.today,Date.today+(1),Date.today+(3),Date.today+(7)].sample,
   trip_type: TRIP_TYPES.sample,
   seats: (2..6).to_a.sample,
   auto_accept: true
