@@ -6,8 +6,17 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def create?
-    !current_user?
-
+    if current_user_is_driver? == true
+      return false
+    else
+      return true
+      # if has_been_accepted? == true
+      #   return false
+      # else
+      #   return true
+      # end
+      # raise
+    end
     # raise
     # TO DO:
     # if number of acccepted submitters >= number of seats return false
@@ -23,6 +32,22 @@ private
 
   def current_user?
     @record.user == @user
+  end
+
+  def current_user_is_driver?
+    @record.trip.user == user
+  end
+
+  def has_been_accepted?
+    #si le current_user a deja soumis une candidature qui
+    #a été acceptée par le driver retourner false
+    # raise
+    if @record.accepted != true
+      raise
+      return true
+    else
+      return false
+    end
   end
 
 end
