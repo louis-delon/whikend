@@ -1,4 +1,6 @@
-<h1>Profile of <%= @user.first_name %> </h1>
+<div class="container">
+  <h1>Profile of <%= @user.first_name %> </h1>
+</div>
 
 <% if policy(@user).edit? %>
 <div class="container">
@@ -14,14 +16,28 @@
     <%= icon('fas', 'edit') %>Edit</li>
     <% end %>
   </ul>
+  <ul>
+    <% @user.reviews.each do |review|%>
+      <li><%= review.content %></li>
+    <% end %>
+  </ul>
 </div>
 
 <% else %>
-<div>
+
+<div class= "container">
+  <ul style="list-style-type: none;">
+    <li><% user_avatar = current_user.facebook_picture_url || current_user.avatar || "default-avatar.png" %>
+        <%= image_tag user_avatar, class: "avatar" %>
+    <li><%= " #{@user.first_name}" %></li>
+    <li><%= " #{@user.age}" %></li>
+  </ul>
   <ul>
-   <li><%= @user.avatar_url%></li>
-   <li><%= " #{@user.first_name}" %></li>
-   <li><%= " #{@user.age}" %></li>
+    <% @user.reviews.each do |review|%>
+      <li><%= review.content %></li>
+    <% end %>
   </ul>
 </div>
+
 <% end %>
+
