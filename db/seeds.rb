@@ -2,22 +2,22 @@ puts "Cleaning database..."
 Submission.destroy_all
 Message.destroy_all
 Review.destroy_all
-# Trip.destroy_all
+Trip.destroy_all
 User.destroy_all
-# Hike.destroy_all
+Hike.destroy_all
 
 # USERS
 puts "Creating users..."
 
-louis = User.create!(
+louis = User.new(
   email: 'louis@gmail.com',
   password: 'aaaaaa',
   first_name: 'louis',
   last_name: 'delon',
   description: 'je suis un passionné de montagne',
   age: 40,
-  avatar_url: 'http://kitt.lewagon.com/placeholder/users/loulouman34'
-)
+  remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/loulouman34'
+  )
 
 etienne = User.create!(
   email: 'etienne@gmail.com',
@@ -26,7 +26,7 @@ etienne = User.create!(
   last_name: 'delorieux',
   description: 'je suis un passionné de rando',
   age: 27,
-  avatar_url: 'http://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
+  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
 )
 
 10.times do
@@ -37,7 +37,7 @@ etienne = User.create!(
     last_name: Faker::Name.last_name,
     description: Faker::Hipster.paragraph,
     age: (25..40).to_a.sample,
-    avatar_url: 'http://kitt.lewagon.com/placeholder/users/random'
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/random'
   )
 end
 
@@ -148,8 +148,8 @@ class HikeScrap
 end
 
 
-# COMMENT THIS LINE AFTER FIRST SEED
-# HikeScrap.departments_list
+# COMMENT THIS LINE FOR SHORT SEED
+HikeScrap.departments_list
 
 
 
@@ -164,25 +164,26 @@ trip = Trip.create!(
   start_location: "Lyon",
   hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
   user_id: louis.id,
-  date: [Date.today,Date.today+(1),Date.today+(3),Date.today+(7)].sample,
+  date: Date.today+(1),
   trip_type: TRIP_TYPES.sample,
   seats: (2..6).to_a.sample,
   auto_accept: true
 )
 
-# 10.times do
-#   Trip.create!(
-#     title: Faker::Hipster.sentence,
-#     description: Faker::Hipster.paragraph,
-#     start_location: Faker::Address.city,
-#     hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
-#     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-#     date: Date.today,
-#     trip_type: TRIP_TYPES.sample,
-#     seats: (2..6).to_a.sample,
-#     auto_accept: [true, false].sample
-#   )
-# end
+
+10.times do
+  Trip.create!(
+    title: Faker::Hipster.sentence,
+    description: Faker::Hipster.paragraph,
+    start_location: Faker::Address.city,
+    hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+    user_id: ((User.first.id)..(User.last.id)).to_a.sample,
+    date: [Date.today-(7),Date.today+(1),Date.today+(3),Date.today+(7)].sample,
+    trip_type: TRIP_TYPES.sample,
+    seats: (2..6).to_a.sample,
+    auto_accept: [true, false].sample
+  )
+end
 
 
 
