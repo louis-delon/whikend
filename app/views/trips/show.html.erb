@@ -102,6 +102,7 @@
     </div>
 </section>
 
+<%= render "map" %>
 
 <p><% @submissions.where(trip_id: @trip.id, accepted:false).each do |submission| %>
     <%= submission.user.first_name  %>
