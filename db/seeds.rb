@@ -4,6 +4,7 @@ Message.destroy_all
 Review.destroy_all
 Trip.destroy_all
 User.destroy_all
+Hike.destroy_all
 
 # USERS
 puts "Creating users..."
@@ -145,6 +146,7 @@ class HikeScrap
 
 
 end
+
 
 # COMMENT THIS LINE AFTER FIRST SEED
 # HikeScrap.departments_list
