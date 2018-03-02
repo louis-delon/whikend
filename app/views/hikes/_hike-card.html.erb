@@ -1,0 +1,31 @@
+<div class="hike__card">
+  <!-- <label for="hike-<%= hike.id %>"></label>
+  <input id="hike-<%= hike.id %>" type="checkbox" name="trip[:hike_id]">
+  - input radio button, avec le même nom
+  - ajout classe après avoir cliqué
+  -->
+  <div class="hike__card__body" style="background-image: url(<%= hike.photo_url %>)">
+
+    <div class="hike__card__body__info">
+      <h2 class="hike__card__title"><%= hike.title %></h2>
+      <p>
+        <span class="hike__card__location">
+          <%= icon('fas', 'map-marker-alt') %><%= hike.location %>
+        </span>
+        <%= icon('fas', 'map-signs') %><%= hike.distance %>
+      </p>
+    </div>
+    <span class="hike__card__filter"></span>
+  </div>
+
+  <div class="hike__card__footer <%= hike.difficulty.downcase %>">
+    <span class="hike__card__duration">
+      <%= icon('fas', 'stopwatch') %><%= hike.duration %>
+    </span>
+    <span class="hike__card__alt-max">
+      <%= icon('fas', 'chart-line') %><%= hike.alt_max %>
+    </span>
+    <%= icon('fas', 'chart-line') %><%= hike.alt_min %>
+  </div>
+
+</div>
