@@ -2,7 +2,9 @@
 <p>Find me in app/views/users/show.html.erb</p>
 <p>je suis la</p>
 <span>
+ <% if policy(@user).edit?  %>
     <%= link_to(edit_user_path(@user), class: "btn btn--secondary") do %>
     <%= icon('fas', 'edit') %>Edit
     <% end %>
+  <% end %>
 </span>

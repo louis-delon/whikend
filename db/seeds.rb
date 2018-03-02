@@ -36,7 +36,7 @@ etienne = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     description: Faker::Hipster.paragraph,
-    age: (25..40).to_a.sample
+    age: (25..40).to_a.sample,
     avatar_url: 'http://kitt.lewagon.com/placeholder/users/random'
   )
 end
@@ -233,7 +233,7 @@ Review.create!(
   Review.create!(
     content: Faker::Hipster.paragraph,
     rating: (1..5).to_a.sample,
-    sender_id: ((User.first.id)..(User.last.id)).to_a.first(5)sample,
+    sender_id: ((User.first.id)..(User.last.id)).to_a.first(5).sample,
     receiver_id: ((User.first.id)..(User.last.id)).to_a.last(5).sample,
     trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample
   )
