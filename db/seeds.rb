@@ -9,7 +9,7 @@ Hike.destroy_all
 # USERS
 puts "Creating users..."
 
-louis = User.new(
+louis = User.create!(
   email: 'louis@gmail.com',
   password: 'aaaaaa',
   first_name: 'louis',
@@ -29,7 +29,7 @@ etienne = User.create!(
   remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
 )
 
-10.times do
+30.times do
   User.create!(
     email: Faker::Internet.email,
     password: Faker::Internet.password,
@@ -38,6 +38,7 @@ etienne = User.create!(
     description: Faker::Hipster.paragraph,
     age: (25..40).to_a.sample,
     remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/random'
+
   )
 end
 
@@ -148,6 +149,7 @@ class HikeScrap
 end
 
 
+
 # COMMENT THIS LINE FOR SHORT SEED
 HikeScrap.departments_list
 
@@ -170,8 +172,7 @@ trip = Trip.create!(
   auto_accept: true
 )
 
-
-10.times do
+20.times do
   Trip.create!(
     title: Faker::Hipster.sentence,
     description: Faker::Hipster.paragraph,
@@ -180,7 +181,7 @@ trip = Trip.create!(
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
     date: [Date.today-(7),Date.today+(1),Date.today+(3),Date.today+(7)].sample,
     trip_type: TRIP_TYPES.sample,
-    seats: (2..6).to_a.sample,
+    seats: (2..5).to_a.sample,
     auto_accept: [true, false].sample
   )
 end
@@ -198,7 +199,7 @@ Submission.create!(
     accepted: true
   )
 
-66.times do
+36.times do
   Submission.create!(
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
@@ -207,7 +208,7 @@ Submission.create!(
   )
 end
 
-34.times do
+14.times do
   Submission.create!(
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
@@ -245,7 +246,7 @@ end
 # MESSAGES
 puts "Creating messages..."
 
-100.times do
+50.times do
   Message.create!(
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,

@@ -1,0 +1,53 @@
+<div class="trip__submitters__container">
+  <div class="row">
+    <div class="col-lg-12">
+      <br>
+      <% count_seats = [@trip.seats - @submissions.where(accepted: true).to_a.size, 0].max %>
+      <h3><%= count_seats %> seat(s) available</h3><br>
+      <% @submissions.where(accepted: true).each do |submission| %>
+        <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <%= submission.user.first_name  %>
+        </span>
+      <% end %>
+      <br>
+      <span>
+        <br>
+          <% if policy(@submission).create? %>
+            <%= simple_form_for([@trip, @submission]) do |f| %>
+              <%= f.error_notification %>
+              <div class="form-inputs">
+                <%= f.input :content %>
+              </div>
+              <div class="form-actions">
+                <%= f.submit "Submit", class: "btn btn--primary" %>
+              </div>
+            <% end %>
+          <% elsif policy(@submission).status_accepted? %>
+            <p>You are good to go!</p>
+          <% elsif policy(@submission).status_pending? %>
+            <p>You already applied - you'll get an answer soon</p>
+          <% elsif policy(@submission).status_rejected? %>
+            <p>Bummer - find another hike you could join</p>
+          <% else policy(@submission).seat_full? %>
+            <p>Sorry, no more seats available</p>
+          <% end %>
+        <br>
+          <% if policy(@submission).status_already_applied? %>
+            <% if policy(@submission).automatic? %>
+              <p>Submissions are automatically accepted</p>
+            <% else %>
+              <p>Submissions are manually validated by <%= @trip.user.first_name %></p>
+            <% end %>
+          <% end %>
+      </span>
+      <br>
+      <span>
+        <% if policy(@trip).add_review?%>
+          <%= link_to(new_trip_review_path(@trip), class: "btn btn-success") do %>
+          Add a Review
+          <% end %>
+        <% end %>
+      </span>
+    </div>
+  </div>
+</div>
