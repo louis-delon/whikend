@@ -4,13 +4,18 @@ class TripsController < ApplicationController
 
   def index
     # @trips = Trip.all
-    @trips = policy_scope(Trip)
+    if params[:query].present?
+      @trips = policy_scope(Trip).global_search(params[:query])
+    else
+      @trips = policy_scope(Trip).all
+    end
   end
 
   def show
     @submissions = @trip.submissions
     @messages = @trip.messages
     @review = Review.where(trip_id: @trip).first
+    @user = @trip.user
     new_submission
   end
 

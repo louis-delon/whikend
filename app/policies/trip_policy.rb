@@ -1,7 +1,7 @@
 class TripPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope
     end
   end
 
@@ -10,10 +10,6 @@ class TripPolicy < ApplicationPolicy
   end
 
   def new?
-    true
-  end
-
-  def new_submission?
     true
   end
 

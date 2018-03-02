@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  mount_uploader :avatar_url, PhotoUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -12,10 +11,9 @@ class User < ApplicationRecord
   has_many :reviews, foreign_key: "sender_id", dependent: :destroy
   has_many :reviews, foreign_key: "receiver_id", dependent: :destroy
 
-  validates :email, presence: true
-  validates :password, presence: true
-
   # after_create :send_welcome_email
+
+  mount_uploader :avatar, PhotoUploader
 
   private
 
