@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update]
 
+  get 'trips/hikes_by_department', to: 'trips#hikes_by_department'
   resources :trips do
     resources :submissions, except: [:update, :edit, :show]
     resources :messages, only: [:new, :create]

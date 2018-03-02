@@ -1,2 +1,57 @@
-<h1>Trips#new</h1>
-<p>Find me in app/views/trips/new.html.erb</p>
+<section>
+  <div class="container">
+    <h1>Create a trip</h1>
+
+    <%= simple_form_for((@trip), remote: true) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :hike, label: "Where do you wanna go?", collection: @departments_list %>
+      </div>
+
+      <div class="hikes__list">
+
+      </div>
+
+      <div class="form-inputs">
+        <%=
+        # f.input :hike, label: "Chose a hike!", include_blank: false, collection: @hikes.map { |hike| "#{hike.title} - [ #{hike.distance} | #{hike.duration} | #{hike.difficulty} ]" }
+        %>
+      </div>
+
+      <div class="form-inputs">
+        <%= f.input :title %>
+      </div>
+
+      <div class="form-inputs">
+        <%= f.input :date, order: [:day, :month, :year] %>
+      </div>
+
+      <div class="form-inputs">
+        <%= f.input :start_location %>
+      </div>
+
+      <div class="form-inputs">
+        <%= f.input :seats %>
+      </div>
+
+      <div class="form-inputs">
+        <%= f.input :trip_type, include_blank: false, collection: @trip_types  %>
+      </div>
+
+      <div class="form-inputs">
+        <%= f.input :description  %>
+      </div>
+
+      <div class="form-inputs">
+        <%= f.input :auto_accept, label: "Automatically accept all submissions?"  %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "Create this trip", class: "btn btn--primary" %>
+        <%= link_to "Cancel", root_path, class: "btn btn--secondary" %>
+      </div>
+    <% end %>
+
+  </div>
+</section>

@@ -40,6 +40,10 @@ class TripPolicy < ApplicationPolicy
     current_user?
   end
 
+  def hikes_by_department?
+    true
+  end
+
 private
 
   def current_user?
