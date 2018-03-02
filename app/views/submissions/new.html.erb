@@ -3,7 +3,7 @@
 
 
 <div>
-  <p><strong> <%= @trip.location %></strong></p>
+  <p><strong> <%= @trip.start_location %></strong></p>
   <p> <%= @trip.description %></p>
 
   <%= simple_form_for [@trip, @submission] do |f| %>
