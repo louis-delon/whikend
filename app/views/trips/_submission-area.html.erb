@@ -33,7 +33,7 @@
           <% end %>
         <br>
           <% if policy(@submission).status_already_applied? %>
-            <% if policy(@submission).manual? %>
+            <% if policy(@submission).automatic? %>
               <p>Submissions are automatically accepted</p>
             <% else %>
               <p>Submissions are manually validated by <%= @trip.user.first_name %></p>
