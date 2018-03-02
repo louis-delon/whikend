@@ -38,7 +38,6 @@ etienne = User.create!(
 end
 
 
-
 # HIKES
 require 'open-uri'
 
@@ -142,8 +141,6 @@ class HikeScrap
     hike.coordinates = coordinates
     hike.save
   end
-
-
 end
 
 # COMMENT THIS LINE AFTER FIRST SEED
