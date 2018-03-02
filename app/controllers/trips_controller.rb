@@ -5,7 +5,11 @@ class TripsController < ApplicationController
 
   def index
     # @trips = Trip.all
-    @trips = policy_scope(Trip)
+    if params[:query].present?
+      @trips = policy_scope(Trip).global_search(params[:query])
+    else
+      @trips = policy_scope(Trip).all
+    end
   end
 
   def show

@@ -1,16 +1,24 @@
-<% @trips.each do |trip| %>
-    <%= link_to(trip_path(trip)) do %>
-      <div>
-        <h2><%= trip.title %></h2><br>
-        <p><%= trip.description %></p><br>
-        <p>
-          <% if policy(trip).edit? %>
-            <%= link_to "Edit this project", edit_trip_path(trip.id) %>
-          <% end %>
-          <% if policy(trip).destroy? %> |
-            <%= link_to "Delete this project", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
-        </p>
-      </div>
+<section class="search">
+  <div class="container">
+    <%= form_tag trips_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a hike"
+      %>
+      <%= submit_tag "Search" %>
     <% end %>
-<% end %>
+  </div>
+</section>
+<section class="trip__presentation">
+  <div class="container">
+    <div class="row">
+
+      <% @trips.each do |trip| %>
+        <div class="col-lg-6">
+           <%= render "trips/trip-card", trip: trip %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
