@@ -130,7 +130,6 @@ class HikeScrap
     hike.save
   end
 
-
   def self.checkpoints_gatherer(hike)
     coordinates_result = Nokogiri::HTML(open("https://www.visorando.com/index.php?component=ajax&task=getChartDataFileOptimise&idRandonnee=#{hike.site_id}").read)
 
@@ -148,6 +147,8 @@ class HikeScrap
 
 end
 
+
+# COMMENT THIS LINE AFTER FIRST SEED
 # HikeScrap.departments_list
 
 
