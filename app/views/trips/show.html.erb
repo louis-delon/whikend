@@ -20,16 +20,19 @@
   <div class="trip_container">
     <div class="trip__details__container">
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
           <h1 class="trip__details__title"><%= @trip.title %></h1>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-8  trip__details_row">
+        <div class="col-lg-12  trip__details_row">
           <span class="trip__details__creator">
-            <%= link_to (image_tag "http://kitt.lewagon.com/placeholder/users/louleman34", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown"), user_path(@user) %>
-            <% @user.first_name %>
+            <%= link_to user_path(@user) do %>
+            <%= image_tag "http://kitt.lewagon.com/placeholder/users/louleman34", class: "avatar" %>
+            <%= @user.first_name %>
+            <% end %>
           </span>
+          <br>
           <span class="trip__details__creator"><%= @trip.date %></span>
           <span class="trip__details__creator"><%= @trip.start_location %></span>
           <span class="trip__details__creator"><%= @trip.hike.location %></span>
