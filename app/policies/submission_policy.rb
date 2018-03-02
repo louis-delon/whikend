@@ -9,10 +9,9 @@ class SubmissionPolicy < ApplicationPolicy
 
 
   def create?
-    # (current_user_is_driver? || status_already_accepted?) ? false : true
-    return false if current_user_is_driver? || status_already_accepted?
-    true
-
+    (current_user_is_driver? || status_already_accepted?) ? false : true
+    # return false if current_user_is_driver? || status_already_accepted?
+    # true
   end
 
   def destroy?
