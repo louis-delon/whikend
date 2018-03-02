@@ -37,7 +37,7 @@ class SubmissionPolicy < ApplicationPolicy
     @record.trip.submissions.where(accepted: true).to_a.size >= @record.trip.seats
   end
 
-  def manual?
+  def automatic?
     @record.trip.auto_accept
   end
 
