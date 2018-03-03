@@ -29,6 +29,16 @@ etienne = User.create!(
   remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
 )
 
+etienne = User.create!(
+  email: 'alex@gmail.com',
+  password: 'aaaaaa',
+  first_name: 'alexandre',
+  last_name: 'bertrand',
+  description: 'je suis un vrai pro de la rando',
+  age: 27,
+  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
+)
+
 30.times do
   User.create!(
     email: Faker::Internet.email,
@@ -226,6 +236,14 @@ puts "Creating reviews..."
 Review.create!(
     content: "mec super cool, super balade",
     rating: 5,
+    sender_id: etienne.id.to_i,
+    receiver_id: louis.id.to_i,
+    trip_id: trip.id.to_i
+  )
+
+Review.create!(
+    content: "j'ai adoré, merci!",
+    rating: 4,
     sender_id: etienne.id.to_i,
     receiver_id: louis.id.to_i,
     trip_id: trip.id.to_i

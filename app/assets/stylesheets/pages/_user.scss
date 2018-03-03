@@ -1,0 +1,43 @@
+.user__box {
+  background-color: #fff;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+}
+
+
+.user__title {
+  text-align: center;
+  padding-top: 50px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.user__details {
+  padding-left: 400px;
+  font-size: 20px;
+}
+
+.user__reviews {
+  padding-left: 300px;
+  font-size: 20px;
+}
+
+.user__reviews__content {
+  background-color: #effff4;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 310px;
+  text-align: center;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+}
+
+.user__reviews__created_at {
+  font-style: italic;
+  font-size: 14px;
+  color: $gray;
+}
+
+.user__review__id {
+
+}
