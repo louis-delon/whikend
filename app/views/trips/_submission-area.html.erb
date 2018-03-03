@@ -25,11 +25,42 @@
               <div class="form-actions">
                 <%= f.submit "Submit", class: "btn btn--primary" %>
               </div>
+              <div>
+                <h3><i class="fas fa-hourglass-half"></i>
+                  Waiting For Approval
+                </h3>
+                <% @submissions.where(accepted: nil).each do |submission| %>
+                  <span class="trip__details__title">
+                    <%= link_to user_path(submission.user) do %>
+                      <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
+                      <%= image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+                      <%= submission.user.first_name.capitalize  %>
+                    <% end %>
+                  </span>
+                <% end %>
+              </div>
             <% end %>
           <% elsif policy(@submission).status_accepted? %>
             <p>You are good to go!</p>
           <% elsif policy(@submission).status_pending? %>
             <p>You already applied - you'll get an answer soon</p>
+            <div>
+                <h3><i class="fas fa-hourglass-half"></i>
+                  Waiting For Approval
+                </h3>
+                <% @submissions.where(accepted: nil).each do |submission| %>
+                  <span class="trip__details__title">
+                    <%= link_to user_path(submission.user) do %>
+                      <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
+                      <%= image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+                      <%= submission.user.first_name.capitalize  %>
+                      <%= link_to(select_submission_path(@trip, submission), class: "btn btn--secondary") do %>
+                        <i class="fas fa-thumbs-up"></i>Accept
+                      <% end %>
+                    <% end %>
+                  </span>
+                <% end %>
+              </div>
           <% elsif policy(@submission).status_rejected? %>
             <p>Bummer - find another hike you could join</p>
           <% else policy(@submission).seat_full? %>
