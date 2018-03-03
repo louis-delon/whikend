@@ -28,16 +28,17 @@
         <div class="col-lg-12  trip__details_row">
           <span class="trip__details__creator">
             <%= link_to user_path(@user) do %>
-            <%= image_tag "http://kitt.lewagon.com/placeholder/users/louleman34", class: "avatar" %>
-            <%= @user.first_name %>
+            <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
+            <%= image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= @user.first_name.capitalize %>
             <% end %>
           </span>
           <br>
           <span class="trip__details__creator"><%= @trip.date %></span>
-          <span class="trip__details__creator"><%= @trip.start_location %></span>
-          <span class="trip__details__creator"><%= @trip.hike.location %></span>
-          <span class="trip__details__creator"><%= @trip.hike.difficulty %></span>
-          <span class="trip__details__creator"><%= @trip.hike.duration %></span>
+          <span class="trip__details__creator"><%= icon('fas', 'map-marker-alt') %><%= @trip.start_location %></span>
+          <span class="trip__details__creator"><%= icon('fas', 'map-marker-alt') %><%= @trip.hike.location %></span>
+          <span class="trip__details__creator"><%= icon('fas', 'tag') %><%= @trip.hike.difficulty %></span>
+          <span class="trip__details__creator"><%= icon('fas', 'tag') %><%= @trip.hike.duration %></span>
         </div>
       </div>
       <div class="row">

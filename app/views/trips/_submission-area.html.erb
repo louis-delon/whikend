@@ -5,8 +5,10 @@
       <% count_seats = [@trip.seats - @submissions.where(accepted: true).to_a.size, 0].max %>
       <h3><%= count_seats %> seat(s) available</h3><br>
       <% @submissions.where(accepted: true).each do |submission| %>
-        <span class="trip__details__title"><%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-        <%= submission.user.first_name  %>
+        <span class="trip__details__title">
+          <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
+          <%= image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%= submission.user.first_name.capitalize  %>
         </span>
       <% end %>
       <br>
