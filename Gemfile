@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'omniauth-facebook'
+gem 'postmark-rails'
 
 group :development do
   gem 'letter_opener'

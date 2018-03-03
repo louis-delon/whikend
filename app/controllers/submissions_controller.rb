@@ -30,6 +30,14 @@ class SubmissionsController < ApplicationController
     redirect_to root_path
   end
 
+  def select
+    @submission = Submission.find(params[:id])
+    @submission.accepted = true
+    @submission.save
+    authorize @submission
+    redirect_to trip_path(params[:trip_id])
+  end
+
 private
 
   def submission_params

@@ -172,6 +172,31 @@ trip = Trip.create!(
   auto_accept: true
 )
 
+#creation of a trip by Etienne
+trip1 = Trip.create!(
+  title: "Rando sur le plateau des Glières",
+  description: "J'organise une rando au départ de Lyon Confluence ce samedi. J'ai 3 places dans ma Tesla. Inscrivez-vous vite, y'aura bientôt plus de places.",
+  start_location: "Lyon",
+  hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+  user_id: etienne.id,
+  date: Date.today+(1),
+  trip_type: TRIP_TYPES.sample,
+  seats: 3,
+  auto_accept: true
+)
+
+trip1 = Trip.create!(
+  title: "Rando dans les Pyrénées et le Pays Basque",
+  description: "J'organise une rando au départ de Bayonne mardi prochain. Je ramène du jambon de Bayonne pour le pic-nic :). J'ai un combi Volkswagen",
+  start_location: "Bayonne",
+  hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+  user_id: ((User.first.id)..(User.last.id)).to_a.sample,
+  date: Date.today+(3),
+  trip_type: TRIP_TYPES.sample,
+  seats: 6,
+  auto_accept: true
+)
+
 20.times do
   Trip.create!(
     title: Faker::Hipster.sentence,
@@ -203,7 +228,7 @@ Submission.create!(
   Submission.create!(
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
+    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.last(5).sample,
     accepted: true
   )
 end
@@ -213,7 +238,7 @@ end
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
     trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
-    accepted: false
+    accepted: nil
   )
 end
 
