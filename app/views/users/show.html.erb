@@ -1,40 +1,64 @@
 <div class="container">
-  <div class="user__box">
-    <div class="user__title">
-      <h1>Profile of <%= @user.first_name %> </h1>
-      <p>
-        <% user_avatar = current_user.facebook_picture_url || current_user.avatar || "default-avatar.png" %>
-        <%= image_tag user_avatar, class: "avatar__profile" %>
-      </p>
+  <div class="row">
+    <div class="col-6-lg">
+      <div class="user__box">
+        <h1>Profile of <%= @user.first_name.capitalize %></h1>
+        <p>
+          <% user_avatar = current_user.facebook_picture_url || current_user.avatar || "default-avatar.png" %>
+          <%= image_tag user_avatar, class: "avatar__profile" %>
+        </p>
+        <div>
+          <% if policy(@user).edit? %>
+            <ul style="list-style-type: none;">
+             <li><%= " First name: #{@user.first_name.capitalize}" %></li>
+             <li><%= " Last name: #{@user.last_name}" %></li>
+             <li><%= " Email: #{@user.email}" %></li>
+             <li><%= " Age: #{@user.age}" %></li>
+             <li><%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-success" %>
+             </li>
+            </ul>
+          <% else %>
+            <ul style="list-style-type: none;">
+              <li><%= " #{@user.first_name.capitalize}" %></li>
+              <li><%= " #{@user.age}" %></li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
     </div>
-
-    <div class="user__details">
-      <% if policy(@user).edit? %>
-        <ul style="list-style-type: none;">
-         <li><%= " First name: #{@user.first_name}" %></li>
-         <li><%= " Last name: #{@user.last_name}" %></li>
-         <li><%= " Email: #{@user.email}" %></li>
-         <li><%= " Age: #{@user.age}" %></li>
-         <li><%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-success" %>
-         </li>
-        </ul>
-      <% else %>
-        <ul style="list-style-type: none;">
-          <li><%= " #{@user.first_name}" %></li>
-          <li><%= " #{@user.age}" %></li>
-        </ul>
-      <% end %>
-    </div>
-    <div class="user__reviews">
-      <ul style="list-style-type: none;">
-        <%= "reviews of #{@user.first_name}" %>
-        <% @user.reviews.each do |review|%>
-          <div class="user__review__id">
-            <li class="user__reviews__created_at"><%= review.created_at %></li>
-            <li class="user__reviews__content"><%= review.content %></li>
-          </div>
+  </div>
+  <div class="row">
+    <div class="col-6-lg">
+      <div class="user__box">
+        <% if @user.reviews.any? %>
+          <%= render "average_review_ratings" %>
+          <%= "reviews of #{@user.first_name.capitalize}" %>
+        <% else %>
+          <h3><%= "#{@user.first_name.capitalize} has no reviews yet" %></h3>
         <% end %>
-      </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6-lg">
+      <div class="user__box">
+        <div class="user__reviews">
+          <% if @user.reviews.any? %>
+            <% @user.reviews.each do |review|%>
+              <div class ="user__reviews__card">
+                <p><%= review.content %></p>
+                <p>
+                  <% review.rating.times do %>
+                    <%= icon('fas star--full', 'star') %>
+                  <% end %>
+                  <% (5 - review.rating).times do %>
+                    <%= icon('fas star--empty', 'star') %>
+                  <% end %>
+                </p>
+              </div>
+            <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

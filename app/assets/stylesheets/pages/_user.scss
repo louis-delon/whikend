@@ -1,23 +1,21 @@
 .user__box {
   background-color: #fff;
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
-}
-
-
-.user__title {
   text-align: center;
   padding-top: 50px;
   margin-bottom: 50px;
   margin-top: 50px;
 }
 
-.user__details {
-  padding-left: 400px;
+// .user__title {
+
+// }
+
+.user__box div {
   font-size: 20px;
 }
 
 .user__reviews {
-  padding-left: 300px;
   font-size: 20px;
 }
 
@@ -27,7 +25,7 @@
   padding-top: 30px;
   border-radius: 10px;
   margin-left: 10px;
-  margin-right: 310px;
+  margin-right: 10px;
   text-align: center;
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
 }
@@ -38,6 +36,34 @@
   color: $gray;
 }
 
+
+.user__reviews__card {
+  background-color: #fff;
+  border-radius: $border-radius;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  transition: $transition;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
+  }
+}
+
 .user__review__id {
 
+}
+
+.user__review__average {
+  margin-bottom: 5px;
+}
+
+.fa-star {
+  color: $primary-color;
+}
+
+.fa-star.star--empty {
+  opacity: 0.2;
+  color: $secondary-color;
 }

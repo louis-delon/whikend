@@ -4,7 +4,7 @@ Message.destroy_all
 Review.destroy_all
 Trip.destroy_all
 User.destroy_all
-Hike.destroy_all
+# Hike.destroy_all
 
 # USERS
 puts "Creating users..."
@@ -29,14 +29,14 @@ etienne = User.create!(
   remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
 )
 
-etienne = User.create!(
+alex = User.create!(
   email: 'alex@gmail.com',
   password: 'aaaaaa',
   first_name: 'alexandre',
   last_name: 'bertrand',
   description: 'je suis un vrai pro de la rando',
-  age: 27,
-  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
+  age: 32,
+  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk'
 )
 
 30.times do
@@ -161,7 +161,7 @@ end
 
 
 # COMMENT THIS LINE FOR SHORT SEED
-HikeScrap.departments_list
+# HikeScrap.departments_list
 
 
 
@@ -209,6 +209,13 @@ Submission.create!(
     accepted: true
   )
 
+Submission.create!(
+    content: "reste t-il des places?",
+    user_id: alex.id.to_i,
+    trip_id: trip.id.to_i,
+    accepted: true
+  )
+
 36.times do
   Submission.create!(
     content: Faker::Hipster.paragraph,
@@ -244,7 +251,7 @@ Review.create!(
 Review.create!(
     content: "j'ai adoré, merci!",
     rating: 4,
-    sender_id: etienne.id.to_i,
+    sender_id: alex.id.to_i,
     receiver_id: louis.id.to_i,
     trip_id: trip.id.to_i
   )
@@ -263,6 +270,18 @@ end
 
 # MESSAGES
 puts "Creating messages..."
+
+Message.create!(
+    content: "bonjour je suis super content d'avoir été accepté à votre rando",
+    user_id: etienne.id,
+    trip_id: trip.id
+  )
+
+Message.create!(
+    content: "bonjour à quelle heure se fait le depart",
+    user_id: alex.id,
+    trip_id: trip.id
+  )
 
 50.times do
   Message.create!(

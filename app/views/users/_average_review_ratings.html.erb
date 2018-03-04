@@ -1,0 +1,11 @@
+<h3>
+    Average ratings:
+    <div class="user__review__average">
+      <% @average.to_i.times do %>
+        <%= icon('fas star--full', 'star') %>
+      <% end %>
+      <% (5 - @average.to_i).times do %>
+        <%= icon('fas star--empty', 'star') %>
+      <% end %>
+    </div>
+  </h3>
