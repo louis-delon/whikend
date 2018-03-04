@@ -5,6 +5,7 @@ if (newTripForm) {
 
   department_selector.addEventListener("change", function() {
     let current_department = department_selector.value;
+    console.log(current_department);
 
     $.ajax({
       type: "GET",
@@ -15,7 +16,7 @@ if (newTripForm) {
     });
   });
 }
-//
+
 const insertHikes = (code_html, statut) => {
   const hikesList = document.querySelector(".hikes__list");
   hikesList.innerHTML = code_html;

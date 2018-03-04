@@ -50,16 +50,6 @@ a {
   background: $primary-color;
 }
 
-button,
-input[type="submit"] {
-  transition: $transition;
-}
-
-textarea {
-  min-width: 100%;
-  max-width: 100%;
-}
-
 section {
   padding: 50px 0;
 }

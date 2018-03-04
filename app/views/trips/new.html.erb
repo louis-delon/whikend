@@ -1,50 +1,62 @@
-<section>
+<section id="new__trip">
   <div class="container">
     <div class="col-lg-8 col-lg-offset-2">
-      <h1>Create a trip</h1>
+      <div class="new__trip__title">
+        <h1>Create a trip</h1>
+      </div>
 
       <%= simple_form_for((@trip), remote: true) do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs">
-          <%= f.input :hike, as: :select2, label: "Where do you wanna go?", prompt: "Chose a department", collection: @departments_list %>
+        <div class="new__trip__step">
+          <h2>Select a hike</h2>
+
+          <div class="form-inputs">
+            <%= f.input :hike, as: :select2, label: "Where do you wanna go?", placeholder: "Chose a department", collection: @departments_list %>
+          </div>
+
+          <div class="hikes__list">
+
+          </div>
         </div>
 
-        <div class="hikes__list">
+        <div class="new__trip__step">
+          <h2>Give details about your trip</h2>
 
+          <div class="form-inputs">
+            <%= f.input :title, placeholder: "Give an explicit title for your trip" %>
+          </div>
+
+          <div class="form-inline-group">
+            <div class="form-inputs">
+              <%= f.input :start_location, placeholder: "e.g: 'Lyon'" %>
+            </div>
+            <div class="form-inputs">
+              <%= f.input :date, order: [:day, :month, :year] %>
+            </div>
+            <div class="form-inputs">
+              <%= f.input :trip_type, include_blank: false, collection: @trip_types  %>
+            </div>
+            <div class="form-inputs">
+              <%= f.input :seats, label: "Seats availables" %>
+            </div>
+          </div>
+
+          <div class="form-inline-group">
+          </div>
+
+          <div class="form-inputs">
+            <%= f.input :description, placeholder: "You will have more answers with a nice description"  %>
+          </div>
+
+          <div class="form-inputs">
+            <%= f.input :auto_accept, label: "Automatically accept all submissions?"  %>
+          </div>
         </div>
 
-        <div class="form-inputs">
-          <%= f.input :title %>
-        </div>
-
-        <div class="form-inputs">
-          <%= f.input :date, order: [:day, :month, :year] %>
-        </div>
-
-        <div class="form-inputs">
-          <%= f.input :start_location %>
-        </div>
-
-        <div class="form-inputs">
-          <%= f.input :seats %>
-        </div>
-
-        <div class="form-inputs">
-          <%= f.input :trip_type, include_blank: false, collection: @trip_types  %>
-        </div>
-
-        <div class="form-inputs">
-          <%= f.input :description  %>
-        </div>
-
-        <div class="form-inputs">
-          <%= f.input :auto_accept, label: "Automatically accept all submissions?"  %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.submit "Create this trip", class: "btn btn--primary" %>
-          <%= link_to "Cancel", root_path, class: "btn btn--secondary" %>
+        <div class="new__trip__actions">
+          <%= link_to "Cancel", root_path %>
+          <%= f.submit "Create", class: "btn btn--primary" %>
         </div>
       <% end %>
 
