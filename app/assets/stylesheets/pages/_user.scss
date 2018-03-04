@@ -2,38 +2,45 @@
   background-color: #fff;
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding-top: 50px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
-
-// .user__title {
-
-// }
 
 .user__box div {
   font-size: 20px;
 }
 
-.user__reviews {
-  font-size: 20px;
-}
-
-.user__reviews__content {
-  background-color: #effff4;
+.user__box h2 {
   padding-bottom: 30px;
   padding-top: 30px;
-  border-radius: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
-  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1px;
+  margin-top: 1px;
 }
 
-.user__reviews__created_at {
+.user__box h4 {
   font-style: italic;
   font-size: 14px;
   color: $gray;
+}
+
+
+.user__review__details {
+  display: inline-block;
+  text-align: left;
+  padding: 10px;
+
+}
+
+.user__review__details li {
+  margin: 5px;
+
+}
+
+.user__review__details li {
+  margin: 5px;
+  padding-bottom: 10px;
 }
 
 
@@ -49,10 +56,6 @@
     transform: translateY(-5px);
     box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
   }
-}
-
-.user__review__id {
-
 }
 
 .user__review__average {
