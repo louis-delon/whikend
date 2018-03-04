@@ -12,13 +12,15 @@
         <span class="hike__card__location">
           <%= icon('fas', 'map-marker-alt') %><%= hike.location %>
         </span>
-        <%= icon('fas', 'map-signs') %><%= hike.distance %>
       </p>
     </div>
     <span class="hike__card__filter"></span>
   </div>
 
   <div class="hike__card__footer <%= hike.difficulty.downcase %>">
+    <span class="hike__card__distance">
+      <%= icon('fas', 'map-signs') %><%= hike.distance %>
+    </span>
     <span class="hike__card__duration">
       <%= icon('fas', 'stopwatch') %><%= hike.duration %>
     </span>
