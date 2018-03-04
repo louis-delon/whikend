@@ -245,7 +245,7 @@ Submission.create!(
   Submission.create!(
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.last(5).sample,
+    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.last(10).sample,
     accepted: true
   )
 end
@@ -254,7 +254,7 @@ end
   Submission.create!(
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
+    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.first(10).sample,
     accepted: nil
   )
 end
