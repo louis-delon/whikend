@@ -50,7 +50,7 @@
       </span>
       <br>
       <span>
-        <% if policy(@submission).submissions_pending? %>
+        <% if policy(@submission).submissions_pending? && !policy(@trip).date_passed? %>
         <h3><i class="fas fa-hourglass-half"></i>
           Waiting For Approval
         </h3><br>
