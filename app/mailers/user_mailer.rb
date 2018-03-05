@@ -17,10 +17,11 @@ class UserMailer < ApplicationMailer
     mail to: @user.email, subject: "Nouvelle Rando"
   end
 
-  def select(user)
-    @user = user
+  def select(submission)
+    @user = submission.user
+    @trip = submission.trip
 
-    mail to: @user.email, subject: "Participation Rando"
+    mail to: @user.email, subject: "Confirmation participation Rando #{@trip.title}"
   end
 
   def reject(user)
