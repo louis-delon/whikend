@@ -4,7 +4,159 @@ Message.destroy_all
 Review.destroy_all
 Trip.destroy_all
 User.destroy_all
-# Hike.destroy_all
+Hike.destroy_all
+
+# RANDO SOLUTRE
+
+# Solutre - User generation
+
+puts "Creating Solutre..."
+
+francois = User.create!(
+  email: 'francois@whikend.com',
+  password: 'aaaaaa',
+  first_name: 'francois',
+  last_name: 'mitterand',
+  description: 'Rejoignez moi pour une petit rando Monsieur le Premier Ministre',
+  age: 103,
+  remote_avatar_url: 'https://cache.20minutes.fr/photos/2014/12/31/president-francois-mitterrand-lors-9633-diaporama.jpg'
+  )
+
+roger = User.create!(
+  email: 'roger@whikend.com',
+  password: 'aaaaaa',
+  first_name: 'roger',
+  last_name: 'hanin',
+  description: 'Je suis le beauf de Tonton',
+  age: 87,
+  remote_avatar_url: 'http://md1.libe.com/photo/715188-france-bio-hanin.jpg?modified_at=1423671399&width=960'
+  )
+
+jack = User.create!(
+  email: 'jack@whikend.com',
+  password: 'aaaaaa',
+  first_name: 'jack',
+  last_name: 'lang',
+  description: 'Vive la musique en rando!',
+  age: 87,
+  remote_avatar_url: 'https://www.ina.fr/images_v2/620x349/CPC88007257.jpeg'
+  )
+
+jacques = User.create!(
+  email: 'jacques@whikend.com',
+  password: 'aaaaaa',
+  first_name: 'jacques',
+  last_name: 'attali',
+  description: 'J\'ai seule boussole qui indique toujours le sud',
+  age: 87,
+  remote_avatar_url: 'http://s2.lemde.fr/image/2016/08/26/644x0/4988464_6_e89b_jacques-attali-alors-conseiller-special-de_42e000872eb903b70c800c81e1ede3ae.jpg'
+  )
+
+hike_solutre = Hike.create!
+UniScrapper.new(hike_solutre, "https://www.visorando.com/randonnee-sur-les-pas-de-tonton/")
+
+# Solutre - Trip creation
+trip_solutre = Trip.create!(
+  title: "Ascension de La Roche de Solutré - sur les pas de Tonton",
+  description: "Pélerinage annuel pour rendre hommage aux résitants de Solutré",
+  start_location: "Paris",
+  hike_id: hike_solutre.id,
+  user_id: francois.id,
+  date: Date.today+(1),
+  trip_type: "Détente",
+  seats: 5,
+  auto_accept: true
+)
+
+# Solutre - Submission creation
+Submission.create!(
+    content: "Youhou",
+    user_id: roger.id.to_i,
+    trip_id: trip_solutre.id.to_i,
+    accepted: true
+  )
+
+Submission.create!(
+    content: "Hate d'y etre",
+    user_id: jacques.id.to_i,
+    trip_id: trip_solutre.id.to_i,
+    accepted: true
+  )
+
+Submission.create!(
+    content: "C'est la fete",
+    user_id: jack.id.to_i,
+    trip_id: trip_solutre.id.to_i,
+    accepted: true
+  )
+
+############################################
+
+# RANDO CORSE
+
+puts "Creating Corse GR20..."
+
+# Corse - User generation
+benoit = User.create!(
+  email: 'benoit@whikend.com',
+  password: 'aaaaaa',
+  first_name: 'benoit',
+  last_name: 'poelvoorde',
+  description: 'Pigeon, oiseau à la grise robe, dans l\'enfer des villes, à mon regard tu te dérobes, tu es vraiment le plus﻿ agile.',
+  age: 53,
+  remote_avatar_url: 'https://www.quizz.biz/uploads/quizz/896950/15_ky785.jpg'
+  )
+
+vincent = User.create!(
+  email: 'vincent@whikend.com',
+  password: 'aaaaaa',
+  first_name: 'vincent',
+  last_name: 'elbaz',
+  description: "C\'est la fete quand meme",
+  age: 47,
+  remote_avatar_url: 'https://www.notrecinema.com/images/usercontent/star/vincent-elbaz-photo_35923_14761.jpg'
+  )
+
+karine = User.create!(
+  email: 'karine@whikend.com',
+  password: 'aaaaaa',
+  first_name: 'karine',
+  last_name: 'viard',
+  description: 'Vive la musique en rando!',
+  age: 52,
+  remote_avatar_url: 'https://sacrenathalie.files.wordpress.com/2015/08/randonneurs-1997-15-g.jpg'
+  )
+
+hike_corse = Hike.create!
+UniScrapper.new(hike_corse, "https://www.visorando.com/randonnee-gr20-de-bibi/")
+
+# CORSE - Trip creation
+trip_corse = Trip.create!(
+  title: "Sentier de Grande randonnée 20",
+  description: "Grosse rando sympa avec Benoit le Belge",
+  start_location: "Bastia",
+  hike_id: hike_corse.id,
+  user_id: benoit.id,
+  date: Date.today+(2),
+  trip_type: "Sportive",
+  seats: 4,
+  auto_accept: false
+)
+
+# CORSE - Submission creation
+Submission.create!(
+    content: "Mega chaud",
+    user_id: vincent.id.to_i,
+    trip_id: trip_corse.id.to_i,
+    accepted: true
+  )
+
+Submission.create!(
+    content: "On va bien se marrer",
+    user_id: karine.id.to_i,
+    trip_id: trip_corse.id.to_i,
+    accepted: true
+  )
 
 # USERS
 puts "Creating users..."
@@ -48,120 +200,13 @@ alex = User.create!(
     description: Faker::Hipster.paragraph,
     age: (25..40).to_a.sample,
     remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/random'
-
   )
 end
 
 
 # HIKES
-require 'open-uri'
-
-class HikeScrap
-
-
-  def self.departments_list
-    site_url = "https://www.visorando.com/"
-    randos_list = Nokogiri::HTML(open(site_url))
-
-    @departments_url = []
-    @departments_names = []
-
-    randos_list.search('.content-module li a').each do |item|
-      @departments_names << item.text.strip
-      @departments_url << item.attribute('href').text.strip
-    end
-
-    hikes_list
-  end
-
-
-  def self.hikes_list
-    @departments_url.each_with_index do |url, index|
-      sleep(1)
-      department_page = Nokogiri::HTML(open(url).read)
-      department_page.search('.rando').take(1).each do |rando|
-        if rando.search('.rando-title-sansDetail a').text.strip != ""
-          title = rando.search('.rando-title-sansDetail a').text.strip.chomp("PDF")
-          department = @departments_names[index]
-          link = rando.search('a').attribute('href').value
-          hike = Hike.create!(title: title, department: department, link: link)
-          puts "Creating a new rando..."
-          puts hike.title
-          puts hike.department
-          puts ""
-          hike_info(hike)
-        end
-      end
-    end
-  end
-
-
-  def self.hike_info(hike)
-    hike_url = hike.link
-    page = Nokogiri::HTML(open(hike_url).read)
-
-    data_1 = page.search(".col50").first.text.strip.split("\n").map{|value| value.split(": ")[1]}.reject(&:nil?).map(&:strip)
-    data_2 = page.search(".col50").last.text.strip.split("\n").map{|value| value.split(": ")[1]}.reject(&:nil?).map(&:strip)
-    @check_region = page.search(".col50").last.text.strip.include?("Région")
-
-    info_gatherer(hike, data_1, data_2)
-
-    hike.site_id = page.search(".module2 .content-module a").last.attribute('href').value.split("\=").last
-
-    if page.search("div[@itemprop='description']").first.nil?
-      hike.description = "Cette randonnée n'a pas de description."
-    else
-      hike.description = page.search("div[@itemprop='description']").first.search("p").text.strip.gsub("\n", " ")
-    end
-
-    unless page.search(".liste-topics-blanc-inner div[@style='padding: 5px 5px 0 5px;'] .clearfix").blank?
-      photo_page = page.search(".liste-topics-blanc-inner div[@style='padding: 5px 5px 0 5px;'] .clearfix a").first.attribute("href").value
-      photo_page_url = Nokogiri::HTML(open(photo_page).read)
-      hike.photo_url = photo_page_url.search(".innerContentVR div[@onclick] a").attribute("href").value
-      hike.save
-    end
-
-    puts ""
-    puts "---------------"
-    puts ""
-
-    checkpoints_gatherer(hike)
-    p hike
-  end
-
-
-  def self.info_gatherer(hike, data_1, data_2)
-    hike.duration        = data_1[0].split("[")[0]
-    hike.distance        = data_1[1]
-    hike.asc_elevation   = data_1[2]
-    hike.desc_elevation  = data_1[3]
-    hike.alt_min         = data_1[4]
-    hike.alt_max         = data_1[5]
-    hike.difficulty      = data_2[0]
-    hike.hike_type       = data_2[1]
-    @check_region ? hike.location = data_2[3] : hike.location  = data_2[2]
-    hike.save
-  end
-
-  def self.checkpoints_gatherer(hike)
-    coordinates_result = Nokogiri::HTML(open("https://www.visorando.com/index.php?component=ajax&task=getChartDataFileOptimise&idRandonnee=#{hike.site_id}").read)
-
-    coordinates_hash = JSON.parse(coordinates_result)
-
-    coordinates = []
-
-    coordinates_hash["result"].each_with_index do |checkpoint, index|
-      coordinates << {lat: checkpoint["l"], lng: checkpoint["g"]}
-    end
-    hike.coordinates = coordinates
-    hike.save
-  end
-end
-
-
-
 # COMMENT THIS LINE FOR SHORT SEED
-# HikeScrap.departments_list
+MultiScrapper.departments_list
 
 
 
@@ -170,11 +215,12 @@ puts "Creating trips..."
 TRIP_TYPES = ["Sportive", "Détente", "Photo", "Amicale"]
 
 #creation of a trip by Louis
+
 trip = Trip.create!(
-  title: "Rando dans le vercors",
   description: "j'organise une rando dans le vercors",
   start_location: "Lyon",
   hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+  title: Hike.find(Trip.last.hike_id).title,
   user_id: louis.id,
   date: Date.today+(1),
   trip_type: TRIP_TYPES.sample,
@@ -209,10 +255,10 @@ trip1 = Trip.create!(
 
 20.times do
   Trip.create!(
-    title: Faker::Hipster.sentence,
     description: Faker::Hipster.paragraph,
     start_location: Faker::Address.city,
     hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+    title: Hike.find(Trip.last.hike_id.to_i).title,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
     date: [Date.today-(7),Date.today+(1),Date.today+(3),Date.today+(7)].sample,
     trip_type: TRIP_TYPES.sample,
@@ -315,4 +361,5 @@ Message.create!(
     trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample
   )
 end
+
 
