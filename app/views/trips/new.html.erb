@@ -5,7 +5,7 @@
         <h1>Create a trip</h1>
       </div>
 
-      <%= simple_form_for((@trip), remote: true) do |f| %>
+      <%= simple_form_for(@trip) do |f| %>
         <%= f.error_notification %>
 
         <div class="new__trip__step">

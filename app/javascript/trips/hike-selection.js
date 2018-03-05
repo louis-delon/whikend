@@ -9,8 +9,8 @@
 const hikesList = document.querySelector('.hikes__list');
 
 function changeButton() {
-  const button; = document.querySelector('label.hike__radio');
-  button.classList.add('selected');
+  const button = document.querySelector('label.hike__radio');
+  button.classList.toggle('selected');
   button.innerText = "Hike selected";
   // Checker toutes les cards
   // Remove classe selected de toutes

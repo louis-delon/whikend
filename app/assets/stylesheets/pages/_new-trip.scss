@@ -3,6 +3,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
+
+  .form-group label  {
+    color: $dark;
+  }
 }
 
 #new__trip .col-lg-8 {
