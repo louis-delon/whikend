@@ -1,27 +1,95 @@
-<h1>Profile of <%= @user.first_name %> </h1>
-
-<% if policy(@user).edit? %>
 <div class="container">
-  <ul style="list-style-type: none;">
-   <li><% user_avatar = current_user.facebook_picture_url || current_user.avatar || "default-avatar.png" %>
-      <%= image_tag user_avatar, class: "avatar" %>
-   </li>
-   <li><%= " First name: #{@user.first_name}" %></li>
-   <li><%= " Last name: #{@user.last_name}" %></li>
-   <li><%= " Email: #{@user.email}" %></li>
-   <li><%= " Age: #{@user.age}" %></li>
-   <li><%= link_to(edit_user_path(@user), class: "btn btn--secondary") do %>
-    <%= icon('fas', 'edit') %>Edit</li>
-    <% end %>
-  </ul>
+  <div class="row">
+    <div class="col-6-lg">
+      <div class="user__box">
+        <h1>Profile of <%= @user.first_name.capitalize %></h1>
+        <p>
+          <% user_avatar = current_user.facebook_picture_url || current_user.avatar || "default-avatar.png" %>
+          <%= image_tag user_avatar, class: "avatar__profile" %>
+        </p>
+        <p>
+          <% if @user.reviews.any? %>
+            <%= render "average_review_ratings" %>
+          <% else %>
+            <h3><%= "#{@user.first_name.capitalize} has no reviews yet" %></h3>
+          <% end %>
+        </p>
+        <div class="user__review__details">
+          <% if policy(@user).edit? %>
+
+      <%= simple_form_for(@user) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-row">
+            <%= f.input :first_name, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your first name" %>
+
+            <%= f.input :last_name, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your last name" %>
+        </div>
+
+        <div class="form-row">
+          <%= f.input :email, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: 'youremail@example.com' %>
+
+          <%= f.input :age, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your age" %>
+        </div>
+
+        <div class="form-row">
+            <%= f.input :description, as: :text, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-12"}, placeholder: 'enter a description of yourself', input_html:{ class: 'user__form__text' } %>
+        </div>
+
+        <div class="form-row">
+          <div class="form-actions user__form__button">
+            <%= f.submit "Validate", class: "btn btn-success" %>
+          </div>
+        </div>
+
+
+      <% end %>
+          <% else %>
+            <ul style="list-style-type: none;">
+              <li><%= " #{@user.first_name.capitalize}" %></li>
+              <li><%= " Age: #{@user.age}" %></li>
+              <li><%= " #{@user.description}" %></li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6-lg">
+      <div class="user__box">
+        <% if @user.reviews.any? %>
+          <h2><%= "Reviews of #{@user.first_name.capitalize}" %></h2>
+        <% else %>
+          <h3><%= "#{@user.first_name.capitalize} has no reviews yet" %></h3>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6-lg">
+      <div class="user__box">
+        <div class="user__reviews">
+          <% if @user.reviews.any? %>
+            <% @user.reviews.each do |review|%>
+              <div class ="user__reviews__card">
+                <p><%= review.content %></p>
+                <p>
+                  <% review.rating.times do %>
+                    <%= icon('fas star--full', 'star') %>
+                  <% end %>
+                  <% (5 - review.rating).times do %>
+                    <%= icon('fas star--empty', 'star') %>
+                  <% end %>
+                </p>
+                <h4><%= review.created_at %></h4>
+                <h4><%= review.sender.first_name %></h4>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<% else %>
-<div>
-  <ul>
-   <li><%= @user.avatar_url%></li>
-   <li><%= " #{@user.first_name}" %></li>
-   <li><%= " #{@user.age}" %></li>
-  </ul>
-</div>
-<% end %>
+

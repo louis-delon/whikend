@@ -1,5 +1,5 @@
 
-<div class="banner trip__banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://unsplash.com/photos/Bkci_8qcdvQ')" >
+<div class="banner trip__banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<%= @trip.hike.photo_url %>)" >
   <div class="container">
     <div class="trip__banner__actions">
       <% if policy(@trip).update? %>
@@ -28,16 +28,17 @@
         <div class="col-lg-12  trip__details_row">
           <span class="trip__details__creator">
             <%= link_to user_path(@user) do %>
-            <%= image_tag "http://kitt.lewagon.com/placeholder/users/louleman34", class: "avatar" %>
-            <%= @user.first_name %>
+            <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
+            <%= image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= @user.first_name.capitalize %>
             <% end %>
           </span>
           <br>
-          <span class="trip__details__creator"><%= @trip.date %></span>
-          <span class="trip__details__creator"><%= @trip.start_location %></span>
-          <span class="trip__details__creator"><%= @trip.hike.location %></span>
-          <span class="trip__details__creator"><%= @trip.hike.difficulty %></span>
-          <span class="trip__details__creator"><%= @trip.hike.duration %></span>
+          <span class="trip__details__creator"><i class="fas fa-calendar-alt"></i> <%= @trip.date %></span>
+          <span class="trip__details__creator"><i class="fas fa-car"></i> <%= @trip.start_location %></span>
+          <span class="trip__details__creator"><%= icon('fas', 'map-marker-alt') %> <%= @trip.hike.location %></span>
+          <span class="trip__details__creator"><%= icon('fas', 'tag') %> <%= @trip.hike.difficulty %></span>
+          <span class="trip__details__creator"><i class="fas fa-clock"></i> <%= @trip.hike.duration %></span>
         </div>
       </div>
       <div class="row">
@@ -74,13 +75,3 @@
    <% end %>
 </p>
 <br>
-
-
-<!-- titre du trip
-
-description du trip
-inscrits à la balade
-messages
-
-button submission
-button create a hike -->

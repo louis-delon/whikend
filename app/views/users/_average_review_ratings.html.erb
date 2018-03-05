@@ -1,0 +1,12 @@
+<h3>
+  <div class="user__review__average">
+    <% @average.to_i.times do %>
+      <%= icon('fas star--full', 'star') %>
+    <% end %>
+    <% (5 - @average.to_i).times do %>
+      <%= icon('fas star--empty', 'star') %>
+    <% end %>
+    <br>
+    <%= "#{@average}/5" %>
+  </div>
+</h3>

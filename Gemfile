@@ -25,6 +25,7 @@ gem 'carrierwave', '~> 1.2'
 gem 'omniauth-facebook'
 gem "select2-rails"
 gem 'select2_simple_form', github: 'lndl/select2_simple_form', tag: '0.7.3'
+gem 'postmark-rails'
 
 group :development do
   gem 'letter_opener'

@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'users/show'
-
-  get 'users/edit'
-
-  get 'users/update'
-
   root to: 'pages#home'
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
@@ -18,4 +12,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:new, :create]
     resources :reviews, only: [:new, :create]
   end
+
+  get 'trips/:trip_id/submissions/:id/approve', to: 'submissions#approve', as: :approve_submission
+  get 'trips/:trip_id/submissions/:id/reject', to: 'submissions#reject', as: :reject_submission
+
 end

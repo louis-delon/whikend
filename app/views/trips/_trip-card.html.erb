@@ -3,7 +3,8 @@
     <div class="trip__card__content">
       <h2 class="trip__card__title"><%= trip.title %></h2>
       <span class="trip__card__user">
-        <%= image_tag "http://kitt.lewagon.com/placeholder/users/alexandrebk", class: "avatar", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% user_avatar = trip.user.facebook_picture_url || trip.user.avatar || "default-avatar.png" %>
+        <%= image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <%= "#{trip.user.first_name.capitalize} #{trip.user.last_name}" %>
       </span>
     </div>

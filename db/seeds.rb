@@ -4,7 +4,7 @@ Message.destroy_all
 Review.destroy_all
 Trip.destroy_all
 User.destroy_all
-Hike.destroy_all
+# Hike.destroy_all
 
 # USERS
 puts "Creating users..."
@@ -27,6 +27,16 @@ etienne = User.create!(
   description: 'je suis un passionné de rando',
   age: 27,
   remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
+)
+
+alex = User.create!(
+  email: 'alex@gmail.com',
+  password: 'aaaaaa',
+  first_name: 'alexandre',
+  last_name: 'bertrand',
+  description: 'je suis un vrai pro de la rando',
+  age: 32,
+  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk'
 )
 
 30.times do
@@ -151,7 +161,7 @@ end
 
 
 # COMMENT THIS LINE FOR SHORT SEED
-HikeScrap.departments_list
+# HikeScrap.departments_list
 
 
 
@@ -169,6 +179,31 @@ trip = Trip.create!(
   date: Date.today+(1),
   trip_type: TRIP_TYPES.sample,
   seats: (2..6).to_a.sample,
+  auto_accept: true
+)
+
+#creation of a trip by Etienne
+trip1 = Trip.create!(
+  title: "Rando sur le plateau des Glières",
+  description: "J'organise une rando au départ de Lyon Confluence ce samedi. J'ai 3 places dans ma Tesla. Inscrivez-vous vite, y'aura bientôt plus de places.",
+  start_location: "Lyon",
+  hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+  user_id: etienne.id,
+  date: Date.today+(1),
+  trip_type: TRIP_TYPES.sample,
+  seats: 3,
+  auto_accept: true
+)
+
+trip1 = Trip.create!(
+  title: "Rando dans les Pyrénées et le Pays Basque",
+  description: "J'organise une rando au départ de Bayonne mardi prochain. Je ramène du jambon de Bayonne pour le pic-nic :). J'ai un combi Volkswagen",
+  start_location: "Bayonne",
+  hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+  user_id: ((User.first.id)..(User.last.id)).to_a.sample,
+  date: Date.today+(3),
+  trip_type: TRIP_TYPES.sample,
+  seats: 6,
   auto_accept: true
 )
 
@@ -199,11 +234,18 @@ Submission.create!(
     accepted: true
   )
 
+Submission.create!(
+    content: "reste t-il des places?",
+    user_id: alex.id.to_i,
+    trip_id: trip.id.to_i,
+    accepted: true
+  )
+
 36.times do
   Submission.create!(
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
+    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.last(10).sample,
     accepted: true
   )
 end
@@ -212,8 +254,8 @@ end
   Submission.create!(
     content: Faker::Hipster.paragraph,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.sample,
-    accepted: false
+    trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.first(10).sample,
+    accepted: nil
   )
 end
 
@@ -227,6 +269,14 @@ Review.create!(
     content: "mec super cool, super balade",
     rating: 5,
     sender_id: etienne.id.to_i,
+    receiver_id: louis.id.to_i,
+    trip_id: trip.id.to_i
+  )
+
+Review.create!(
+    content: "j'ai adoré, merci!",
+    rating: 4,
+    sender_id: alex.id.to_i,
     receiver_id: louis.id.to_i,
     trip_id: trip.id.to_i
   )
@@ -245,6 +295,18 @@ end
 
 # MESSAGES
 puts "Creating messages..."
+
+Message.create!(
+    content: "bonjour je suis super content d'avoir été accepté à votre rando",
+    user_id: etienne.id,
+    trip_id: trip.id
+  )
+
+Message.create!(
+    content: "bonjour à quelle heure se fait le depart",
+    user_id: alex.id,
+    trip_id: trip.id
+  )
 
 50.times do
   Message.create!(
