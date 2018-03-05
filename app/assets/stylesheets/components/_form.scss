@@ -1,0 +1,39 @@
+.form-control,
+option {
+  font-size: 1rem;
+}
+
+button,
+input[type="submit"] {
+  transition: $transition;
+}
+
+textarea {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-inline-group {
+  display: flex;
+  flex-grow: 1;
+}
+
+.form-inline-group .form-inputs {
+  margin-right: 20px;
+}
+
+.select2-container .select2-choice {
+  background-image: none;
+}
+
+.form-control {
+  height: 35px;
+  border-radius: $border-radius;
+  box-shadow: none;
+  border: 1px solid #eee;
+}

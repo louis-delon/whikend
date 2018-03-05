@@ -10,8 +10,10 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Application", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "My Trips", trips_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to((new_trip_path), class: "navbar-wagon-item navbar-wagon-link add-trip") do %>
+        <%= icon('fas', 'plus') %>Add a trip
+      <% end %>
+      <%= link_to "Trips", trips_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
