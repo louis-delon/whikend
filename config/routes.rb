@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
-  get 'trips/:trip_id/submissions/:id/select', to: 'submissions#select', as: :select_submission
-    get 'trips/:trip_id/submissions/:id/reject', to: 'submissions#reject', as: :reject_submission
+  get 'trips/:trip_id/submissions/:id/approve', to: 'submissions#approve', as: :approve_submission
+  get 'trips/:trip_id/submissions/:id/reject', to: 'submissions#reject', as: :reject_submission
 
 end
