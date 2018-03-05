@@ -16,6 +16,7 @@ class TripsController < ApplicationController
     @messages = @trip.messages
     @review = Review.where(trip_id: @trip).first
     @user = @trip.user
+    @hike = Hike.find(@trip.hike_id)
     new_submission
   end
 

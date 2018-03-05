@@ -1,7 +1,6 @@
 <div class="trip__submitters__container">
   <div class="row">
     <div class="col-lg-12">
-      <br>
       <% count_seats = [@trip.seats - @submissions.where(accepted: true).to_a.size, 0].max %>
       <% if policy(@trip).date_passed? %>
         <h3>Too late, this hike has passed!</h3><br>

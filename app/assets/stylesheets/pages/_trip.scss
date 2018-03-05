@@ -17,73 +17,58 @@
 
 .trip__banner__actions {
   position:absolute;
-  bottom: 10px;
-  right: 10px;
-}
+  bottom: 20px;
+  right: 20px;
 
-h1.trip__details__title {
-  font-size: 3rem;
-}
+  .btn {
+    margin-left: 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: $dark;
 
+    i {
+      color: $dark;
+    }
 
-.trip__actions .btn {
-  margin-left: 15px;
-  float: right;
-}
-
-.trip__details {
-  background-color: #fff;
-  padding: 15px 0;
-}
-
-.trip__details .row,
-.trip__details .col-lg-10 {
-  display: flex;
-  align-items: center;
-}
-
-.trip_container {
-  display: flex;
-  align-items: stretch;
-  margin: 0 auto;
-  width: 970px;
-}
-
-
-.trip__details__container {
-  width: 800px;
-}
-
-.trip__submitters__container {
-  width: 400px;
-  height: 50vh;
-  position: sticky;
-  top: 0px;
-}
-
-.trip__details_row {
-  padding-bottom: 50px;
-}
-
-.trip__details__creator,
-.trip__details__category {
-  margin-right: 50px;
-}
-
-.trip__details__creator .avatar {
-  margin-right: 10px;
-  width: 30px;
-}
-
-.trip__details__city {
-  text-transform: uppercase;
-
-  i {
-    margin-right: 5px;
-    color: $secondary-color;
+    &:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
   }
 }
 
-.trip__submissions {
-  padding-top: 0;
+#trip__details h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.trip__details__user {
+  margin-bottom: 20px;
+
+  .avatar {
+    margin-right: 10px;
+  }
+
+  span {
+    margin-right: 40px;
+    font-weight: 600;
+  }
+
+  a {
+    color: $dark;
+  }
+
+  i {
+    color: $secondary-color;
+    margin-right: 10px;
+  }
+}
+
+.trip__details__description {
+  padding-bottom: 40px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 40px;
+}
+
+.trip__details__hike h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
