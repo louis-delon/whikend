@@ -16,37 +16,33 @@
         </p>
         <div class="user__review__details">
           <% if policy(@user).edit? %>
-            <form>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label class="user__form__label">First Name</label>
-                  <input class="form-control user__form__text" placeholder=<%= "#{@user.first_name.capitalize}" %> readonly>
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="user__form__label">Last Name</label>
-                  <input class="form-control user__form__text" placeholder=<%= "#{@user.last_name.capitalize}" %> readonly>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label class="user__form__label">Email</label>
-                  <input class="form-control user__form__text" placeholder=<%= " #{@user.email}" %> readonly>
-                </div>
-                <div class="form-group col-md-6">
-                  <label class="user__form__label">Age</label>
-                  <input class="form-control user__form__text" placeholder=<%= " #{@user.age}" %> readonly>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label class="user__form__label">Description</label>
-                  <textarea class="form-control" placeholder=<%= " #{@user.email}" %> readonly rows="3"></textarea>
-                </div>
-              </div>
-              <div>
-                <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-success" %>
-              </div>
-            </form>
+
+      <%= simple_form_for(@user) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-row">
+            <%= f.input :first_name, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your first name" %>
+
+            <%= f.input :last_name, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your last name" %>
+        </div>
+
+        <div class="form-row">
+          <%= f.input :email, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: 'youremail@example.com' %>
+
+          <%= f.input :age, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your age" %>
+        </div>
+
+        <div class="form-row">
+            <%= f.input :description, as: :text, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-12"}, placeholder: 'enter a description of yourself', input_html:{ class: 'user__form__text' } %>
+        </div>
+
+        <div class="form-row">
+          <div class="form-actions user__form__button">
+            <%= f.submit "Validate", class: "btn btn-success" %>
+          </div>
+        </div>
+
+
+      <% end %>
           <% else %>
             <ul style="list-style-type: none;">
               <li><%= " #{@user.first_name.capitalize}" %></li>
