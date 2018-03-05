@@ -24,6 +24,7 @@ gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'omniauth-facebook'
 gem 'postmark-rails'
+gem 'nokogiri'
 
 group :development do
   gem 'letter_opener'

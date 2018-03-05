@@ -267,6 +267,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   listen (~> 3.0.5)
+  nokogiri
   omniauth-facebook
   pg (~> 0.21)
   pg_search
