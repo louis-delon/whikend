@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'contact@whikend.com'
+  default from: 'whikend@korium.fr'
   layout 'mailer'
 end
