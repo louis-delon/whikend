@@ -61,7 +61,7 @@
               <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
               <%= image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
               <%= submission.user.first_name.capitalize  %>
-              <% if policy(@submission).current_user_is_driver? && policy(@submission).seat_full? %>
+              <% if policy(@submission).current_user_is_driver? && !policy(@submission).seat_full? %>
                 <%= link_to(approve_submission_path(@trip, submission), class: "btn btn--secondary") do %>
                   <i class="fas fa-thumbs-up"></i>Accept
                 <% end %>
