@@ -16,15 +16,33 @@
         </p>
         <div class="user__review__details">
           <% if policy(@user).edit? %>
-            <ul style="list-style-type: none;">
-             <li><%= " First name: #{@user.first_name.capitalize}" %></li>
-             <li><%= " Last name: #{@user.last_name}" %></li>
-             <li><%= " Email: #{@user.email}" %></li>
-             <li><%= " Age: #{@user.age}" %></li>
-             <li><%= " My description: #{@user.description}" %></li>
-             <li><%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-success" %>
-             </li>
-            </ul>
+
+      <%= simple_form_for(@user) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-row">
+            <%= f.input :first_name, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your first name" %>
+
+            <%= f.input :last_name, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your last name" %>
+        </div>
+
+        <div class="form-row">
+          <%= f.input :email, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: 'youremail@example.com' %>
+
+          <%= f.input :age, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your age" %>
+        </div>
+
+        <div class="form-row">
+            <%= f.input :description, as: :text, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-12"}, placeholder: 'enter a description of yourself', input_html:{ class: 'user__form__text' } %>
+        </div>
+
+        <div class="form-row">
+          <div class="form-actions user__form__button">
+            <%= f.submit "Validate", class: "btn btn-success" %>
+          </div>
+        </div>
+
+
+      <% end %>
           <% else %>
             <ul style="list-style-type: none;">
               <li><%= " #{@user.first_name.capitalize}" %></li>
@@ -73,3 +91,5 @@
     </div>
   </div>
 </div>
+
+

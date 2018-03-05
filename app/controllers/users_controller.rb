@@ -21,11 +21,12 @@ before_action :set_user, only: [:show, :edit, :update]
     authorize(@user)
   end
 
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :age, :email)
-  end
 
   private
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :age, :email, :description)
+  end
 
   def calcul_average_rating(user)
     #calculates the average rating for a user

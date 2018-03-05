@@ -25,24 +25,28 @@
   color: $gray;
 }
 
+.user__form__label {
+  font-size: 10px;
+  color: $gray;
+  font-weight: lighter;
+}
+
+.user__form__text {
+  font-size: 16px;
+  color: black;
+}
 
 .user__review__details {
   display: inline-block;
   text-align: left;
   padding: 10px;
 
+
+.user__form__button {
+  margin-left: 14px;
 }
 
-.user__review__details li {
-  margin: 5px;
-
 }
-
-.user__review__details li {
-  margin: 5px;
-  padding-bottom: 10px;
-}
-
 
 .user__reviews__card {
   background-color: #fff;
