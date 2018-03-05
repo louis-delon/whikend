@@ -5,7 +5,7 @@
         <h1>Profile of <%= @user.first_name.capitalize %></h1>
         <p>
           <% user_avatar = current_user.facebook_picture_url || current_user.avatar || "default-avatar.png" %>
-          <%= image_tag user_avatar, class: "avatar__profile" %>
+          <%= cl_image_tag user_avatar, class: "avatar__profile", width: 400, height: 400, crop: :fill, gravity: :face %>
         </p>
         <p>
           <% if @user.reviews.any? %>
