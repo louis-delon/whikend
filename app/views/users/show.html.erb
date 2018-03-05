@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-6-lg">
+    <div class="col-xs-12">
       <div class="user__box">
         <% if policy(@user).update? %>
             <h1><%= "My profile" %></h1>
@@ -14,8 +14,6 @@
         <p>
           <% if @user.reviews.any? %>
             <%= render "average_review_ratings" %>
-          <% else %>
-            <h3><%= "#{@user.first_name.capitalize} has no reviews yet" %></h3>
           <% end %>
         </p>
         <div class="user__review__details">
@@ -57,13 +55,13 @@
   </div>
 
   <div class="row">
-    <div class="col-6-lg">
+    <div class="col-xs-12">
       <div class="user__box">
-        <% if @user.reviews.any? %>
-          <% if policy(@user).update? %>
+        <% if policy(@user).update? %>
+          <% if @user.reviews.any? %>
             <h2><%= "My reviews" %></h2>
           <% else %>
-            <h2><%= "Reviews of #{@user.first_name.capitalize}" %></h2>
+            <h2><%= "You have no review yet" %></h2>
           <% end %>
         <% else %>
           <h3><%= "#{@user.first_name.capitalize} has no reviews yet" %></h3>
@@ -71,45 +69,49 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-6-lg">
-      <div class="user__box">
-        <div class="user__reviews">
-          <% if @user.reviews.any? %>
-            <% @user.reviews.each do |review|%>
-              <div class ="user__reviews__card">
-                <p><%= review.content %></p>
-                <p>
-                  <% review.rating.times do %>
-                    <%= icon('fas star--full', 'star') %>
-                  <% end %>
-                  <% (5 - review.rating).times do %>
-                    <%= icon('fas star--empty', 'star') %>
-                  <% end %>
-                </p>
-                <h4><%= review.created_at %></h4>
-                <h4><%= review.sender.first_name %></h4>
-              </div>
-            <% end %>
-          <% end %>
+  <% if @user.reviews.any? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="user__box">
+          <div class="user__reviews">
+              <% @user.reviews.each do |review|%>
+                <div class ="user__reviews__card">
+                  <p><%= review.content %></p>
+                  <p>
+                    <% review.rating.times do %>
+                      <%= icon('fas star--full', 'star') %>
+                    <% end %>
+                    <% (5 - review.rating).times do %>
+                      <%= icon('fas star--empty', 'star') %>
+                    <% end %>
+                  </p>
+                  <h4><%= review.created_at %></h4>
+                  <h4><%= review.sender.first_name %></h4>
+                </div>
+              <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
+  <% end %>
   <div class="row" id="trips">
-    <div class="col-6-lg">
+    <div class="col-xs-12">
       <div class="user__box">
-        <% if @user.trips.any? || @user.submissions.any? %>
-          <% @trips.each do |trip|%>
-            <div class="col-lg-6">
-               <%= render "trips/trip-card", trip: trip %>
-            </div>
-          <% end %>
+        <% if @trips.any? && policy(@user).show? %>
+          <h2><%= "My trips" %></h2>
+          <div class="row">
+            <% @trips.each do |trip|%>
+              <div class="col-xs-12 col-sm-6">
+                <%= render "trips/trip-card", trip: trip %>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <h3><%= "You have no trip yet" %></h3>
         <% end %>
       </div>
     </div>
   </div>
-
 </div>
+
 
