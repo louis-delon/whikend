@@ -1,23 +1,25 @@
-const newTripForm = document.getElementById('new_trip');
+console.log("hey!!");
 
-if (newTripForm) {
-  const department_selector = document.querySelector("#trip_hike");
+const newTripForm         = document.getElementById('new_trip');
+const department_selector = $( "#trip_hike" );
 
-  department_selector.addEventListener("change", function() {
-    let current_department = department_selector.value;
-    console.log(current_department);
-
-    $.ajax({
-      type: "GET",
-      url: "hikes_by_department",
-      dataType: "html",
-      data: {department: current_department},
-      success : insertHikes
-    });
+const changeDepartement = function(event) {
+  let current_department = event.val;
+  $.ajax({
+    type: "GET",
+    url: "hikes_by_department",
+    dataType: "html",
+    data: {department: current_department},
+    success : insertHikes
   });
 }
 
 const insertHikes = (code_html, statut) => {
   const hikesList = document.querySelector(".hikes__list");
   hikesList.innerHTML = code_html;
+}
+
+if (newTripForm) {
+  department_selector.select2();
+  department_selector.on("change", changeDepartement);
 }
