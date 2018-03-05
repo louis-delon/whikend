@@ -26,11 +26,12 @@ class TripsController < ApplicationController
     Hike.all.each { |hike| @departments_list << hike.department }
     @departments_list = @departments_list.uniq.sort
     @hikes = Hike.all.sort_by { |hike| hike.title }
-    @trip_types = ["Sportive", "Détente", "Photo", "Challenge", "Activités"]
+    @trip_types = ["Chill", "Heavy walk", "Challenge", "Photo", "Activities"]
   end
 
   def create
     @trip = Trip.new(trip_params)
+    @trip.user = current_user
     authorize @trip
     if @trip.save
       redirect_to trip_path(@trip), notice: "Your trip was successfuly created!"
@@ -69,7 +70,7 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:date, :title, :description, :location, :user_id, :hike_id)
+    params.require(:trip).permit(:hike_id, :title, :start_location, :date, :trip_type, :seats, :description, :user_id, :auto_accept)
   end
 
   def new_submission

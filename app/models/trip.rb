@@ -13,7 +13,7 @@ class Trip < ApplicationRecord
   validates :start_location, presence: true
   validates :description, presence: true
   validates :user, presence: true
-  validates :hike, presence: true
+  validates :hike_id, presence: true
   validates :trip_type, presence: true
   validates :title, presence: true
   validates :seats, presence: true

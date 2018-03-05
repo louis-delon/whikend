@@ -1,7 +1,98 @@
+#new__trip {
+  background-image: asset-url("new-trip-bg.png"), linear-gradient(#cbeafc, #fff);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+
+  .form-group label  {
+    color: $dark;
+  }
+}
+
+#new__trip .col-lg-8 {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px 0 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+#new__trip h1 {
+  margin-bottom: 0;
+}
+
+.new__trip__title {
+  padding: 15px 30px;
+}
+
+.new__trip__step {
+  padding: 30px 30px 10px;
+}
+
+.new__trip__actions {
+  padding: 30px;
+}
+
+.new__trip__step > h2 {
+  font-weight: 400;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  background-color: lighten($secondary-color, 52%);
+  color: $secondary-color;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+  border-radius: $border-radius;
+}
+
+.new__trip__step {
+  border-bottom: 5px solid $light-gray;
+}
+
+.new__trip__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    font-weight: 600;
+    color: $dark;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  .btn {
+    margin: 0 30px;
+  }
+}
+
+.form-control.select2-container {
+  height: 36px !important;
+}
+
+.select2-container .select2-choice {
+  height: 35px !important;
+  line-height: 35px;
+  background-color: transparent;
+}
+
+.select2-container .select2-choice .select2-arrow {
+  height: 35px;
+}
+
+.select2-container .select2-choice .select2-arrow b {
+  background: url(/assets/select2-d6b5d8d….png) no-repeat 0 7px;
+}
+
+.trip_seats {
+  width: 130px;
+}
+
 .hikes__list .container {
   padding: 20px 0 30px;
 }
 
-.hikes__list .row {
+.hikes__list > .row {
   margin-top: 30px;
 }

@@ -1,12 +1,11 @@
-<div class="container">
-  <strong class="hike__list__number"><%= "#{@hikes.count} hikes" %></strong>
-  <div class="row">
+<strong class="hike__list__number"><%= "#{@hikes.count} hikes" %></strong>
 
-    <% @hikes.each do |hike| %>
-      <div class="col-lg-4">
-        <%= render "hikes/hike-card", hike: hike %>
-      </div>
-    <% end %>
+<div class="row">
 
-  </div>
+  <% @hikes.each do |hike| %>
+    <div class="col-lg-6">
+      <%= render "hikes/hike-card", hike: hike %>
+    </div>
+  <% end %>
+
 </div>

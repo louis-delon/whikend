@@ -3,6 +3,7 @@
   margin-bottom: 30px;
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   transition: $transition;
+  position: relative;
 
   i {
     margin-right: 5px;
@@ -10,7 +11,7 @@
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 
     .hike__card__filter {
@@ -33,7 +34,7 @@
 }
 
 .hike__card__body {
-  height: 250px;
+  height: 220px;
   background-position: center center;
   background-size: cover;
   border-radius: 3px 3px 0 0;
@@ -55,27 +56,114 @@
 h2.hike__card__title {
   font-size: 1.3rem;
   margin-bottom: 10px;
+  line-height: 1.7rem;
 }
 
-.hike__card__footer {
-  background-color: #fff;
-  color: lighten($dark, 35%);
-  padding: 10px 20px;
-  border-radius: 0 0 3px 3px;
+.hike__card__actions {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
 
-  span {
-    margin-right: 10px;
+  label {
+    margin-bottom: 0;
+    font-weight: 600;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    right: 10px;
+    display: none;
+  }
+
+  .btn,
+  .btn:focus {
+    padding: 15px 0;
+    width: 50%;
+    text-align: center;
+    text-transform: none;
+    background-color: #fff;
+    color: $dark;
+    transform: none;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+      background-color: lighten($primary-color, 54%);
+      color: $primary-color;
+    }
+  }
+
+  .btn.selected {
+    background-color: $primary-color;
+    color: #fff;
+  }
+
+  .details {
+    border-radius: 0 0 0 3px;
+    border-right: 1px solid #ccc;
+  }
+
+  .select {
+    border-radius: 0 0 3px 0;
   }
 }
 
-.hike__card__footer.facile {
-  border-bottom: 5px solid #00db6b;
+#hike__more__details {
+  .modal-content {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    border: none;
+  }
+
+  .modal-header,
+  .modal-details {
+    padding: 20px;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  .modal-details p {
+    margin-bottom: 10px;
+  }
+
+  .modal-details p:last-child {
+    margin-bottom: 0;
+  }
+
+  .modal-header {
+    border-bottom: none;
+  }
+
+  .modal-photo {
+    height: 300px;
+    background-size: cover;
+    background-position: center center;
+  }
 }
 
-.hike__card__footer.moyenne {
-  border-bottom: 5px solid #ffb000;
+.hike__card__body.facile {
+  border-top: 5px solid #00db6b;
 }
 
-.hike__card__footer.difficile {
-  border-bottom: 5px solid #db2e00;
+.hike__card__body.moyenne {
+  border-top: 5px solid #ffb000;
 }
+
+.hike__card__body.difficile {
+  border-top: 5px solid #db2e00;
+}
+//
+// .hike__card__checkbox label,
+// .hike__card__checkbox input {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+// }

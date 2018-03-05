@@ -12,7 +12,7 @@
 
 /* Logo */
 .logo img {
-  height: 25px;
+  height: 20px;
 }
 
 /* User Avatar */
@@ -33,6 +33,10 @@
 .navbar-wagon-item {
   cursor: pointer;
   padding: 0 20px;
+}
+
+.navbar-wagon-item.add-trip {
+  font-weight: 600;
 }
 
 /* Navbar link */
@@ -75,4 +79,8 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+.btn--primary i {
+  font-size: 0.8rem;
 }
