@@ -10,3 +10,4 @@
 //= require select2_simple_form
 import 'trips/select2.js';
 import 'trips/new.js';
+import 'trips/hike-selection.js';

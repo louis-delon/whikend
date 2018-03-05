@@ -1,12 +1,15 @@
 #new__trip {
-  background: asset-url("new-trip-bg.png") no-repeat center bottom #d9f1ff;
+  background-image: asset-url("new-trip-bg.png"), linear-gradient(#cbeafc, #fff);
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
 }
 
 #new__trip .col-lg-8 {
   background-color: #fff;
   border-radius: 10px;
   padding: 15px 0 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 }
 
 #new__trip h1 {
@@ -29,8 +32,8 @@
   font-weight: 400;
   font-size: 1.3rem;
   margin-bottom: 20px;
-  background-color: lighten($primary-color, 55%);
-  color: $primary-color;
+  background-color: lighten($secondary-color, 52%);
+  color: $secondary-color;
   height: 40px;
   line-height: 40px;
   padding-left: 10px;
@@ -56,7 +59,7 @@
 }
 
 .form-control.select2-container {
-  height: 35px !important;
+  height: 36px !important;
 }
 
 .select2-container .select2-choice {
@@ -66,7 +69,7 @@
 }
 
 .select2-container .select2-choice .select2-arrow {
-  height: 34px;
+  height: 35px;
 }
 
 .select2-container .select2-choice .select2-arrow b {
@@ -81,6 +84,6 @@
   padding: 20px 0 30px;
 }
 
-.hikes__list .row {
+.hikes__list > .row {
   margin-top: 30px;
 }

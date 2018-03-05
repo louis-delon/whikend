@@ -1,5 +1,3 @@
-console.log("hey!!");
-
 const newTripForm         = document.getElementById('new_trip');
 const department_selector = $( "#trip_hike" );
 
