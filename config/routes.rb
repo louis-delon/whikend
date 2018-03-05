@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   end
 
   get 'trips/:trip_id/submissions/:id/select', to: 'submissions#select', as: :select_submission
+    get 'trips/:trip_id/submissions/:id/reject', to: 'submissions#reject', as: :reject_submission
+
 end

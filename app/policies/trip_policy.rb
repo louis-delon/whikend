@@ -40,6 +40,15 @@ class TripPolicy < ApplicationPolicy
     true
   end
 
+  def automatic?
+    @record.auto_accept
+  end
+
+  def date_passed?
+    @record.date < Date.today
+  end
+
+
 private
 
   def current_user?

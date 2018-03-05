@@ -16,6 +16,7 @@ class SubmissionsController < ApplicationController
     @submission.trip = @trip
     @submission.user = current_user
     authorize @submission
+    @submission.accepted = true if @trip.auto_accept
     if @submission.save
       redirect_to trip_path(params[:trip_id]), notice: "Your submission was successfuly send!"
     else
@@ -30,13 +31,22 @@ class SubmissionsController < ApplicationController
     redirect_to root_path
   end
 
-  def select
+  def approve
     @submission = Submission.find(params[:id])
     @submission.accepted = true
     @submission.save
     authorize @submission
     redirect_to trip_path(params[:trip_id])
   end
+
+  def reject
+    @submission = Submission.find(params[:id])
+    @submission.accepted = false
+    @submission.save
+    authorize @submission
+    redirect_to trip_path(params[:trip_id])
+  end
+
 
 private
 
