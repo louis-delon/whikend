@@ -11,7 +11,13 @@ class SubmissionPolicy < ApplicationPolicy
     # true
   end
 
+  def approve?
+    true
+  end
 
+  def reject?
+    true
+  end
 
   def destroy?
     current_user?
@@ -34,25 +40,27 @@ class SubmissionPolicy < ApplicationPolicy
     @record.trip.submissions.where(accepted: true).to_a.size >= @record.trip.seats
   end
 
-  def automatic?
-    @record.trip.auto_accept
-  end
-
   def status_already_applied?
     #si le current_user a deja soumis une candidature qui
     #a été acceptée par le driver retourner false
     @trip_id = @record.trip.id
     scope.all.where(trip_id: @trip_id, user_id: @user.id).exists?
   end
+
+  def submissions_pending?
+    @record.trip.submissions.where(accepted: nil).exists?
+  end
+
+  def current_user_is_driver?
+    @record.trip.user == user
+  end
+
 private
 
   def current_user?
     @record.user == @user
   end
 
-  def current_user_is_driver?
-    @record.trip.user == user
-  end
 
 
 end
