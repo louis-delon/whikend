@@ -1,10 +1,5 @@
 <div class="hike__card">
 
-  <!-- <div class="hike__card__checkbox">
-    <label for="hike-<%= hike.id %>"></label>
-    <input id="hike-<%= hike.id %>" type="checkbox" name="trip[:hike_id]" class="hike__radio">
-  </div> -->
-
   <div class="hike__card__body" style="background-image: url(<%= hike.photo_url %>)">
 
     <div class="hike__card__body__info">
@@ -22,9 +17,8 @@
     <button class="btn btn--primary details" data-toggle="modal" data-target="#hike__more__details">
       More details
     </button>
-    <button class="btn btn--primary select">
-      Select this hike
-    </button>
+    <label for="hike-<%= hike.id %>" class="hike__radio btn btn--primary">Select this hike</label>
+    <input id="hike-<%= hike.id %>" type="radio" name="trip[:hike_id]" value="<%= hike.id %>">
   </div>
 
 </div>
@@ -35,6 +29,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title" id="myModalLabel"><%= hike.title %></h3>
         <p><%= hike.location %> - <%= hike.department %></p>
       </div>

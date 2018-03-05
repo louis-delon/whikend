@@ -9,19 +9,19 @@
         <%= f.error_notification %>
 
         <div class="new__trip__step">
-          <h2>Select a hike</h2>
+          <h2>Step 1 - Select a hike</h2>
 
           <div class="form-inputs">
             <%= f.input :hike, label: "Where do you wanna go?", placeholder: "Chose a department", collection: @departments_list, id: "truc" %>
           </div>
 
           <div class="hikes__list">
-            
+
           </div>
         </div>
 
         <div class="new__trip__step">
-          <h2>Give details about your trip</h2>
+          <h2>Step 2 - Give details about your trip</h2>
 
           <div class="form-inputs">
             <%= f.input :title, placeholder: "Give an explicit title for your trip" %>

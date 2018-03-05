@@ -50,7 +50,12 @@
   align-items: center;
 
   a {
+    font-weight: 600;
     color: $dark;
+
+    &:hover {
+      color: $primary-color;
+    }
   }
 
   .btn {
