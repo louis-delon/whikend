@@ -15,8 +15,8 @@ puts "Creating Solutre..."
 francois = User.create!(
   email: 'francois@whikend.com',
   password: 'aaaaaa',
-  first_name: 'francois',
-  last_name: 'mitterand',
+  first_name: 'Francois',
+  last_name: 'Mitterand',
   description: 'Rejoignez moi pour une petit rando Monsieur le Premier Ministre',
   age: 103,
   remote_avatar_url: 'https://cache.20minutes.fr/photos/2014/12/31/president-francois-mitterrand-lors-9633-diaporama.jpg'
@@ -25,8 +25,8 @@ francois = User.create!(
 roger = User.create!(
   email: 'roger@whikend.com',
   password: 'aaaaaa',
-  first_name: 'roger',
-  last_name: 'hanin',
+  first_name: 'Roger',
+  last_name: 'Hanin',
   description: 'Je suis le beauf de Tonton',
   age: 87,
   remote_avatar_url: 'http://md1.libe.com/photo/715188-france-bio-hanin.jpg?modified_at=1423671399&width=960'
@@ -35,8 +35,8 @@ roger = User.create!(
 jack = User.create!(
   email: 'jack@whikend.com',
   password: 'aaaaaa',
-  first_name: 'jack',
-  last_name: 'lang',
+  first_name: 'Jack',
+  last_name: 'Lang',
   description: 'Vive la musique en rando!',
   age: 87,
   remote_avatar_url: 'https://www.ina.fr/images_v2/620x349/CPC88007257.jpeg'
@@ -45,8 +45,8 @@ jack = User.create!(
 jacques = User.create!(
   email: 'jacques@whikend.com',
   password: 'aaaaaa',
-  first_name: 'jacques',
-  last_name: 'attali',
+  first_name: 'Jacques',
+  last_name: 'Attali',
   description: 'J\'ai seule boussole qui indique toujours le sud',
   age: 87,
   remote_avatar_url: 'http://s2.lemde.fr/image/2016/08/26/644x0/4988464_6_e89b_jacques-attali-alors-conseiller-special-de_42e000872eb903b70c800c81e1ede3ae.jpg'
@@ -101,8 +101,8 @@ puts "Creating Corse GR20..."
 benoit = User.create!(
   email: 'benoit@whikend.com',
   password: 'aaaaaa',
-  first_name: 'benoit',
-  last_name: 'poelvoorde',
+  first_name: 'Benoit',
+  last_name: 'Poelvoorde',
   description: 'Pigeon, oiseau à la grise robe, dans l\'enfer des villes, à mon regard tu te dérobes, tu es vraiment le plus﻿ agile.',
   age: 53,
   remote_avatar_url: 'https://www.quizz.biz/uploads/quizz/896950/15_ky785.jpg'
@@ -111,8 +111,8 @@ benoit = User.create!(
 vincent = User.create!(
   email: 'vincent@whikend.com',
   password: 'aaaaaa',
-  first_name: 'vincent',
-  last_name: 'elbaz',
+  first_name: 'Vincent',
+  last_name: 'Elbaz',
   description: "C\'est la fete quand meme",
   age: 47,
   remote_avatar_url: 'https://www.notrecinema.com/images/usercontent/star/vincent-elbaz-photo_35923_14761.jpg'
@@ -121,8 +121,8 @@ vincent = User.create!(
 karine = User.create!(
   email: 'karine@whikend.com',
   password: 'aaaaaa',
-  first_name: 'karine',
-  last_name: 'viard',
+  first_name: 'Karine',
+  last_name: 'Viard',
   description: 'Vive la musique en rando!',
   age: 52,
   remote_avatar_url: 'https://sacrenathalie.files.wordpress.com/2015/08/randonneurs-1997-15-g.jpg'
@@ -166,8 +166,8 @@ puts "Creating users..."
 louis = User.create!(
   email: 'louis@gmail.com',
   password: 'aaaaaa',
-  first_name: 'louis',
-  last_name: 'delon',
+  first_name: 'Louis',
+  last_name: 'Delon',
   description: 'je suis un passionné de montagne',
   age: 40,
   remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/loulouman34'
@@ -176,8 +176,8 @@ louis = User.create!(
 etienne = User.create!(
   email: 'etienne@gmail.com',
   password: 'aaaaaa',
-  first_name: 'etienne',
-  last_name: 'delorieux',
+  first_name: 'Etienne',
+  last_name: 'Delorieux',
   description: 'je suis un passionné de rando',
   age: 27,
   remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
@@ -186,8 +186,8 @@ etienne = User.create!(
 alex = User.create!(
   email: 'alex@gmail.com',
   password: 'aaaaaa',
-  first_name: 'alexandre',
-  last_name: 'bertrand',
+  first_name: 'Alexandre',
+  last_name: 'Bertrand',
   description: 'je suis un vrai pro de la rando',
   age: 32,
   remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk'

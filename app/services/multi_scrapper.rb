@@ -71,7 +71,6 @@ class MultiScrapper
     puts ""
 
     checkpoints_gatherer(hike)
-    p hike
   end
 
 
