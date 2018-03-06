@@ -12,6 +12,7 @@ class TripsController < ApplicationController
   def show
     @submissions = @trip.submissions
     @messages = @trip.messages
+    @message = Message.new
     @review = Review.where(trip_id: @trip).first
     @user = @trip.user
     new_submission
