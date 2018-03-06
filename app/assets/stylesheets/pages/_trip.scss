@@ -35,14 +35,19 @@
   }
 }
 
-#trip__details h1 {
-  font-size: 2.5rem;
+#trip__details h1,
+#hike__details h2 {
   margin-bottom: 0;
   padding-bottom: 20px;
   border-bottom: 1px solid #ddd;
 }
 
-.trip__details__user {
+#trip__details h1 {
+  font-size: 2.5rem;
+}
+
+.trip__details__infos,
+.hike__details__infos {
   margin-bottom: 20px;
   padding: 20px 0;
   border-bottom: 1px solid #ddd;
@@ -51,9 +56,9 @@
     margin-right: 10px;
   }
 
-  span {
+  & > span {
     margin-right: 40px;
-    font-weight: 600;
+    display: inline-block;
   }
 
   a {
@@ -80,9 +85,10 @@
   h3 {
     text-align: center;
     padding: 10px;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     background-color: lighten($secondary-color, 48%);
     color: $secondary-color;
+    font-weight: 600;
   }
 
   h3.main__title {
@@ -108,12 +114,20 @@
   }
 }
 
+.submission__approval {
+  padding: 40px 20px;
+}
+
 .submission__approval__item {
-  padding: 20px;
+  margin-bottom: 20px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   .avatar {
     margin-right: 5px;
@@ -137,6 +151,28 @@
 
   h2 {
     font-size: 1.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    font-weight: 600;
   }
+}
+
+.hike__details__infos span[class*="hike__details"] {
+  display: block;
+}
+
+.hike__details__infos span[class*="hike__details"]:first-child {
+  margin-bottom: 10px;
+}
+
+.trip__details__map {
+  margin-top: 45px;
+}
+
+#hike__buddies {
+  background-image: asset-url("hike-buddies-bg.png"), linear-gradient(#cbeafc, #fff);
+  background-size: 101%;
+  background-repeat: no-repeat;
+  background-position: center bottom;
 }

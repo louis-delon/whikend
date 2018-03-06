@@ -5,7 +5,7 @@
   <% elsif count_seats == 0 %>
     <h3 class="main__title">This hike is full!</h3>
   <% else %>
-    <h3 class="main__title"><%= count_seats %> seat(s) available</h3>
+    <h3 class="main__title"><%= pluralize(count_seats, "seat") %> available</h3>
   <% end %>
   <% if @submissions.where(accepted: true).present? %>
     <div class="submission__buddies">
@@ -17,7 +17,7 @@
           <% end %>
         <% end %>
       </div>
-      <a href="#hike__buddies" class="btn btn--primary">See buddies details</a>
+      <a href="#hike__buddies" class="btn btn--primary"><%= icon('fas', 'users') %> See buddies details</a>
     </div>
   <% end  %>
   <span>
@@ -46,10 +46,10 @@
       <% end %>
     <% end %>
   </span>
+  <% if policy(@submission).submissions_pending? %>
+    <h3>Waiting for approval</h3>
+  <% end %>
   <div class="submission__approval">
-    <% if policy(@submission).submissions_pending? %>
-      <h3>Waiting for approval</h3>
-    <% end %>
     <% @submissions.where(accepted: nil).each do |submission| %>
       <div class="submission__approval__item">
         <div class="submission__approval__user">
@@ -61,9 +61,13 @@
         </div>
         <div class="submission__approval__actions">
           <% if policy(@submission).current_user_is_driver? && !policy(@submission).seat_full? %>
-            <%= link_to "Accept", approve_submission_path(@trip, submission) %>
+            <%= link_to(approve_submission_path(@trip, submission)) do %>
+              <%= icon('fas', 'check') %>Accept
+            <% end %>
             |
-            <%= link_to "Reject", reject_submission_path(@trip, submission), class: "reject" %>
+            <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+              <%= icon('fas', 'times') %>Decline
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -22,7 +22,7 @@
     <div class="col-lg-8">
       <h1><%= @trip.title %></h1>
 
-      <div class="trip__details__user">
+      <div class="trip__details__infos">
         <span class="trip__details__date">
           <%= link_to user_path(@user) do %>
             <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
@@ -57,9 +57,50 @@
   <div class="container">
 
     <div class="col-lg-8">
-      <div class="trip__details__hike">
-        <h2>Details about this hike</h2>
-        <p><%= @hike.description %></p>
+      <h2>Details about this hike</h2>
+
+      <div class="hike__details__infos">
+        <span>
+          <span class="hike__details__location">
+            <%= icon('fas', 'map-marker-alt') %><%= @hike.location %>
+          </span>
+          <span class="hike__details__department">
+            <%= icon('fas', 'map-marker-alt') %><%= @hike.department %>
+          </span>
+        </span>
+        <span>
+          <span class="hike__details__distance">
+            <%= icon('fas', 'map-signs') %><%= @hike.distance %>
+          </span>
+          <span class="hike__details__duration">
+            <%= icon('fas', 'clock') %><%= @hike.duration %>
+          </span>
+        </span>
+        <span>
+          <span class="hike__details__alt">
+            <%= icon('fas', 'chart-area') %><%= @hike.alt_max %> / <%= @hike.alt_min %>
+          </span>
+          <span class="hike__details__ele">
+            <%= icon('fas', 'map') %>+ <%= @hike.asc_elevation %> / - <%= @hike.desc_elevation %>
+          </span>
+        </span>
+        <span>
+          <span class="hike__details__difficulty">
+            <%= icon('fas', 'flag') %><%= @hike.difficulty %>
+          </span>
+          <span class="hike__details__type">
+            <%= icon('fas', 'circle-notch') %>
+            <% if @hike.hike_type == true %>
+              Loop
+            <% else %>
+              No loop
+            <% end  %>
+          </span>
+        </span>
+      </div>
+
+      <div class="hike__details__description">
+        <p><%= simple_format(@hike.description) %></p>
       </div>
     </div>
 
@@ -72,10 +113,14 @@
   </div>
 </section>
 
-
-
-<p><% @submissions.where(trip_id: @trip.id, accepted:false).each do |submission| %>
-    <%= submission.user.first_name  %>
-   <% end %>
-</p>
-<br>
+<% if @submissions.where(accepted: true).present? %>
+  <section id="hike__buddies">
+    <div class="container">
+      <% @submissions.where(accepted: true).each do |submission| %>
+        <div class="col-lg-6">
+          <%= render "buddies-card", submission: submission %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+<% end %>
