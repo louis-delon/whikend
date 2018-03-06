@@ -191,7 +191,7 @@ alex = User.create!(
   remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk'
 )
 
-30.times do
+1.times do
   User.create!(
     email: Faker::Internet.email,
     password: Faker::Internet.password,
@@ -215,12 +215,12 @@ puts "Creating trips..."
 TRIP_TYPES = ["Sportive", "Détente", "Photo", "Amicale"]
 
 #creation of a trip by Louis
-
+hike_louis = (Hike.first.id..Hike.last.id).to_a.sample
 trip = Trip.create!(
   description: "j'organise une rando dans le vercors",
   start_location: "Lyon",
-  hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
-  title: Hike.find(Trip.last.hike_id).title,
+  hike_id: hike_louis,
+  title: Hike.find(hike_louis).title,
   user_id: louis.id,
   date: Date.today+(1),
   trip_type: TRIP_TYPES.sample,
@@ -254,11 +254,12 @@ trip1 = Trip.create!(
 )
 
 20.times do
+  hike = (Hike.first.id..Hike.last.id).to_a.sample
   Trip.create!(
     description: Faker::Hipster.paragraph,
     start_location: Faker::Address.city,
-    hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
-    title: Hike.find(Trip.last.hike_id.to_i).title,
+    hike_id: hike,
+    title: Hike.find(hike).title,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
     date: [Date.today-(7),Date.today+(1),Date.today+(3),Date.today+(7)].sample,
     trip_type: TRIP_TYPES.sample,

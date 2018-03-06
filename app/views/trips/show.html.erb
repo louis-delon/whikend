@@ -43,32 +43,20 @@
       </div>
       <div class="row">
         <div class="col-lg-8 trip__details_row">
-          <span class="trip__details__creator"><%= @trip.description %></span>
+          <span class="trip__details__creator"><%= simple_format(@trip.hike.description) %></span>
         </div>
       </div>
     </div>
 
-    <%= render "submission-area" %>
+  <%= render "submission-area" %>
 
   </div>
   <br>
   <br>
-  <div class="trip_container">
-     <div class="row">
-        <div class="col-lg-8 trip__details_row">
-          <span class="trip__details__creator">
-           <ul>
-            <% @messages.each do |message| %>
-               <li><%= message.content %></li><br>
-            <% end %>
-            </ul>
-          </span>
-        </div>
-      </div>
-    </div>
+  <%= render "message-area" %>
 </section>
 
-<%= render "map" %>
+  <%= render "map" %>
 
 <p><% @submissions.where(trip_id: @trip.id, accepted:false).each do |submission| %>
     <%= submission.user.first_name  %>

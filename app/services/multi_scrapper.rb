@@ -22,7 +22,7 @@ class MultiScrapper
 
   def self.hikes_list
     @departments_url.each_with_index do |url, index|
-      sleep(1.5)
+      sleep(1)
       department_page = Nokogiri::HTML(open(url).read)
       department_page.search('.rando').take(1).each do |rando|
         if rando.search('.rando-title-sansDetail a').text.strip != ""
@@ -56,8 +56,8 @@ class MultiScrapper
     if page.search("div[@itemprop='description']").first.nil?
       hike.description = "Cette randonnée n'a pas de description."
     else
-      hike.description = page.search("div[@itemprop='description']").first.search("p").text.strip.gsub("\n", " ")
-    end
+      hike.description = page.search("div[@itemprop='description']").first.search("p").text.strip
+      end
 
     unless page.search(".liste-topics-blanc-inner div[@style='padding: 5px 5px 0 5px;'] .clearfix").blank?
       photo_page = page.search(".liste-topics-blanc-inner div[@style='padding: 5px 5px 0 5px;'] .clearfix a").first.attribute("href").value
@@ -103,3 +103,4 @@ class MultiScrapper
   end
 end
 
+MultiScrapper.departments_list

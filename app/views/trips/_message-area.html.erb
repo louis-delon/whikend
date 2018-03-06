@@ -1,0 +1,31 @@
+<div class="trip_container">
+  <div class="row">
+    <div class="col-lg-8 trip__details_row">
+      <span class="trip__details__creator">
+        <ul>
+          <% @messages.each do |message| %>
+            <li><%= message.content %></li>
+            <li><%= message.user.first_name.capitalize %></li><br>
+          <% end %>
+        </ul>
+      </span>
+      <span>
+        <div>
+          <%= simple_form_for [@trip, @message] do |f| %>
+            <%= f.input :content %>
+            <%= f.submit "Send your message", class: "btn btn--primary" %>
+          <% end %>
+        </div>
+      </span>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
