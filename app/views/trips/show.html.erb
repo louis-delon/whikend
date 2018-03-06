@@ -39,6 +39,7 @@
           <span class="trip__details__creator"><%= icon('fas', 'map-marker-alt') %> <%= @trip.hike.location %></span>
           <span class="trip__details__creator"><%= icon('fas', 'tag') %> <%= @trip.hike.difficulty %></span>
           <span class="trip__details__creator"><i class="fas fa-clock"></i> <%= @trip.hike.duration %></span>
+          <span class="trip__details__creator"><%= icon('fas', 'tag') %></i> <%= "#{@trip.fees}€" %></span>
         </div>
       </div>
       <div class="row">
