@@ -4,11 +4,9 @@ class TripsController < ApplicationController
 
   def index
     # @trips = Trip.all
-    if params[:query].present?
-      @trips = policy_scope(Trip).global_search(params[:query])
-    else
-      @trips = policy_scope(Trip).all
-    end
+    @trips = policy_scope(Trip).where('trips.date > ?', Date.today)
+    @trips = @trips.where(date: params[:date]) if params[:date].present?
+    @trips = @trips.global_search(params[:query]) if params[:query].present?
   end
 
   def show

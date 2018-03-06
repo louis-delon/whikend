@@ -68,3 +68,8 @@ h2.trip__card__title {
   transition: $transition;
   border-radius: 3px 3px 0 0;
 }
+
+.trip__card__completed {
+  filter: grayscale(95%);
+  // background-color: red;
+}

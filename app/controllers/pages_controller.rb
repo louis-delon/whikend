@@ -2,10 +2,8 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
-    if params[:query].present?
-      @trips = Trip.global_search(params[:query])
-    else
-      @trips = Trip.all
-    end
+    @trips = policy_scope(Trip).where('trips.date > ?', Date.today)
+    @trips = @trips.where(date: params[:date]) if params[:date].present?
+    @trips = @trips.global_search(params[:query]) if params[:query].present?
   end
 end
