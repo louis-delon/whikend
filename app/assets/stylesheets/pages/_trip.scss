@@ -145,12 +145,45 @@
     color: $dark;
   }
 
-  a.reject {
+  a.decline {
     color: #df2800;
 
     &:hover {
       color: lighten(#df2800, 5%);
     }
+  }
+}
+
+.submission__approval__waiting {
+  padding: 20px;
+}
+
+.submission__buddies__buddy {
+  position: relative;
+  margin: 0 10px;
+
+  &:nth-child(n + 4) {
+    margin-top: 20px;
+  }
+
+  i {
+    margin: 0;
+  }
+
+  a.reject {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 30px;
+    height: 30px;
+    background-color: #df2800;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
   }
 }
 

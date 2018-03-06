@@ -11,22 +11,24 @@
     <div class="submission__buddies">
       <div class="submission__buddies__list">
         <% @submissions.where(accepted: true).each do |submission| %>
+        <div class="submission__buddies__buddy">
           <%= link_to user_path(submission.user) do %>
-            <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
-            <%= image_tag user_avatar, class: "avatar" %>
-          <% end %>
+              <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
+              <%= image_tag user_avatar, class: "avatar" %>
 
-          <% if policy(submission).current_user_is_driver? %>
-            <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
-              <%= icon('fas', 'times') %>Bye bye buddy
-            <% end %>
-          <% end %>
+              <% if policy(submission).current_user_is_driver? %>
+                <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+                  <%= icon('fas', 'times') %>
+                <% end %>
+              <% end %>
 
-          <% if policy(submission).current_user? %>
-            <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
-              <%= icon('fas', 'times') %>Can't come anymore!
-            <% end %>
+              <% if policy(submission).current_user? %>
+                <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+                  <%= icon('fas', 'times') %>
+                <% end %>
+              <% end %>
           <% end %>
+        </div>
 
         <% end %>
       </div>
@@ -52,48 +54,47 @@
           <p>Submissions are manually validated by <%= @trip.user.first_name %></p>
         <% end %>
         <% end %>
-      <% elsif policy(@submission).status_accepted? %>
-        <p>You are good to go!</p>
-      <% elsif policy(@submission).status_rejected? %>
-        <p>Bummer - find another hike you could join</p>
-      <% elsif policy(@submission).seat_full? || policy(@trip).date_passed? %>
-        <p><%= link_to "Find other hikes", trips_path %></p>
       </div>
       <% end %>
     <% end %>
+  <% if @submissions.where(user_id: current_user.id, accepted: nil).present? %>
+    <p class="submission__approval__waiting">You will be notified by email when your submission will be treated by <%= @trip.user.first_name %>.</p>
+  <% end  %>
   <% if @trip.user == current_user %>
     <% if policy(@submission).submissions_pending? %>
       <h3>Waiting for approval</h3>
     <% end %>
-    <div class="submission__approval">
-      <% @submissions.where(accepted: nil).each do |submission| %>
-        <div class="submission__approval__item">
-          <div class="submission__approval__user">
-            <%= link_to user_path(submission.user), class: "user" do %>
-              <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
-              <%= image_tag user_avatar, class: "avatar" %>
-              <%= submission.user.first_name.capitalize  %>
-            <% end %>
-          </div>
-          <div class="submission__approval__actions">
-            <% if policy(@submission).current_user_is_driver? && !policy(@submission).seat_full? %>
-              <%= link_to(approve_submission_path(@trip, submission)) do %>
-                <%= icon('fas', 'check') %>Accept
+    <% if @submissions.where(accepted: nil).present?  %>
+      <div class="submission__approval">
+        <% @submissions.where(accepted: nil).each do |submission| %>
+          <div class="submission__approval__item">
+            <div class="submission__approval__user">
+              <%= link_to user_path(submission.user), class: "user" do %>
+                <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
+                <%= image_tag user_avatar, class: "avatar" %>
+                <%= submission.user.first_name.capitalize  %>
               <% end %>
-              |
-              <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
-                <%= icon('fas', 'times') %>Decline
+            </div>
+            <div class="submission__approval__actions">
+              <% if policy(@submission).current_user_is_driver? && !policy(@submission).seat_full? %>
+                <%= link_to(approve_submission_path(@trip, submission)) do %>
+                  <%= icon('fas', 'check') %>Accept
+                <% end %>
+                |
+                <%= link_to(reject_submission_path(@trip, submission), class: "decline") do %>
+                  <%= icon('fas', 'times') %>Decline
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
-    <span>
-      <% if policy(@trip).add_review? && policy(@trip).date_passed? %>
-        <%= link_to(new_trip_review_path(@trip), class: "btn btn-success") do %>
-        Add a Review
         <% end %>
-      <% end %>
-    </span>
-  </div>
+      <span>
+        <% if policy(@trip).add_review? && policy(@trip).date_passed? %>
+          <%= link_to(new_trip_review_path(@trip), class: "btn btn-success") do %>
+          Add a Review
+          <% end %>
+        <% end %>
+      </span>
+    </div>
+  <% end  %>
   <% end %>
