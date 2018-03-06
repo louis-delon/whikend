@@ -1,5 +1,5 @@
 <%= link_to(trip_path(trip), class: "trip__card") do %>
-  <div class="trip__card__body" style="background-image: url(<%= trip.hike.photo_url %>)">
+  <div class="trip__card__body <%= 'trip__card__completed' if trip.seats - trip.submissions.where(accepted: true).count > 0 %>" style="background-image: url(<%= trip.hike.photo_url %>)">
     <div class="trip__card__content">
       <h2 class="trip__card__title"><%= trip.title %></h2>
       <span class="trip__card__user">

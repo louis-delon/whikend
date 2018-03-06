@@ -3,14 +3,7 @@
     <h1>Find your next hiking buddies</h1>
     <p>People like you are looking for a hike</p>
       <p>
-        <%= form_tag trips_path, method: :get do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Find a hike"
-          %>
-          <%= submit_tag "Search" %>
-        <% end %>
+        <%= render "trips/pg-search" %>
       </p>
   </div>
 </div>
