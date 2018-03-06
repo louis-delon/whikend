@@ -43,8 +43,8 @@ class UniScrapper
     puts ""
 
     checkpoints_gatherer(@hike)
-     @hike.save
-     @hike
+    @hike.save
+    @hike
   end
 
 
