@@ -18,7 +18,7 @@
 .trip__banner__actions {
   position:absolute;
   bottom: 20px;
-  right: 20px;
+  right: 15px;
 
   .btn {
     margin-left: 20px;
@@ -86,14 +86,14 @@
     text-align: center;
     padding: 10px;
     font-size: 1.5rem;
-    background-color: lighten($secondary-color, 48%);
-    color: $secondary-color;
+    background-color: lighten($primary-color, 48%);
+    color: $primary-color;
     font-weight: 600;
   }
 
   h3.main__title {
-    background-color: lighten($primary-color, 48%);
-    color: $primary-color;
+    background-color: lighten($secondary-color, 48%);
+    color: $secondary-color;
   }
 }
 
@@ -111,6 +111,7 @@
 
   .avatar {
     width: 80px;
+    height: 80px;
   }
 }
 
@@ -119,11 +120,14 @@
 }
 
 .submission__approval__item {
-  margin-bottom: 20px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &:nth-child(n + 2) {
+    margin-top: 20px;
+  }
 
   &:last-child {
     margin-bottom: 0;
@@ -143,6 +147,29 @@
 
   a.reject {
     color: #df2800;
+
+    &:hover {
+      color: lighten(#df2800, 5%);
+    }
+  }
+}
+
+.submission__form {
+  padding: 40px 20px;
+  border-top: 1px solid #ddd;
+
+  label {
+    display: none;
+  }
+
+  .form-actions,
+  p {
+    text-align: center;
+  }
+
+  p {
+    margin-top: 10px;
+    color: #999;
   }
 }
 
@@ -175,4 +202,8 @@
   background-size: 101%;
   background-repeat: no-repeat;
   background-position: center bottom;
+
+  .col-lg-6:nth-child(n + 3) {
+    margin-top: 30px;
+  }
 }
