@@ -140,7 +140,8 @@ trip_corse = Trip.create!(
   date: Date.today+(2),
   trip_type: "Sportive",
   seats: 4,
-  auto_accept: false
+  auto_accept: false,
+  fees: 5
 )
 
 # CORSE - Submission creation

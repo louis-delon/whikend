@@ -17,6 +17,7 @@ class Trip < ApplicationRecord
   validates :trip_type, presence: true
   validates :title, presence: true
   validates :seats, presence: true
+  validates :fees, presence: true
   validates_inclusion_of :auto_accept, in: [true, false]
 
   pg_search_scope :global_search,
