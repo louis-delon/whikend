@@ -44,20 +44,29 @@
       <div class="trip__details__description">
         <p><%= simple_format(@trip.description) %></p>
       </div>
-
-      <div class="trip__details__hike">
-        <h2>Details about this hike</h2>
-        <p><%= @hike.description %></p>
-      </div>
-
-      <div class="trip__details__map">
-        <%= render "map" %>
-      </div>
-
     </div>
 
     <div class="col-lg-4">
       <%= render "submission-area" %>
+    </div>
+
+  </div>
+</section>
+
+<section id="hike__details">
+  <div class="container">
+
+    <div class="col-lg-8">
+      <div class="trip__details__hike">
+        <h2>Details about this hike</h2>
+        <p><%= @hike.description %></p>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="trip__details__map">
+        <%= render "map" %>
+      </div>
     </div>
 
   </div>

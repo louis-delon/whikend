@@ -37,11 +37,15 @@
 
 #trip__details h1 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
 }
 
 .trip__details__user {
   margin-bottom: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
 
   .avatar {
     margin-right: 10px;
@@ -62,13 +66,77 @@
   }
 }
 
-.trip__details__description {
-  padding-bottom: 40px;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 40px;
+#submission__area {
+  border-radius: $border-radius;
+  background-color: #fff;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  transition: $transition;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
+  }
+
+  h3 {
+    text-align: center;
+    padding: 10px;
+    font-size: 1.3rem;
+    background-color: lighten($secondary-color, 48%);
+    color: $secondary-color;
+  }
+
+  h3.main__title {
+    background-color: lighten($primary-color, 48%);
+    color: $primary-color;
+  }
 }
 
-.trip__details__hike h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+.submission__buddies {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.submission__buddies__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+
+  .avatar {
+    width: 80px;
+  }
+}
+
+.submission__approval__item {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .avatar {
+    margin-right: 5px;
+  }
+
+  a {
+    margin: 0 5px;
+  }
+
+  a.user {
+    color: $dark;
+  }
+
+  a.reject {
+    color: #df2800;
+  }
+}
+
+#hike__details {
+  background-color: #fff;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
 }
