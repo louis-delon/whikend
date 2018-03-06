@@ -56,7 +56,7 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <div class="user__box">
+      <div class="user__review__title">
         <% if policy(@user).update? %>
           <% if @user.reviews.any? %>
             <h2><%= "My reviews" %></h2>
@@ -64,7 +64,11 @@
             <h2><%= "You have no review yet" %></h2>
           <% end %>
         <% else %>
-          <h3><%= "#{@user.first_name.capitalize} has no reviews yet" %></h3>
+          <% if @user.reviews.any? %>
+            <h3><%= "Reviews of #{@user.first_name.capitalize}" %></h3>
+          <% else %>
+            <h2><%= "#{@user.first_name.capitalize} has no review yet" %></h2>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -73,23 +77,21 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="user__box">
-          <div class="user__reviews">
-              <% @user.reviews.each do |review|%>
-                <div class ="user__reviews__card">
-                  <p><%= review.content %></p>
-                  <p>
-                    <% review.rating.times do %>
-                      <%= icon('fas star--full', 'star') %>
-                    <% end %>
-                    <% (5 - review.rating).times do %>
-                      <%= icon('fas star--empty', 'star') %>
-                    <% end %>
-                  </p>
-                  <h4><%= review.created_at %></h4>
-                  <h4><%= review.sender.first_name %></h4>
-                </div>
-              <% end %>
-          </div>
+          <% @user.reviews.each do |review|%>
+            <div class ="user__reviews__card">
+              <p><%= review.content %></p>
+              <p>
+                <% review.rating.times do %>
+                  <%= icon('fas star--full', 'star') %>
+                <% end %>
+                <% (5 - review.rating).times do %>
+                  <%= icon('fas star--empty', 'star') %>
+                <% end %>
+              </p>
+              <h4><%= review.created_at %></h4>
+              <h4><%= review.sender.first_name %></h4>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
