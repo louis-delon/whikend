@@ -15,7 +15,22 @@
 .trip__message__content {
   padding: 10px;
   background-color: #fff;
-  border-radius: $border-radius;
+  border-radius: 0 2px 0 0;
+  flex-grow: 1;
+  position: relative;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -16px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0px 16px 16px 0;
+    border-color: transparent #fff transparent transparent;
+  }
 }
 
 .trip__message__content p:first-child {
@@ -24,4 +39,14 @@
 
 .trip__message__content p:last-child {
   color: lighten($dark, 30%);
+}
+
+.trip__message__form {
+  label {
+    display: none;
+  }
+
+  textarea {
+    margin-top: 40px;
+  }
 }
