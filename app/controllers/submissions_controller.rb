@@ -36,7 +36,7 @@ class SubmissionsController < ApplicationController
     @submission.accepted = true
     @submission.save
     authorize @submission
-    UserMailer.select(@submission.user).deliver_now
+    UserMailer.select(@submission).deliver_now
     redirect_to trip_path(params[:trip_id])
   end
 
