@@ -26,7 +26,7 @@
         <span class="trip__details__date">
           <%= link_to user_path(@user) do %>
             <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
-            <%= image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= cl_image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face, width: 300, height: 300 %>
             <%= @user.first_name.capitalize %>
           <% end %>
         </span>

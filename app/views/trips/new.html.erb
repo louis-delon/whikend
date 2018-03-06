@@ -34,23 +34,26 @@
             <div class="form-inputs">
               <%= f.input :date, order: [:day, :month, :year] %>
             </div>
+          </div>
+
+          <div class="form-inline-group">
             <div class="form-inputs">
               <%= f.input :trip_type, include_blank: false, collection: @trip_types  %>
             </div>
             <div class="form-inputs">
               <%= f.input :seats, label: "Seats" %>
             </div>
-          </div>
-
-          <div class="form-inline-group">
-          </div>
-
-          <div class="form-inputs">
-            <%= f.input :description, placeholder: "You will have more answers with a nice description"  %>
+            <div class="form-inputs">
+              <%= f.input :fees, placeholder:"Toll/fuel charges/buddie" %>
+            </div>
           </div>
 
           <div class="form-inputs">
-            <%= f.input :auto_accept, label: "Automatically accept all submissions?"  %>
+            <%= f.input :description, placeholder: "You will have more answers with a nice description" %>
+          </div>
+
+          <div class="form-inputs">
+            <%= f.input :auto_accept, label: "Automatically accept all submissions?" %>
           </div>
         </div>
 

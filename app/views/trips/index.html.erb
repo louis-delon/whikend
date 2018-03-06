@@ -1,13 +1,6 @@
 <section class="search">
   <div class="container">
-    <%= form_tag trips_path, method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find a hike"
-      %>
-      <%= submit_tag "Search" %>
-    <% end %>
+    <%= render "trips/pg-search" %>
   </div>
 </section>
 <section class="trip__presentation">

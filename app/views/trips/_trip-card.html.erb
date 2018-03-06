@@ -1,23 +1,18 @@
 <%= link_to(trip_path(trip), class: "trip__card") do %>
-  <div class="trip__card__body" style="background-image: url(<%=  %>)">
+  <div class="trip__card__body <%= 'trip__card__completed' if trip.seats - trip.submissions.where(accepted: true).count > 0 %>" style="background-image: url(<%= trip.hike.photo_url %>)">
     <div class="trip__card__content">
       <h2 class="trip__card__title"><%= trip.title %></h2>
       <span class="trip__card__user">
         <% user_avatar = trip.user.facebook_picture_url || trip.user.avatar || "default-avatar.png" %>
-        <%= image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <%= cl_image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face, width: 300, height: 300 %>
         <%= "#{trip.user.first_name.capitalize} #{trip.user.last_name}" %>
       </span>
     </div>
     <span class="trip__card__filter"></span>
   </div>
   <div class="trip__card__footer">
+    <p class="trip__card__category"><i class="fas fa-calendar-alt"></i><%= trip.date %></p>
     <p class="trip__card__category"><%= icon('fas', 'tag') %><%= trip.hike.difficulty %></p>
     <p class="trip__card__city"><%= icon('fas', 'map-marker-alt') %><%= trip.hike.location %></p>
   </div>
-  <% if policy(trip).edit? %>
-    <%= link_to "Edit this project", edit_trip_path(trip.id) %>
-  <% end %>
-  <% if policy(trip).destroy? %> |
-    <%= link_to "Delete this project", trip_path(trip.id), method: :delete, data: { confirm: "Are you sure?" } %>
-  <% end %>
 <% end %>

@@ -4,16 +4,15 @@ class TripsController < ApplicationController
 
   def index
     # @trips = Trip.all
-    if params[:query].present?
-      @trips = policy_scope(Trip).global_search(params[:query])
-    else
-      @trips = policy_scope(Trip).all
-    end
+    @trips = policy_scope(Trip).where('trips.date > ?', Date.today)
+    @trips = @trips.where(date: params[:date]) if params[:date].present?
+    @trips = @trips.global_search(params[:query]) if params[:query].present?
   end
 
   def show
     @submissions = @trip.submissions
     @messages = @trip.messages
+    @message = Message.new
     @review = Review.where(trip_id: @trip).first
     @user = @trip.user
     @hike = Hike.find(@trip.hike_id)
@@ -71,7 +70,7 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:hike_id, :title, :start_location, :date, :trip_type, :seats, :description, :user_id, :auto_accept)
+    params.require(:trip).permit(:hike_id, :title, :start_location, :date, :trip_type, :seats, :description, :user_id, :auto_accept, :fees)
   end
 
   def new_submission
