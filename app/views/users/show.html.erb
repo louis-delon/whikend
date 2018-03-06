@@ -99,9 +99,9 @@
   <% end %>
   <div class="row" id="trips">
     <div class="col-xs-12">
-      <div class="user__box">
+      <div class="user__box__title" >
         <% if @trips.any? && policy(@user).show? %>
-          <h2><%= "My trips" %></h2>
+          <h2 style="text-align: center;"><%= "My trips" %></h2>
           <div class="row">
             <% @trips.each do |trip|%>
               <div class="col-xs-12 col-sm-6">
