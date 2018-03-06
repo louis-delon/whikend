@@ -92,6 +92,7 @@
   }
 
   h3.main__title {
+    border-radius: 2px 2px 0 0;
     background-color: lighten($secondary-color, 48%);
     color: $secondary-color;
   }

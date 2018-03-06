@@ -122,7 +122,7 @@
     <div class="container">
       <div class="row">
         <% @submissions.where(accepted: true).each do |submission| %>
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <%= render "buddies-card", submission: submission %>
           </div>
         <% end %>

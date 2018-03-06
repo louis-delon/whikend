@@ -1,6 +1,29 @@
 <%= link_to user_path(submission.user) do %>
   <div class="buddies__card">
-    <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
-    <%= image_tag user_avatar, class: "avatar" %>
+    <div class="buddies__card__header">
+      <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
+      <%= image_tag user_avatar, class: "avatar" %>
+      <div class="buddies__card__info">
+        <div class="buddies__card__name">
+          <%= submission.user.first_name.capitalize %> <%= submission.user.last_name.capitalize %>
+        </div>
+        <div class="buddies__card__agerating">
+          <% if average(submission.user) != 0 %>
+            <% average(submission.user).times do %>
+              <%= icon('fas star--full', 'star') %>
+            <% end %>
+            <% (5 - average(submission.user)).times do %>
+              <%= icon('fas star--empty', 'star') %>
+            <% end %>
+          <% else %>
+            <p>No reviews yet</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="buddies__card__body">
+
+    </div>
+
   </div>
 <% end %>
