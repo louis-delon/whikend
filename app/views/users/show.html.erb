@@ -10,14 +10,13 @@
         <p>
           <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
           <%= cl_image_tag user_avatar, class: "avatar__profile", width: 400, height: 400, crop: :fill, gravity: :face %>
-
         </p>
         <p>
           <% if @user.reviews.any? %>
             <%= render "average_review_ratings" %>
           <% end %>
         </p>
-        <div class="user__review__details">
+        <div class="user__form__details">
           <% if policy(@user).edit? %>
             <%= simple_form_for(@user) do |f| %>
               <%= f.error_notification %>
@@ -57,7 +56,7 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <div class="user__review__title">
+      <div class="user__box__title">
         <% if policy(@user).update? %>
           <% if @user.reviews.any? %>
             <h2><%= "My reviews" %></h2>
@@ -74,46 +73,30 @@
       </div>
     </div>
   </div>
-  <% if @user.reviews.any? %>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="user__box">
-          <% @user.reviews.each do |review|%>
-            <div class ="user__reviews__card">
-              <p><%= review.content %></p>
-              <p>
-                <% review.rating.times do %>
-                  <%= icon('fas star--full', 'star') %>
-                <% end %>
-                <% (5 - review.rating).times do %>
-                  <%= icon('fas star--empty', 'star') %>
-                <% end %>
-              </p>
-              <h4><%= review.created_at %></h4>
-              <h4><%= review.sender.first_name %></h4>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  <div class="user__box__title">
+    <%= render "reviews_details" %>
+  </div>
   <div class="row" id="trips">
     <div class="col-xs-12">
       <div class="user__box__title" >
-        <% if @trips.any? && policy(@user).show? %>
-          <h2 style="text-align: center;"><%= "My trips" %></h2>
-          <div class="row">
-            <% @trips.each do |trip|%>
-              <div class="col-xs-12 col-sm-6">
-                <%= render "trips/trip-card", trip: trip %>
-              </div>
+        <% if @trips.any? %>
+          <% if policy(@user).show? %>
+            <% if policy(@user).edit? %>
+              <h2 style="text-align: center;"><%= "My trips" %></h2>
+            <% else %>
+              <h2 style="text-align: center;"><%= "Trips of #{@user.first_name}" %></h2>
             <% end %>
-          </div>
-        <% else %>
-          <h3><%= "You have no trip yet" %></h3>
+          <% end %>
         <% end %>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <% @trips.each do |trip|%>
+      <div class="col-xs-12 col-sm-6">
+        <%= render "trips/trip-card", trip: trip %>
+      </div>
+    <% end %>
   </div>
 </div>
 
