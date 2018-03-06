@@ -101,5 +101,3 @@ class MultiScrapper
     hike.save
   end
 end
-
-MultiScrapper.departments_list
