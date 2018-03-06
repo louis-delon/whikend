@@ -55,11 +55,12 @@ class SubmissionPolicy < ApplicationPolicy
     @record.trip.user == user
   end
 
-private
-
   def current_user?
     @record.user == @user
   end
+
+private
+
 
 
 

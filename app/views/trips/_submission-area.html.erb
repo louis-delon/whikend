@@ -15,6 +15,19 @@
             <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
             <%= image_tag user_avatar, class: "avatar" %>
           <% end %>
+
+          <% if policy(submission).current_user_is_driver? %>
+            <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+              <%= icon('fas', 'times') %>Bye bye buddy
+            <% end %>
+          <% end %>
+
+          <% if policy(submission).current_user? %>
+            <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+              <%= icon('fas', 'times') %>Can't come anymore!
+            <% end %>
+          <% end %>
+
         <% end %>
       </div>
       <a href="#hike__buddies" class="btn btn--primary"><%= icon('fas', 'users') %> See buddies details</a>
