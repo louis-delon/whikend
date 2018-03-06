@@ -57,8 +57,8 @@
       </div>
       <% end %>
     <% end %>
-  <% if @submissions.where(user_id: current_user.id).present? %>
-    Coucou
+  <% if @submissions.where(user_id: current_user.id, accepted: nil).present? %>
+    <p class="submission__approval__waiting">You will be notified by email when your submission will be treated by <%= @trip.user.first_name %>.</p>
   <% end  %>
   <% if @trip.user == current_user %>
     <% if policy(@submission).submissions_pending? %>
