@@ -3,7 +3,7 @@
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   text-align: center;
   padding-top: 20px;
-  margin-bottom: 2px 0px;
+  margin-top: 20px;
 }
 
 .user__box h4 {
@@ -23,12 +23,16 @@
   color: black;
 }
 
-.user__box__title {
-  background-color: #fff;
-  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+.user__review__details {
   text-align: center;
-  padding: 20px 0px;
-  margin: 2px 0px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.user__box__title {
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 20px;
 }
 
 .user__form__details {
@@ -48,7 +52,6 @@
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   transition: $transition;
   padding: 10px 0px;
-
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);

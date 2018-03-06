@@ -1,0 +1,24 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-row">
+      <%= f.input :first_name, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your first name" %>
+
+      <%= f.input :last_name, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your last name" %>
+  </div>
+
+  <div class="form-row">
+    <%= f.input :email, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: 'youremail@example.com' %>
+
+    <%= f.input :age, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your age" %>
+  </div>
+
+  <div class="form-row">
+      <%= f.input :description, as: :text, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-12"}, placeholder: 'enter a description of yourself', input_html:{ class: 'user__form__text' } %>
+  </div>
+
+  <div class="form-row">
+    <div class="form-actions user__form__button">
+      <%= f.submit "Validate", class: "btn btn-success" %>
+    </div>
+  </div>
+<% end %>
