@@ -191,7 +191,7 @@ alex = User.create!(
   remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk'
 )
 
-1.times do
+30.times do
   User.create!(
     email: Faker::Internet.email,
     password: Faker::Internet.password,
