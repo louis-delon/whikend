@@ -45,6 +45,11 @@
         <div class="trip__details__description">
           <p><%= simple_format(@trip.description) %></p>
         </div>
+
+        <div class="trip__details__messages">
+          <h3>Conversations</h3>
+          <%= render "message-area" %>
+        </div>
       </div>
 
       <div class="col-lg-4">
@@ -123,7 +128,7 @@
       <div class="row">
         <% @submissions.where(accepted: true).each do |submission| %>
           <div class="col-lg-4">
-            <%= render "buddies-card", submission: submission %>
+            <%= render "buddies-card", submission: submission, trip: @trip %>
           </div>
         <% end %>
       </div>

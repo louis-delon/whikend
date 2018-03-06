@@ -14,7 +14,7 @@
         <div class="submission__buddies__buddy">
           <%= link_to user_path(submission.user) do %>
               <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
-              <%= image_tag user_avatar, class: "avatar" %>
+              <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
 
               <% if policy(submission).current_user_is_driver? %>
                 <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
@@ -71,7 +71,7 @@
             <div class="submission__approval__user">
               <%= link_to user_path(submission.user), class: "user" do %>
                 <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
-                <%= image_tag user_avatar, class: "avatar" %>
+                <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
                 <%= submission.user.first_name.capitalize  %>
               <% end %>
             </div>

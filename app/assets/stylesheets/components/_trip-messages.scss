@@ -1,0 +1,27 @@
+.trip__message {
+  display: flex;
+
+  &:nth-child(n + 2) {
+    margin-top: 20px;
+  }
+}
+
+.trip__message .avatar {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.trip__message__content {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: $border-radius;
+}
+
+.trip__message__content p:first-child {
+  font-weight: 600;
+}
+
+.trip__message__content p:last-child {
+  color: lighten($dark, 30%);
+}

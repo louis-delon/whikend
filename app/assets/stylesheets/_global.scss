@@ -33,6 +33,11 @@ h1 {
   margin-bottom: 50px;
 }
 
+h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
 a {
   color: $primary-color;
   transition: $transition;
@@ -61,4 +66,12 @@ p {
 
 section {
   padding: 40px 0;
+}
+
+.fa-star {
+  color: $primary-color;
+}
+
+.fa-star.star--empty {
+  color: #ddd;
 }
