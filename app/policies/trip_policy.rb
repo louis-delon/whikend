@@ -48,7 +48,6 @@ class TripPolicy < ApplicationPolicy
     @record.date < Date.today
   end
 
-
 private
 
   def current_user?
