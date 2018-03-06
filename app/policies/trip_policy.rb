@@ -14,7 +14,7 @@ class TripPolicy < ApplicationPolicy
   end
 
   def add_review?
-    return true if current_user?
+    return true if current_user_or_admin?
     submission = Submission.find_by(user_id: user.id, trip_id: @record.id)
     return false if submission.nil?
     submission.accepted
@@ -25,15 +25,15 @@ class TripPolicy < ApplicationPolicy
   end
 
   def edit?
-    current_user?
+    current_user_or_admin?
   end
 
   def update?
-    current_user?
+    current_user_or_admin?
   end
 
   def destroy?
-    current_user?
+    current_user_or_admin?
   end
 
   def hikes_by_department?
@@ -50,8 +50,8 @@ class TripPolicy < ApplicationPolicy
 
 private
 
-  def current_user?
-    @record.user == @user
+  def current_user_or_admin?
+    user.admin || @record == user
   end
 
 end

@@ -12,15 +12,15 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def approve?
-    true
+    current_user_is_driver?
   end
 
   def reject?
-    true
+    current_user_is_driver?
   end
 
   def destroy?
-    current_user?
+    current_user_or_admin?
   end
 
   def status_pending?
@@ -51,17 +51,14 @@ class SubmissionPolicy < ApplicationPolicy
     @record.trip.submissions.where(accepted: nil).exists?
   end
 
+  private
+
   def current_user_is_driver?
     @record.trip.user == user
   end
 
-  def current_user?
-    @record.user == @user
+  def current_user_or_admin?
+    user.admin || @record.user == user
   end
-
-private
-
-
-
 
 end
