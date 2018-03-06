@@ -24,7 +24,7 @@ class UserMailer < ApplicationMailer
     mail to: @user.email, subject: "Confirmation participation Rando #{@trip.title}"
   end
 
-  def reject(user)
+  def reject(submission)
     @user = User.find(submission.user_id)
     @trip = Trip.find(submission.trip_id)
 
