@@ -65,7 +65,8 @@ trip_solutre = Trip.create!(
   date: Date.today+(1),
   trip_type: "Détente",
   seats: 5,
-  auto_accept: true
+  auto_accept: true,
+  fees: (2..7).to_a.sample
 )
 
 # Solutre - Submission creation
@@ -141,7 +142,7 @@ trip_corse = Trip.create!(
   trip_type: "Sportive",
   seats: 4,
   auto_accept: false,
-  fees: 5
+  fees: (2..7).to_a.sample
 )
 
 # CORSE - Submission creation
@@ -226,7 +227,8 @@ trip = Trip.create!(
   date: Date.today+(1),
   trip_type: TRIP_TYPES.sample,
   seats: (2..6).to_a.sample,
-  auto_accept: true
+  auto_accept: true,
+  fees: (2..7).to_a.sample
 )
 
 #creation of a trip by Etienne
@@ -239,7 +241,9 @@ trip1 = Trip.create!(
   date: Date.today+(1),
   trip_type: TRIP_TYPES.sample,
   seats: 3,
-  auto_accept: true
+  auto_accept: true,
+  fees: (2..7).to_a.sample
+
 )
 
 trip1 = Trip.create!(
@@ -251,7 +255,8 @@ trip1 = Trip.create!(
   date: Date.today+(3),
   trip_type: TRIP_TYPES.sample,
   seats: 6,
-  auto_accept: true
+  auto_accept: true,
+  fees: (2..7).to_a.sample
 )
 
 20.times do
@@ -265,7 +270,8 @@ trip1 = Trip.create!(
     date: [Date.today-(7),Date.today+(1),Date.today+(3),Date.today+(7)].sample,
     trip_type: TRIP_TYPES.sample,
     seats: (2..5).to_a.sample,
-    auto_accept: [true, false].sample
+    auto_accept: [true, false].sample,
+    fees: (2..7).to_a.sample
   )
 end
 
