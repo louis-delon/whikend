@@ -25,7 +25,8 @@ class UserMailer < ApplicationMailer
   end
 
   def reject(user)
-    @user = user
+    @user = User.find(submission.user_id)
+    @trip = Trip.find(submission.trip_id)
 
     mail to: @user.email, subject: "Refus Rando"
   end
