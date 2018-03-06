@@ -2,7 +2,6 @@
   background-color: #fff;
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding-bottom: 20px;
   padding-top: 20px;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -10,6 +9,7 @@
 
 .user__box div {
   font-size: 20px;
+  padding: 20px;
 }
 
 .user__box h2 {
@@ -17,6 +17,7 @@
   padding-top: 30px;
   margin-bottom: 1px;
   margin-top: 1px;
+  background-color: ECFFD2;
 }
 
 .user__box h4 {
@@ -34,6 +35,14 @@
 .user__form__text {
   font-size: 16px;
   color: black;
+}
+
+.user__review__title {
+  background-color: #fff;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px 0px;
+
 }
 
 .user__review__details {
@@ -54,7 +63,7 @@
   margin-bottom: 30px;
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   transition: $transition;
-  position: relative;
+  padding: 10px 0px;
 
   &:hover {
     transform: translateY(-5px);
@@ -66,16 +75,6 @@
   margin-bottom: 5px;
 }
 
-.user__trip__navbar {
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
-  transition: all 0.3s ease;
-  height: 70px;
-  padding: 0px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
 .fa-star {
   color: $primary-color;
