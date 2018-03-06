@@ -1,0 +1,6 @@
+<%= link_to user_path(submission.user) do %>
+  <div class="buddies__card">
+    <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
+    <%= image_tag user_avatar, class: "avatar" %>
+  </div>
+<% end %>

@@ -1,86 +1,83 @@
-<div class="trip__submitters__container">
-  <div class="row">
-    <div class="col-lg-12">
-      <br>
-      <% count_seats = [@trip.seats - @submissions.where(accepted: true).to_a.size, 0].max %>
-      <% if policy(@trip).date_passed? %>
-        <h3>Too late, this hike has passed!</h3><br>
-      <% elsif count_seats == 0 %>
-        <h3>This hike is full!</h3><br>
-      <% else %>
-        <h3><i class="fas fa-users"></i> <%= count_seats %> seat(s) available</h3><br>
-      <% end %>
-      <% @submissions.where(accepted: true).each do |submission| %>
-        <span class="trip__details__title">
+<div id="submission__area">
+  <% count_seats = [@trip.seats - @submissions.where(accepted: true).to_a.size, 0].max %>
+  <% if policy(@trip).date_passed? %>
+    <h3 class="main__title">Too late, this hike has passed!</h3>
+  <% elsif count_seats == 0 %>
+    <h3 class="main__title">This hike is full!</h3>
+  <% else %>
+    <h3 class="main__title"><%= pluralize(count_seats, "seat") %> available</h3>
+  <% end %>
+  <% if @submissions.where(accepted: true).present? %>
+    <div class="submission__buddies">
+      <div class="submission__buddies__list">
+        <% @submissions.where(accepted: true).each do |submission| %>
           <%= link_to user_path(submission.user) do %>
             <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
-            <%= cl_image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face, width: 300, height: 300 %>
+            <%= image_tag user_avatar, class: "avatar" %>
+          <% end %>
+        <% end %>
+      </div>
+      <a href="#hike__buddies" class="btn btn--primary"><%= icon('fas', 'users') %> See buddies details</a>
+    </div>
+  <% end  %>
+  <span>
+    <% if !policy(@trip).date_passed? %>
+      <% if policy(@submission).create? %>
+        <%= simple_form_for([@trip, @submission]) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :content %>
+          </div>
+          <div class="form-actions">
+            <%= f.submit "Submit", class: "btn btn--primary" %>
+          </div>
+        <% if policy(@trip).automatic? %>
+          <p><em>Submissions are automatically accepted</em></p>
+        <% else %>
+          <p><em>Submissions are manually validated by <%= @trip.user.first_name %></em></p>
+        <% end %>
+        <% end %>
+      <% elsif policy(@submission).status_accepted? %>
+        <p>You are good to go!</p>
+      <% elsif policy(@submission).status_rejected? %>
+        <p>Bummer - find another hike you could join</p>
+      <% elsif policy(@submission).seat_full? || policy(@trip).date_passed? %>
+        <p><%= link_to "Find other hikes", trips_path %></p>
+      <% end %>
+    <% end %>
+  </span>
+  <% if policy(@submission).submissions_pending? %>
+    <h3>Waiting for approval</h3>
+  <% end %>
+  <div class="submission__approval">
+    <% @submissions.where(accepted: nil).each do |submission| %>
+      <div class="submission__approval__item">
+        <div class="submission__approval__user">
+          <%= link_to user_path(submission.user), class: "user" do %>
+            <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
+            <%= image_tag user_avatar, class: "avatar" %>
             <%= submission.user.first_name.capitalize  %>
           <% end %>
-        </span>
+        </div>
+        <div class="submission__approval__actions">
+          <% if policy(@submission).current_user_is_driver? && !policy(@submission).seat_full? %>
+            <%= link_to(approve_submission_path(@trip, submission)) do %>
+              <%= icon('fas', 'check') %>Accept
+            <% end %>
+            |
+            <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+              <%= icon('fas', 'times') %>Decline
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div class="submission__approval">
+  <span>
+    <% if policy(@trip).add_review? && policy(@trip).date_passed? %>
+      <%= link_to(new_trip_review_path(@trip), class: "btn btn-success") do %>
+      Add a Review
       <% end %>
-      <br>
-      <span>
-        <br>
-          <% if !policy(@trip).date_passed? %>
-            <% if policy(@submission).create? %>
-              <%= simple_form_for([@trip, @submission]) do |f| %>
-                <%= f.error_notification %>
-                <div class="form-inputs">
-                  <%= f.input :content %>
-                </div>
-                <div class="form-actions">
-                  <%= f.submit "Count me in!", class: "btn btn--primary" %>
-                </div>
-              <% if policy(@trip).automatic? %>
-                <p><em>Submissions are automatically accepted</em></p>
-              <% else %>
-                <p><em>Submissions are manually validated by <%= @trip.user.first_name %></em></p>
-              <% end %>
-              <% end %>
-            <% elsif policy(@submission).status_accepted? %>
-              <p>You are good to go!</p>
-            <% elsif policy(@submission).status_rejected? %>
-              <p>Bummer - find another hike you could join</p>
-            <% elsif policy(@submission).seat_full? || policy(@trip).date_passed? %>
-              <p><%= link_to "Find other hikes", trips_path %></p>
-            <% end %>
-          <% end %>
-        <br>
-      </span>
-      <br>
-      <span>
-        <% if policy(@submission).submissions_pending? && !policy(@trip).date_passed? %>
-        <h3><i class="fas fa-hourglass-half"></i>
-          Waiting For Approval
-        </h3><br>
-        <% end %>
-        <% @submissions.where(accepted: nil).each do |submission| %>
-          <span class="row submission__card__approval">
-            <%= link_to user_path(submission.user) do %>
-              <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
-              <%= cl_image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face, width: 300, height: 300 %>
-              <%= submission.user.first_name.capitalize  %>
-              <% if policy(@submission).current_user_is_driver? && !policy(@submission).seat_full? %>
-                <%= link_to(approve_submission_path(@trip, submission), class: "btn btn--secondary") do %>
-                  <i class="fas fa-thumbs-up"></i>Accept
-                <% end %>
-                <!-- Changer le logo-->
-                <%= link_to(reject_submission_path(@trip, submission), class: "btn btn--secondary") do %>
-                  <i class="fas fa-thumbs-up"></i>Reject
-                <% end %>
-              <% end %>
-            <% end %>
-          </span>
-        <% end %>
-      </span>
-      <span>
-        <% if policy(@trip).add_review? && policy(@trip).date_passed? %>
-          <%= link_to(new_trip_review_path(@trip), class: "btn btn-success") do %>
-          Add a Review
-          <% end %>
-        <% end %>
-      </span>
-    </div>
-  </div>
+    <% end %>
+  </span>
 </div>

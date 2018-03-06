@@ -37,3 +37,7 @@ textarea {
   box-shadow: none;
   border: 1px solid #eee;
 }
+
+input::placeholder {
+  color: #ddd;
+}

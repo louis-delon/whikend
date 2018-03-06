@@ -1,66 +1,126 @@
 
-<div class="banner trip__banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<%= @trip.hike.photo_url %>)" >
+<div class="banner trip__banner" style="background-image: url(<%= @trip.hike.photo_url %>)" >
   <div class="container">
     <div class="trip__banner__actions">
-      <% if policy(@trip).update? %>
-        <%= link_to(edit_trip_path(@trip), class: "btn btn--secondary") do %>
-        <%= icon('fas', 'edit') %>Edit
-        <% end %>
-      <% end %>
       <% if policy(@trip).destroy?%>
         <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
-        <%= icon('fas', 'trash') %>Delete
+          <%= icon('fas', 'trash') %>Delete
+        <% end %>
+      <% end %>
+      <% if policy(@trip).update? %>
+        <%= link_to(edit_trip_path(@trip), class: "btn btn--secondary") do %>
+          <%= icon('fas', 'edit') %>Edit
         <% end %>
       <% end %>
     </div>
   </div>
 </div>
 
-<section class="trip__details">
-  <div class="trip_container">
-    <div class="trip__details__container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h1 class="trip__details__title"><%= @trip.title %></h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12  trip__details_row">
-          <span class="trip__details__creator">
-            <%= link_to user_path(@user) do %>
+<section id="trip__details">
+  <div class="container">
+
+    <div class="col-lg-8">
+      <h1><%= @trip.title %></h1>
+
+      <div class="trip__details__infos">
+        <span class="trip__details__date">
+          <%= link_to user_path(@user) do %>
             <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
             <%= cl_image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face, width: 300, height: 300 %>
             <%= @user.first_name.capitalize %>
-            <% end %>
-          </span>
-          <br>
-          <span class="trip__details__creator"><i class="fas fa-calendar-alt"></i> <%= @trip.date %></span>
-          <span class="trip__details__creator"><i class="fas fa-car"></i> <%= @trip.start_location %></span>
-          <span class="trip__details__creator"><%= icon('fas', 'map-marker-alt') %> <%= @trip.hike.location %></span>
-          <span class="trip__details__creator"><%= icon('fas', 'tag') %> <%= @trip.hike.difficulty %></span>
-          <span class="trip__details__creator"><i class="fas fa-clock"></i> <%= @trip.hike.duration %></span>
-          <span class="trip__details__creator"><%= icon('fas', 'tag') %></i> <%= "#{@trip.fees}€" %></span>
-        </div>
+          <% end %>
+        </span>
+        <span class="trip__details__date">
+          <%= icon('fas', 'calendar-alt') %><%= @trip.date %>
+        </span>
+        <span class="trip__details__start">
+          <%= icon('fas', 'car') %><%= @trip.start_location %>
+        </span>
+        <span class="trip__details__triptype">
+          <%= icon('fas', 'crosshairs') %><%= @trip.trip_type %>
+        </span>
       </div>
-      <div class="row">
-        <div class="col-lg-8 trip__details_row">
-          <span class="trip__details__creator"><%= simple_format(@trip.hike.description) %></span>
-        </div>
+
+      <div class="trip__details__description">
+        <p><%= simple_format(@trip.description) %></p>
       </div>
     </div>
 
-  <%= render "submission-area" %>
+    <div class="col-lg-4">
+      <%= render "submission-area" %>
+    </div>
 
   </div>
-  <br>
-  <br>
-  <%= render "message-area" %>
 </section>
 
-  <%= render "map" %>
+<section id="hike__details">
+  <div class="container">
 
-<p><% @submissions.where(trip_id: @trip.id, accepted:false).each do |submission| %>
-    <%= submission.user.first_name  %>
-   <% end %>
-</p>
-<br>
+    <div class="col-lg-8">
+      <h2>Details about this hike</h2>
+
+      <div class="hike__details__infos">
+        <span>
+          <span class="hike__details__location">
+            <%= icon('fas', 'map-marker-alt') %><%= @hike.location %>
+          </span>
+          <span class="hike__details__department">
+            <%= icon('fas', 'map-marker-alt') %><%= @hike.department %>
+          </span>
+        </span>
+        <span>
+          <span class="hike__details__distance">
+            <%= icon('fas', 'map-signs') %><%= @hike.distance %>
+          </span>
+          <span class="hike__details__duration">
+            <%= icon('fas', 'clock') %><%= @hike.duration %>
+          </span>
+        </span>
+        <span>
+          <span class="hike__details__alt">
+            <%= icon('fas', 'chart-area') %><%= @hike.alt_max %> / <%= @hike.alt_min %>
+          </span>
+          <span class="hike__details__ele">
+            <%= icon('fas', 'map') %>+ <%= @hike.asc_elevation %> / - <%= @hike.desc_elevation %>
+          </span>
+        </span>
+        <span>
+          <span class="hike__details__difficulty">
+            <%= icon('fas', 'flag') %><%= @hike.difficulty %>
+          </span>
+          <span class="hike__details__type">
+            <%= icon('fas', 'circle-notch') %>
+            <% if @hike.hike_type == true %>
+              Loop
+            <% else %>
+              No loop
+            <% end  %>
+          </span>
+        </span>
+      </div>
+
+      <div class="hike__details__description">
+        <p><%= simple_format(@hike.description) %></p>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="trip__details__map">
+        <%= render "map" %>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<% if @submissions.where(accepted: true).present? %>
+  <section id="hike__buddies">
+    <div class="container">
+      <% @submissions.where(accepted: true).each do |submission| %>
+        <div class="col-lg-6">
+          <%= render "buddies-card", submission: submission %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+<% end %>

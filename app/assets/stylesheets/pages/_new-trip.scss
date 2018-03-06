@@ -1,11 +1,11 @@
 #new__trip {
   background-image: asset-url("new-trip-bg.png"), linear-gradient(#cbeafc, #fff);
-  background-size: contain;
+  background-size: 101%;
   background-repeat: no-repeat;
   background-position: center bottom;
 
   .form-group label  {
-    color: $dark;
+    font-weight: 600;
   }
 }
 
@@ -36,7 +36,7 @@
   font-weight: 400;
   font-size: 1.3rem;
   margin-bottom: 20px;
-  background-color: lighten($secondary-color, 52%);
+  background-color: lighten($secondary-color, 48%);
   color: $secondary-color;
   height: 40px;
   line-height: 40px;

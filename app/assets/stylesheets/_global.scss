@@ -36,6 +36,7 @@ h1 {
 a {
   color: $primary-color;
   transition: $transition;
+  font-weight: 600;
 
   i {
     margin-right: 5px;
@@ -47,6 +48,10 @@ a {
   }
 }
 
+p {
+  line-height: 1.8rem;
+}
+
 ::selection {
   background: $primary-color;
 }
@@ -55,5 +60,5 @@ a {
 }
 
 section {
-  padding: 50px 0;
+  padding: 40px 0;
 }

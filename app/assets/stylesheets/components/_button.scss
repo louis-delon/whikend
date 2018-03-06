@@ -1,12 +1,10 @@
 .btn {
   display: inline-block;
-  padding: 15px 30px;
   border-radius: $border-radius;
   color: #fff;
   border: none;
-  font-size: 1rem;
-  text-transform: uppercase;
   font-weight: 600;
+  text-transform: uppercase;
   transition: $transition;
 
   i {
@@ -23,6 +21,8 @@
 }
 
 .btn--primary {
+  padding: 15px 30px;
+  font-size: 1rem;
   background-color: $primary-color;
 
   &:hover {
@@ -32,6 +32,8 @@
 }
 
 .btn--secondary {
+  padding: 10px 20px;
+  font-size: 0.9rem;
   background-color: $secondary-color;
 
   &:hover {
