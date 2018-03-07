@@ -6,6 +6,107 @@ Trip.destroy_all
 User.destroy_all
 Hike.destroy_all
 
+
+
+# USERS
+puts "Creating users..."
+
+louis = User.create!(
+  email: 'louis@gmail.com',
+  password: 'aaaaaa',
+  first_name: 'Louis',
+  last_name: 'Delon',
+  description: 'je suis un passionné de montagne',
+  age: 40,
+  remote_avatar_url: 'https://d3kqkuy1hpjocx.cloudfront.net/s3fs-public/styles/large/public/field/image/louis-delon.jpg?itok=Xa-hWGZJ'
+  )
+
+etienne = User.create!(
+  email: 'etienne@gmail.com',
+  password: 'aaaaaa',
+  first_name: 'Etienne',
+  last_name: 'Delorieux',
+  description: 'je suis un passionné de rando',
+  age: 27,
+  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
+)
+
+alex = User.create!(
+  email: 'alex@gmail.com',
+  password: 'aaaaaa',
+  first_name: 'Alexandre',
+  last_name: 'Bertrand',
+  description: 'je suis un vrai pro de la rando',
+  age: 32,
+  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk'
+)
+
+30.times do
+  User.create!(
+    email: Faker::Internet.email,
+    password: Faker::Internet.password,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    description: Faker::Hipster.paragraph,
+    age: (25..40).to_a.sample,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/random'
+  )
+end
+
+
+# HIKES
+# COMMENT THIS LINE FOR SHORT SEED
+MultiScrapper.departments_list
+
+
+
+# TRIPS
+puts "Creating trips..."
+TRIP_TYPES = ["Chill", "Heavy walk", "Challenge", "Photo", "Activities"]
+
+#creation of a trip by Louis
+hike_louis = (Hike.first.id..Hike.last.id).to_a.sample
+trip = Trip.create!(
+  description: "j'organise une rando dans le vercors",
+  start_location: "Lyon",
+  hike_id: hike_louis,
+  title: Hike.find(hike_louis).title,
+  user_id: louis.id,
+  date: Date.today+(1),
+  trip_type: TRIP_TYPES.sample,
+  seats: (2..6).to_a.sample,
+  auto_accept: true,
+  fees: (2..7).to_a.sample
+)
+
+#creation of a trip by Etienne
+trip1 = Trip.create!(
+  title: "Rando sur le plateau des Glières",
+  description: "J'organise une rando au départ de Lyon Confluence ce samedi. J'ai 3 places dans ma Tesla. Inscrivez-vous vite, y'aura bientôt plus de places.",
+  start_location: "Lyon",
+  hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+  user_id: etienne.id,
+  date: Date.today+(1),
+  trip_type: TRIP_TYPES.sample,
+  seats: 3,
+  auto_accept: true,
+  fees: (2..7).to_a.sample
+
+)
+
+trip1 = Trip.create!(
+  title: "Rando dans les Pyrénées et le Pays Basque",
+  description: "J'organise une rando au départ de Bayonne mardi prochain. Je ramène du jambon de Bayonne pour le pic-nic :). J'ai un combi Volkswagen",
+  start_location: "Bayonne",
+  hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+  user_id: ((User.first.id)..(User.last.id)).to_a.sample,
+  date: Date.today+(3),
+  trip_type: TRIP_TYPES.sample,
+  seats: 6,
+  auto_accept: true,
+  fees: (2..7).to_a.sample
+)
+
 # RANDO SOLUTRE
 
 # Solutre - User generation
@@ -59,7 +160,7 @@ UniScrapper.new(hike_solutre, "https://www.visorando.com/randonnee-sur-les-pas-d
 trip_solutre = Trip.create!(
   title: "Ascension de La Roche de Solutré - sur les pas de Tonton",
   description: "Pélerinage annuel pour rendre hommage aux résitants de Solutré",
-  start_location: "Paris",
+  start_location: "Lyon",
   hike_id: hike_solutre.id,
   user_id: francois.id,
   date: Date.today+(1),
@@ -135,7 +236,7 @@ UniScrapper.new(hike_corse, "https://www.visorando.com/randonnee-gr20-de-bibi/")
 trip_corse = Trip.create!(
   title: "Sentier de Grande randonnée 20",
   description: "Grosse rando sympa avec Benoit le Belge",
-  start_location: "Bastia",
+  start_location: "Lyon",
   hike_id: hike_corse.id,
   user_id: benoit.id,
   date: Date.today+(2),
@@ -160,110 +261,13 @@ Submission.create!(
     accepted: true
   )
 
-# USERS
-puts "Creating users..."
-
-louis = User.create!(
-  email: 'louis@gmail.com',
-  password: 'aaaaaa',
-  first_name: 'Louis',
-  last_name: 'Delon',
-  description: 'je suis un passionné de montagne',
-  age: 40,
-  remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/loulouman34'
-  )
-
-etienne = User.create!(
-  email: 'etienne@gmail.com',
-  password: 'aaaaaa',
-  first_name: 'Etienne',
-  last_name: 'Delorieux',
-  description: 'je suis un passionné de rando',
-  age: 27,
-  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
-)
-
-alex = User.create!(
-  email: 'alex@gmail.com',
-  password: 'aaaaaa',
-  first_name: 'Alexandre',
-  last_name: 'Bertrand',
-  description: 'je suis un vrai pro de la rando',
-  age: 32,
-  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk'
-)
-
-30.times do
-  User.create!(
-    email: Faker::Internet.email,
-    password: Faker::Internet.password,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    description: Faker::Hipster.paragraph,
-    age: (25..40).to_a.sample,
-    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/random'
-  )
-end
-
-
-# HIKES
-# COMMENT THIS LINE FOR SHORT SEED
-MultiScrapper.departments_list
-
-
-
-# TRIPS
-puts "Creating trips..."
-TRIP_TYPES = ["Sportive", "Détente", "Photo", "Amicale"]
-
-#creation of a trip by Louis
-hike_louis = (Hike.first.id..Hike.last.id).to_a.sample
-trip = Trip.create!(
-  description: "j'organise une rando dans le vercors",
-  start_location: "Lyon",
-  hike_id: hike_louis,
-  title: Hike.find(hike_louis).title,
-  user_id: louis.id,
-  date: Date.today+(1),
-  trip_type: TRIP_TYPES.sample,
-  seats: (2..6).to_a.sample,
-  auto_accept: true,
-  fees: (2..7).to_a.sample
-)
-
-#creation of a trip by Etienne
-trip1 = Trip.create!(
-  title: "Rando sur le plateau des Glières",
-  description: "J'organise une rando au départ de Lyon Confluence ce samedi. J'ai 3 places dans ma Tesla. Inscrivez-vous vite, y'aura bientôt plus de places.",
-  start_location: "Lyon",
-  hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
-  user_id: etienne.id,
-  date: Date.today+(1),
-  trip_type: TRIP_TYPES.sample,
-  seats: 3,
-  auto_accept: true,
-  fees: (2..7).to_a.sample
-
-)
-
-trip1 = Trip.create!(
-  title: "Rando dans les Pyrénées et le Pays Basque",
-  description: "J'organise une rando au départ de Bayonne mardi prochain. Je ramène du jambon de Bayonne pour le pic-nic :). J'ai un combi Volkswagen",
-  start_location: "Bayonne",
-  hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
-  user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-  date: Date.today+(3),
-  trip_type: TRIP_TYPES.sample,
-  seats: 6,
-  auto_accept: true,
-  fees: (2..7).to_a.sample
-)
+  #####################################
 
 20.times do
   hike = (Hike.first.id..Hike.last.id).to_a.sample
   Trip.create!(
     description: Faker::Hipster.paragraph,
-    start_location: Faker::Address.city,
+    start_location: "Lyon",
     hike_id: hike,
     title: Hike.find(hike).title,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,

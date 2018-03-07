@@ -1,12 +1,22 @@
 <div>
   <%= form_tag trips_path, method: :get do %>
+    <p>Preferred starting location</p>
     <%= text_field_tag :query,
       params[:query],
       class: "form-control",
-      placeholder: "Lieu de départ"
+      placeholder: "Please enter a city"
     %>
+    <p>Date</p>
     <%= date_field_tag :date,
       params[:date],
+      class: "form-control"
+    %>
+    <p>Seats needed</p>
+    <%= select_tag :seats, options_for_select([1,2,3,4,5], params[:seats]),
+      class: "form-control"
+    %>
+    <p>Type of trip</p>
+    <%= select_tag :type, options_for_select(["Chill", "Heavy walk", "Challenge", "Photo", "Activities"], params[:type]),
       class: "form-control"
     %>
     <%= submit_tag "Search" %>
