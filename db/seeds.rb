@@ -431,13 +431,3 @@ tables.reverse.each do |table|
   puts "Creation of #{table}"
   send("create_#{table.constantize.table_name.to_sym}")
 end
-
-
-
-@hikes = Hike.all
-
-@hikes.each do |hike|
-  if hike.photo_url.nil?
-    hike.update(photo_url: "https://images.unsplash.com/photo-1444405406630-ac78b6e0b1fb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=582c342742b3be84cff0face43d3c13d&auto=format&fit=crop&w=2088&q=80")
-  end
-end
