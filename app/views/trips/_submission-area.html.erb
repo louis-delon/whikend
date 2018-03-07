@@ -10,6 +10,10 @@
   <% if @submissions.where(accepted: true).present? %>
     <div class="submission__buddies">
       <div class="submission__buddies__list">
+        <div class="submission__buddies__buddy">
+          <% user_avatar = @trip.user.facebook_picture_url || @trip.user.avatar || "default-avatar.png" %>
+          <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
+        </div>
         <% @submissions.where(accepted: true).each do |submission| %>
         <div class="submission__buddies__buddy">
           <%= link_to user_path(submission.user) do %>
