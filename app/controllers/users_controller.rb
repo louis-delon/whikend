@@ -5,7 +5,6 @@ before_action :set_user, only: [:show, :edit, :update]
   def show
     @average = calcul_average_rating(@user)
     @trips = trips_user_list(@user)
-
   end
 
   def edit
@@ -17,8 +16,6 @@ before_action :set_user, only: [:show, :edit, :update]
   end
 
   private
-
-
 
   def set_user
     @user = User.find(params[:id])

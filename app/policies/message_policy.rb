@@ -13,9 +13,15 @@ class MessagePolicy < ApplicationPolicy
     true
   end
 
+  def destroy?
+    user_is_admin? ? true : false
+  end
 
+  private
 
-private
+  def user_is_admin?
+    user.admin
+  end
 
   def current_user?
     @record.user == @user

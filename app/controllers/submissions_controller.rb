@@ -1,5 +1,7 @@
 class SubmissionsController < ApplicationController
 
+  before_action :set_params, only: [:destroy, :approve, :reject]
+
   def index
     @submission = policy_scope(Submission)
   end
@@ -11,8 +13,8 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-    @submission = Submission.new(submission_params)
     @trip = Trip.find(params[:trip_id])
+    @submission = Submission.new(submission_params)
     @submission.trip = @trip
     @submission.user = current_user
     authorize @submission
@@ -25,32 +27,33 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
-    @submission = Submission.find(params[:id])
-    authorize @submission
     @submission.destroy
     redirect_to root_path
   end
 
   def approve
-    @submission = Submission.find(params[:id])
     @submission.accepted = true
-    @submission.save
-    authorize @submission
     UserMailer.select(@submission).deliver_now
-    redirect_to trip_path(params[:trip_id])
+    save_submission
   end
 
   def reject
-    @submission = Submission.find(params[:id])
     @submission.accepted = false
-    @submission.save
-    authorize @submission
     UserMailer.reject(@submission).deliver_now
-    redirect_to trip_path(params[:trip_id])
+    save_submission
   end
 
-
 private
+
+  def set_params
+    @submission = Submission.find(params[:id])
+    authorize @submission
+  end
+
+  def save_submission
+    @submission.save
+    redirect_to trip_path(params[:trip_id])
+  end
 
   def submission_params
     params
@@ -61,5 +64,4 @@ private
         :trip_id
       )
   end
-
 end
