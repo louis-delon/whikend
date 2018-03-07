@@ -14,7 +14,7 @@
     <span class="trip__card__filter"></span>
   </div>
   <div class="trip__card__footer">
-    <span class="trip__card__date"><i class="fas fa-calendar-alt"></i><%= trip.date.strftime("%d/%m/%y") %></span>
+    <span class="trip__card__date"><i class="fas fa-calendar-alt"></i><%= trip.date.strftime("%m/%d/%y") %></span>
     <span class="trip__card__start"><%= icon('fas', 'car') %><%= trip.start_location %></span>
     <span class="trip__card__distance"><%= icon('fas', 'map-signs') %><%= trip.hike.distance %></span>
     <span class="trip__card__difficulty"><%= icon('fas', 'flag') %><%= trip.hike.difficulty %></span>
