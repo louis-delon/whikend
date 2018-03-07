@@ -9,7 +9,8 @@
 
     <%= date_field_tag :date,
       params[:date],
-      class: "form-control"
+      class: "form-control",
+      value: Date.today
     %>
 
     <%= button_tag id: "search", class: "btn btn--primary" do %>
