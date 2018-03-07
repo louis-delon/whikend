@@ -6,7 +6,7 @@
 
       <div class="buddies__card__avatar">
         <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
-        <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
+        <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face %>
       </div>
 
       <div class="buddies__card__info">

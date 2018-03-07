@@ -32,7 +32,7 @@
 
         <% end %>
       </div>
-      <a href="#hike__buddies" class="btn btn--secondary">See buddies details<%= icon('fas', 'users') %></a>
+      <a href="#hike__buddies" class="btn btn--secondary"><%= icon('fas', 'users') %> See buddies details</a>
     </div>
   <% end  %>
     <% if !policy(@trip).date_passed? %>
@@ -45,7 +45,7 @@
           </div>
           <div class="form-actions">
             <%= button_tag class: "btn btn--primary" do %>
-              Join this hike<%= icon('fas', 'user-plus') %>
+              <%= icon('fab', 'telegram-plane') %> Join this hike
             <% end %>
           </div>
         <% if policy(@trip).automatic? %>

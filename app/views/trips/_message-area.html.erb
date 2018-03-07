@@ -17,7 +17,7 @@
   <%= simple_form_for [@trip, @message] do |f| %>
     <%= f.input :content, placeholder: "You can ask questions or just say hi to your buddies!" %>
     <%= button_tag class: "btn btn--secondary" do %>
-      Send your message<%= icon('fas', 'comments') %>
+      <%= icon('fas', 'comments') %> Send your message
     <% end %>
   <% end %>
 </div>

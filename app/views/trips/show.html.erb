@@ -4,12 +4,12 @@
     <div class="trip__banner__actions">
       <% if policy(@trip).destroy?%>
         <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
-          Delete<%= icon('fas', 'trash') %>
+          <%= icon('fas', 'trash') %>Delete
         <% end %>
       <% end %>
       <% if policy(@trip).update? %>
         <%= link_to(edit_trip_path(@trip), class: "btn btn--secondary") do %>
-          Edit<%= icon('fas', 'edit') %>
+          <%= icon('fas', 'edit') %>Edit
         <% end %>
       <% end %>
     </div>
@@ -32,7 +32,7 @@
             <% end %>
           </span>
           <span class="trip__details__date">
-            <%= icon('fas', 'calendar-alt') %><%= @trip.date.strftime("%d/%m/%y") %>
+            <%= icon('fas', 'calendar-alt') %><%= @trip.date %>
           </span>
           <span class="trip__details__start">
             <%= icon('fas', 'car') %><%= @trip.start_location %>
