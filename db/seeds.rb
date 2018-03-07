@@ -14,7 +14,9 @@ p tables
 
 
 def create_hikes
-
+  MultiScrapper.departments_list
+  UniScrapper.new(hike_solutre, "https://www.visorando.com/randonnee-sur-les-pas-de-tonton/")
+  UniScrapper.new(hike_corse, "https://www.visorando.com/randonnee-gr20-de-bibi/")
 end
 
 def create_users
@@ -132,7 +134,6 @@ def create_users
 
 end
 
-
 def create_trips
   puts "creation trips"
   trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
@@ -147,13 +148,12 @@ def create_trips
   etienne = User.find_by(email: "etienne@gmail.com")
   alex = User.find_by(email: "alexandre_bouvier@hotmail.com")
 
+  hikes_tmp = Hike.all.sample(2)
 
-  hikes_tmp = Hike.all.sample(4)
-
-  hike_solutre = hikes_tmp[0]
-  hike_corse = hikes_tmp[1]
-  hike_louis = hikes_tmp[2]
-  hike_etienne = hikes_tmp[3]
+  hike_solutre = Hike.find_by(site_id: 523281)
+  hike_corse = Hike.find_by(site_id: 2867)
+  hike_louis = hikes_tmp[0]
+  hike_etienne = hikes_tmp[1]
 
   Trip.create!(
     title: "Ascension de La Roche de Solutré - sur les pas de Tonton",
