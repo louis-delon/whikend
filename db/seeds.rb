@@ -3,9 +3,8 @@ dependencies = %w(Review Submission Message Trip User Hike)
 
 
 
+
 level_seed = (ENV['LEVEL_SEED'] || "Message")
-
-
 
 tables = dependencies[0, dependencies.index(level_seed) + 1]
 
@@ -428,5 +427,3 @@ tables.reverse.each do |table|
   puts "Creation of #{table}"
   send("create_#{table.constantize.table_name.to_sym}")
 end
-
-

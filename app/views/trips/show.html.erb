@@ -125,16 +125,19 @@
   </div>
 </section>
 
-<% if @submissions.where(accepted: true).present? %>
-  <section id="hike__buddies">
-    <div class="container">
-      <div class="row">
+<section id="hike__buddies">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <%= render "buddies-card-creator", trip: @trip %>
+      </div>
+      <% if @submissions.where(accepted: true).present? %>
         <% @submissions.where(accepted: true).each do |submission| %>
           <div class="col-lg-4">
             <%= render "buddies-card", submission: submission, trip: @trip %>
           </div>
         <% end %>
-      </div>
+      <% end %>
     </div>
-  </section>
-<% end %>
+  </div>
+</section>

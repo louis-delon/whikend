@@ -144,6 +144,10 @@
     color: $dark;
   }
 
+  i {
+    margin-right: 5px;
+  }
+
   a.decline {
     color: #df2800;
 
@@ -238,6 +242,10 @@
 
 .trip__details__map {
   margin-top: 45px;
+}
+
+#map {
+  height: 350px;
 }
 
 #hike__buddies {
