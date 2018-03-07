@@ -38,6 +38,11 @@
     height: 70px;
     font-size: 1.25rem;
     padding-left: 20px;
+    color: lighten($dark, 50%);
+
+    &:valid {
+      color: $dark;
+    }
 
     &:focus {
       outline: none;
@@ -60,4 +65,9 @@
 .banner--home__search #search {
   position: absolute;
   right: 8px;
+
+  &:hover {
+    box-shadow: none;
+    transform: none;
+  }
 }
