@@ -1,0 +1,19 @@
+<div class="banner--home__search">
+  <%= form_tag trips_path, method: :get do %>
+
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Start location"
+    %>
+
+    <%= date_field_tag :date,
+      params[:date],
+      class: "form-control"
+    %>
+
+    <%= button_tag id: "search", class: "btn btn--primary" do %>
+      <%= icon('fa', 'search') %> Search
+    <% end %>
+  <% end %>
+</div>
