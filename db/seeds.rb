@@ -11,20 +11,7 @@ tables = dependencies[0, dependencies.index(level_seed) + 1]
 
 p tables
 
-puts "Clean db..."
-tables.each do |table|
-  puts "delete table #{table}..."
-  table.constantize.destroy_all
-end
 
-puts "Create data"
-tables.reverse.each do |table|
-  puts "
-
-  "
-  puts "Creation of #{table}"
-  send("create_#{table.constantize.table_name}")
-end
 
 def create_hikes
 
@@ -159,10 +146,14 @@ def create_trips
   louis = User.find_by(email: "louis@gmail.com")
   etienne = User.find_by(email: "etienne@gmail.com")
   alex = User.find_by(email: "alexandre_bouvier@hotmail.com")
-  hike_solutre = (Hike.first.id..Hike.last.id).to_a.sample
-  hike_corse = (Hike.first.id..Hike.last.id).to_a.sample
-  hike_louis = (Hike.first.id..Hike.last.id).to_a.sample
-  hike = (Hike.first.id..Hike.last.id).to_a.sample
+
+
+  hikes_tmp = Hike.all.sample(4)
+
+  hike_solutre = hikes_tmp[0]
+  hike_corse = hikes_tmp[1]
+  hike_louis = hikes_tmp[2]
+  hike_etienne = hikes_tmp[3]
 
   Trip.create!(
     title: "Ascension de La Roche de Solutré - sur les pas de Tonton",
@@ -193,7 +184,7 @@ def create_trips
   Trip.create!(
     description: "J'organise une rando dans le Vercors",
     start_location: "Lyon",
-    hike_id: hike_louis,
+    hike_id: hike_louis.id,
     title: "Rando dans le Vercors",
     user_id: louis.id,
     date: Date.today+(1),
@@ -231,11 +222,13 @@ def create_trips
   )
 
   20.times do
+    hike = Hike.all.sample
+
     Trip.create!(
       description: Faker::Hipster.paragraph,
       start_location: Faker::Address.city,
-      hike_id: hike,
-      title: Hike.find(hike).title,
+      hike_id: hike.id,
+      title: hike.title,
       user_id: ((User.first.id)..(User.last.id)).to_a.sample,
       date: [Date.today-(7),Date.today+(1),Date.today+(3),Date.today+(7)].sample,
       trip_type: trip_types.sample,
@@ -251,7 +244,7 @@ def create_messages
   puts "creation messages"
   etienne = User.find_by(email: "etienne@gmail.com")
   alex = User.find_by(email: "alexandre_bouvier@hotmail.com")
-  trip = Trip.where(title: "Rando dans le Vercors")
+  trip = Trip.find_by(title: "Rando dans le Vercors")
 
   Message.create!(
     content: "Bonjour je suis super content d'avoir été accepté à votre rando",
@@ -286,9 +279,9 @@ def create_submissions
   louis = User.find_by(email: "louis@gmail.com")
   etienne = User.find_by(email: "etienne@gmail.com")
   alex = User.find_by(email: "alexandre_bouvier@hotmail.com")
-  trip_solutre = Trip.where(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
-  trip_corse = Trip.where(title: "Sentier de Grande randonnée 20")
-  trip = Trip.where(title: "Rando dans le Vercors")
+  trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
+  trip_corse = Trip.find_by(title: "Sentier de Grande randonnée 20")
+  trip = Trip.find_by(title: "Rando dans le Vercors")
 
   Submission.create!(
     content: "Youhou",
@@ -420,5 +413,20 @@ def create_reviews
   end
 end
 
+
+puts "Clean db..."
+tables.each do |table|
+  puts "delete table #{table}..."
+  table.constantize.destroy_all
+end
+
+puts "Create data"
+tables.reverse.each do |table|
+  puts "
+
+  "
+  puts "Creation of #{table}"
+  send("create_#{table.constantize.table_name.to_sym}")
+end
 
 
