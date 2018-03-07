@@ -34,8 +34,9 @@
   text-align: center;
 }
 
-.buddies__card__rating a {
-  color: $dark;
+.buddies__card__rating a,
+.buddies__card__rating p {
+  color: lighten($dark, 50%);
 }
 
 .buddies__card .btn {

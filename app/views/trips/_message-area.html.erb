@@ -3,7 +3,7 @@
     <div class="trip__message">
       <div class="trip__message__avatar">
         <% user_avatar = @user.facebook_picture_url || message.user.avatar %>
-        <%= cl_image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face %>
+        <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
       </div>
       <div class="trip__message__content">
         <p><%= message.user.first_name.capitalize %> - <%= message.created_at.strftime("%d/%m/%y") %></p>
