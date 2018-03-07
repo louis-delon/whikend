@@ -59,7 +59,9 @@
 
         <div class="new__trip__actions">
           <%= link_to "Cancel", root_path %>
-          <%= f.submit "Create", class: "btn btn--primary" %>
+          <%= button_tag class: "btn btn--primary" do %>
+            Create<%= icon('fa', 'location-arrow') %>
+          <% end %>
         </div>
       <% end %>
 
