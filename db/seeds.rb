@@ -3,7 +3,8 @@ dependencies = %w(Review Submission Message Trip User Hike)
 
 
 
-level_seed = (ENV['LEVEL_SEED'] || "User")
+level_seed = (ENV['LEVEL_SEED'] || "Message")
+
 
 
 tables = dependencies[0, dependencies.index(level_seed) + 1]
