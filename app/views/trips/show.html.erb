@@ -129,6 +129,9 @@
   <section id="hike__buddies">
     <div class="container">
       <div class="row">
+        <div class="col-lg-4">
+          <%= render "buddies-card-creator", trip: @trip %>
+        </div>
         <% @submissions.where(accepted: true).each do |submission| %>
           <div class="col-lg-4">
             <%= render "buddies-card", submission: submission, trip: @trip %>
