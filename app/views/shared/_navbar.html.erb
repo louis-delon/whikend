@@ -10,7 +10,6 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "My Trips", user_path(current_user , anchor: "trips"), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to((new_trip_path), class: "navbar-wagon-item navbar-wagon-link add-trip") do %>
         <%= icon('fas', 'plus') %>Add a trip
       <% end %>
@@ -25,6 +24,9 @@
               <%= link_to user_path(current_user) do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
+            </li>
+            <li>
+              <%= link_to "My Trips", user_path(current_user , anchor: "trips"), class: "navbar-wagon-item navbar-wagon-link" %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>

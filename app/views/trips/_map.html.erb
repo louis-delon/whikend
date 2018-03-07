@@ -1,71 +1,48 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Simple Polylines</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 350px;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
+<div id="map"></div>
+<script>
 
-      // This example creates a 2-pixel-wide red polyline showing the path of
-      // the first trans-Pacific flight between Oakland, CA, and Brisbane,
-      // Australia which was made by Charles Kingsford Smith.
-      var array_coordinates = <%= raw @trip.hike.coordinates.to_json %>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
-          mapTypeId: 'terrain',
-          styles: [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.country","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"visibility":"on"},{"weight":"0.50"}]},{"featureType":"administrative.country","elementType":"labels.text.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.country","elementType":"labels.text.stroke","stylers":[{"visibility":"on"}]},{"featureType":"administrative.province","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#ff0000"},{"weight":"0.50"}]},{"featureType":"administrative.province","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"administrative.province","elementType":"labels.text.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.locality","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#ff0000"},{"weight":"0.50"}]},{"featureType":"administrative.locality","elementType":"labels.text.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#aee55e"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"color":"#ffffff"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"color":"#00840a"}]},{"featureType":"road","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#60afd5"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]}]
-        });
+  // This example creates a 2-pixel-wide red polyline showing the path of
+  // the first trans-Pacific flight between Oakland, CA, and Brisbane,
+  // Australia which was made by Charles Kingsford Smith.
+  var array_coordinates = <%= raw @trip.hike.coordinates.to_json %>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+      mapTypeId: 'terrain',
+      styles: [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.country","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"visibility":"on"},{"weight":"0.50"}]},{"featureType":"administrative.country","elementType":"labels.text.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.country","elementType":"labels.text.stroke","stylers":[{"visibility":"on"}]},{"featureType":"administrative.province","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#ff0000"},{"weight":"0.50"}]},{"featureType":"administrative.province","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"administrative.province","elementType":"labels.text.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.locality","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#ff0000"},{"weight":"0.50"}]},{"featureType":"administrative.locality","elementType":"labels.text.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#aee55e"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"color":"#ffffff"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"color":"#00840a"}]},{"featureType":"road","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#60afd5"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]}]
+    });
 
 
-        var lat_min = <%= @trip.hike.coordinates.min_by{|x| x["lat"]}["lat"] %>;
-        var lat_max = <%= @trip.hike.coordinates.max_by{|x| x["lat"]}["lat"] %>;
-        var lng_min = <%= @trip.hike.coordinates.min_by{|x| x["lng"]}["lng"] %>;
-        var lng_max = <%= @trip.hike.coordinates.max_by{|x| x["lng"]}["lng"] %>;
+    var lat_min = <%= @trip.hike.coordinates.min_by{|x| x["lat"]}["lat"] %>;
+    var lat_max = <%= @trip.hike.coordinates.max_by{|x| x["lat"]}["lat"] %>;
+    var lng_min = <%= @trip.hike.coordinates.min_by{|x| x["lng"]}["lng"] %>;
+    var lng_max = <%= @trip.hike.coordinates.max_by{|x| x["lng"]}["lng"] %>;
 
-        map.setCenter(new google.maps.LatLng(
-          ((lat_max + lat_min) / 2.0),
-          ((lng_max + lng_min) / 2.0)
-        ));
-        map.fitBounds(new google.maps.LatLngBounds(
-          //bottom left
-          new google.maps.LatLng(lat_min, lng_min),
-          //top right
-          new google.maps.LatLng(lat_max, lng_max)
-        ));
+    map.setCenter(new google.maps.LatLng(
+      ((lat_max + lat_min) / 2.0),
+      ((lng_max + lng_min) / 2.0)
+    ));
+    map.fitBounds(new google.maps.LatLngBounds(
+      //bottom left
+      new google.maps.LatLng(lat_min, lng_min),
+      //top right
+      new google.maps.LatLng(lat_max, lng_max)
+    ));
 
-        var flightPlanCoordinates = array_coordinates;
+    var flightPlanCoordinates = array_coordinates;
 
 
-        var flightPath = new google.maps.Polyline({
-          path: flightPlanCoordinates,
-          geodesic: true,
-          strokeColor: '#FF0000',
-          strokeOpacity: 1.0,
-          strokeWeight: 2
-        });
+    var flightPath = new google.maps.Polyline({
+      path: flightPlanCoordinates,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
 
-        flightPath.setMap(map);
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmVclghQMSZS0kb19YLihezKkVMpoFwNs&callback=initMap">
-    </script>
-  </body>
-</html>
+    flightPath.setMap(map);
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmVclghQMSZS0kb19YLihezKkVMpoFwNs&callback=initMap">
+</script>

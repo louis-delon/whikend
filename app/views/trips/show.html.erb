@@ -27,7 +27,7 @@
           <span class="trip__details__date">
             <%= link_to user_path(@user) do %>
               <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
-              <%= cl_image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face, width: 300, height: 300 %>
+              <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
               <%= @user.first_name.capitalize %>
             <% end %>
           </span>
@@ -40,10 +40,18 @@
           <span class="trip__details__triptype">
             <%= icon('fas', 'crosshairs') %><%= @trip.trip_type %>
           </span>
+          <span class="trip__details__fees">
+            <%= icon('fas', 'euro-sign') %><%= @trip.fees %>
+          </span>
         </div>
 
         <div class="trip__details__description">
           <p><%= simple_format(@trip.description) %></p>
+        </div>
+
+        <div class="trip__details__messages">
+          <h3>Conversations</h3>
+          <%= render "message-area" %>
         </div>
       </div>
 
@@ -122,8 +130,8 @@
     <div class="container">
       <div class="row">
         <% @submissions.where(accepted: true).each do |submission| %>
-          <div class="col-lg-6">
-            <%= render "buddies-card", submission: submission %>
+          <div class="col-lg-4">
+            <%= render "buddies-card", submission: submission, trip: @trip %>
           </div>
         <% end %>
       </div>

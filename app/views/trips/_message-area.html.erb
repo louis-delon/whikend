@@ -1,31 +1,23 @@
-<div class="trip_container">
-  <div class="row">
-    <div class="col-lg-8 trip__details_row">
-      <span class="trip__details__creator">
-        <ul>
-          <% @messages.each do |message| %>
-            <li><%= message.content %></li>
-            <li><%= message.user.first_name.capitalize %></li><br>
-          <% end %>
-        </ul>
-      </span>
-      <span>
-        <div>
-          <%= simple_form_for [@trip, @message] do |f| %>
-            <%= f.input :content %>
-            <%= f.submit "Send your message", class: "btn btn--primary" %>
-          <% end %>
-        </div>
-      </span>
+<div class="trip__message__list">
+  <% @messages.each do |message| %>
+    <div class="trip__message">
+      <div class="trip__message__avatar">
+        <% user_avatar = @user.facebook_picture_url || message.user.avatar %>
+        <%= cl_image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face %>
+      </div>
+      <div class="trip__message__content">
+        <p><%= message.user.first_name.capitalize %> - <%= message.created_at.strftime("%d/%m/%y") %></p>
+        <p><%= message.content %></p>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
 
-
-
-
-
-
-
-
-
+<div class="trip__message__form">
+  <%= simple_form_for [@trip, @message] do |f| %>
+    <%= f.input :content, placeholder: "You can ask questions or just say hi to your buddies!" %>
+    <%= button_tag class: "btn btn--secondary" do %>
+      <%= icon('fas', 'comments') %> Send your message
+    <% end %>
+  <% end %>
+</div>

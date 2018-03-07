@@ -1,6 +1,46 @@
-<%= link_to user_path(submission.user) do %>
-  <div class="buddies__card">
-    <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
-    <%= image_tag user_avatar, class: "avatar" %>
+<% @user = submission.user %>
+<div class="buddies__card">
+
+  <%= link_to user_path(@user) do %>
+    <div class="buddies__card__header">
+
+      <div class="buddies__card__avatar">
+        <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
+        <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face %>
+      </div>
+
+      <div class="buddies__card__info">
+
+        <h3 class="buddies__card__name">
+          <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>
+        </h3>
+
+        <div class="buddies__card__rating">
+          <% if average(@user) != 0 %>
+            <% average(@user).times do %>
+              <%= icon('fas star--full', 'star') %>
+            <% end %>
+            <% (5 - average(@user)).times do %>
+              <%= icon('fas star--empty', 'star') %>
+            <% end %>
+          <% else %>
+            <p>No reviews yet</p>
+          <% end %>
+        </div>
+
+        <% if trip.date < Date.today && %>
+          <%= link_to(user_path(@user), class: "btn btn--secondary") do %>
+            Leave a review to <%= @user.first_name.capitalize %>
+          <% end %>
+        <% end %>
+
+      </div>
+
+    </div>
+  <% end %>
+
+  <div class="buddies__card__body">
+    <p><%= @user.description %></p>
   </div>
-<% end %>
+
+</div>
