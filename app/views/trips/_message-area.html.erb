@@ -6,7 +6,7 @@
         <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
       </div>
       <div class="trip__message__content">
-        <p><%= message.user.first_name.capitalize %> - <%= message.created_at.strftime("%d/%m/%y") %></p>
+        <p><%= message.user.first_name.capitalize %> - <%= message.created_at.strftime("%m/%d/%y") %></p>
         <p><%= message.content %></p>
       </div>
     </div>
