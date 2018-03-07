@@ -9,8 +9,6 @@ class ReviewsController < ApplicationController
 
   def create
     @trip = Trip.find(params[trip_id])
-    @sender_id = current_user
-    @receiver_id = @trip.user
     @review = Review.new(params_review)
     authorize(@review)
 

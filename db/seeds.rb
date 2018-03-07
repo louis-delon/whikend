@@ -19,7 +19,8 @@ francois = User.create!(
   last_name: 'Mitterand',
   description: 'Rejoignez moi pour une petit rando Monsieur le Premier Ministre',
   age: 103,
-  remote_avatar_url: 'https://cache.20minutes.fr/photos/2014/12/31/president-francois-mitterrand-lors-9633-diaporama.jpg'
+  remote_avatar_url: 'https://cache.20minutes.fr/photos/2014/12/31/president-francois-mitterrand-lors-9633-diaporama.jpg',
+  admin: false
   )
 
 roger = User.create!(
@@ -29,7 +30,8 @@ roger = User.create!(
   last_name: 'Hanin',
   description: 'Je suis le beauf de Tonton',
   age: 87,
-  remote_avatar_url: 'http://md1.libe.com/photo/715188-france-bio-hanin.jpg?modified_at=1423671399&width=960'
+  remote_avatar_url: 'http://md1.libe.com/photo/715188-france-bio-hanin.jpg?modified_at=1423671399&width=960',
+  admin: false
   )
 
 jack = User.create!(
@@ -39,7 +41,8 @@ jack = User.create!(
   last_name: 'Lang',
   description: 'Vive la musique en rando!',
   age: 87,
-  remote_avatar_url: 'https://www.ina.fr/images_v2/620x349/CPC88007257.jpeg'
+  remote_avatar_url: 'https://www.ina.fr/images_v2/620x349/CPC88007257.jpeg',
+  admin: false
   )
 
 jacques = User.create!(
@@ -49,7 +52,8 @@ jacques = User.create!(
   last_name: 'Attali',
   description: 'J\'ai seule boussole qui indique toujours le sud',
   age: 87,
-  remote_avatar_url: 'http://s2.lemde.fr/image/2016/08/26/644x0/4988464_6_e89b_jacques-attali-alors-conseiller-special-de_42e000872eb903b70c800c81e1ede3ae.jpg'
+  remote_avatar_url: 'http://s2.lemde.fr/image/2016/08/26/644x0/4988464_6_e89b_jacques-attali-alors-conseiller-special-de_42e000872eb903b70c800c81e1ede3ae.jpg',
+  admin: false
   )
 
 hike_solutre = Hike.create!
@@ -105,7 +109,8 @@ benoit = User.create!(
   last_name: 'Poelvoorde',
   description: 'Pigeon, oiseau à la grise robe, dans l\'enfer des villes, à mon regard tu te dérobes, tu es vraiment le plus﻿ agile.',
   age: 53,
-  remote_avatar_url: 'https://www.quizz.biz/uploads/quizz/896950/15_ky785.jpg'
+  remote_avatar_url: 'https://www.quizz.biz/uploads/quizz/896950/15_ky785.jpg',
+  admin: false
   )
 
 vincent = User.create!(
@@ -115,7 +120,8 @@ vincent = User.create!(
   last_name: 'Elbaz',
   description: "C\'est la fete quand meme",
   age: 47,
-  remote_avatar_url: 'https://www.notrecinema.com/images/usercontent/star/vincent-elbaz-photo_35923_14761.jpg'
+  remote_avatar_url: 'https://www.notrecinema.com/images/usercontent/star/vincent-elbaz-photo_35923_14761.jpg',
+  admin: false
   )
 
 karine = User.create!(
@@ -125,7 +131,8 @@ karine = User.create!(
   last_name: 'Viard',
   description: 'Vive la musique en rando!',
   age: 52,
-  remote_avatar_url: 'https://sacrenathalie.files.wordpress.com/2015/08/randonneurs-1997-15-g.jpg'
+  remote_avatar_url: 'https://sacrenathalie.files.wordpress.com/2015/08/randonneurs-1997-15-g.jpg',
+  admin: false
   )
 
 hike_corse = Hike.create!
@@ -170,7 +177,8 @@ louis = User.create!(
   last_name: 'Delon',
   description: 'je suis un passionné de montagne',
   age: 40,
-  remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/loulouman34'
+  remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/loulouman34',
+  admin: true
   )
 
 etienne = User.create!(
@@ -180,7 +188,8 @@ etienne = User.create!(
   last_name: 'Delorieux',
   description: 'je suis un passionné de rando',
   age: 27,
-  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
+  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/EtienneDelorieux',
+  admin: false
 )
 
 alex = User.create!(
@@ -190,7 +199,8 @@ alex = User.create!(
   last_name: 'Bertrand',
   description: 'je suis un vrai pro de la rando',
   age: 32,
-  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk'
+  remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk',
+  admin: false
 )
 
 30.times do

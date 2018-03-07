@@ -11,25 +11,24 @@
     <div class="submission__buddies">
       <div class="submission__buddies__list">
         <% @submissions.where(accepted: true).each do |submission| %>
-        <div class="submission__buddies__buddy">
-          <%= link_to user_path(submission.user) do %>
-              <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
-              <%= image_tag user_avatar, class: "avatar" %>
+          <div class="submission__buddies__buddy">
+            <%= link_to user_path(submission.user) do %>
+                <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
+                <%= image_tag user_avatar, class: "avatar" %>
 
-              <% if policy(submission).reject? %>
-                <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
-                  <%= icon('fas', 'times') %>
+                <% if policy(submission).reject? %>
+                  <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+                    <%= icon('fas', 'times') %>
+                  <% end %>
                 <% end %>
-              <% end %>
 
-              <% if policy(submission).reject? %>
-                <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
-                  <%= icon('fas', 'times') %>
+                <% if policy(submission).reject? %>
+                  <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+                    <%= icon('fas', 'times') %>
+                  <% end %>
                 <% end %>
-              <% end %>
-          <% end %>
-        </div>
-
+            <% end %>
+          </div>
         <% end %>
       </div>
       <a href="#hike__buddies" class="btn btn--secondary"><%= icon('fas', 'users') %> See buddies details</a>
@@ -57,14 +56,14 @@
       </div>
       <% end %>
     <% end %>
-  <% if @submissions.where(user_id: current_user.id, accepted: nil).present? %>
+  <% if policy(@submission).submission_present? %>
     <p class="submission__approval__waiting">You will be notified by email when your submission will be treated by <%= @trip.user.first_name %>.</p>
   <% end  %>
-  <% if @trip.user == current_user %>
+  <% if policy(@submission).current_user_is_driver? %>
     <% if policy(@submission).submissions_pending? %>
       <h3>Waiting for approval</h3>
     <% end %>
-    <% if @submissions.where(accepted: nil).present?  %>
+    <% if policy(@submission).submission_present? %>
       <div class="submission__approval">
         <% @submissions.where(accepted: nil).each do |submission| %>
           <div class="submission__approval__item">
