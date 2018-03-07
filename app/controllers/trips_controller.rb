@@ -5,6 +5,7 @@ class TripsController < ApplicationController
   def index
     # @trips = Trip.all
     @trips = policy_scope(Trip).where('trips.date > ?', Date.today)
+    @trips = @trips.where('trips.seats > ?', params[:seats]) if params[:seats].present?
     @trips = @trips.where(date: params[:date]) if params[:date].present?
     @trips = @trips.global_search(params[:query]) if params[:query].present?
   end
@@ -26,7 +27,7 @@ class TripsController < ApplicationController
     Hike.all.each { |hike| @departments_list << hike.department }
     @departments_list = @departments_list.uniq.sort
     @hikes = Hike.all.sort_by { |hike| hike.title }
-    @trip_types = ["Chill", "Heavy walk", "Challenge", "Photo", "Activities"]
+    @trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
   end
 
   def create

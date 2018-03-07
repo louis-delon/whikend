@@ -1,5 +1,5 @@
 .banner--home {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), asset-url("background-home2.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), asset-url("background-home2.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -17,11 +17,47 @@
 
 .banner--home h1 {
   font-size: 4rem;
-  // font-weight: 700;
 }
 
 .banner--home p {
-  font-weight: 300;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   margin-bottom: 70px;
+}
+
+.banner--home__search form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+
+  #query,
+  #date {
+    width: 50%;
+    border: none;
+    height: 70px;
+    font-size: 1.25rem;
+    padding-left: 20px;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+      color: $dark;
+    }
+  }
+
+  #query {
+    border-radius: 2px 0 0 2px;
+  }
+
+  #date {
+    border-radius: 0 2px 2px 0;
+    border-left: 1px solid #ddd;
+    padding-right: 380px;
+  }
+}
+
+.banner--home__search #search {
+  position: absolute;
+  right: 8px;
 }

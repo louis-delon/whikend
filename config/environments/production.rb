@@ -1,6 +1,7 @@
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
   ActiveRecord::Base.logger = nil
+  ActionMailer::Base.raise_delivery_errors = false
 
   config.webpacker.check_yarn_integrity = false
 

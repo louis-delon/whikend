@@ -1,19 +1,17 @@
 <% @user.reviews.each do |review|%>
   <div class="row user__reviews__card">
-    <div class="col-xs-12">
-
-          <p><%= review.content %></p>
-          <p>
-            <% review.rating.times do %>
-              <%= icon('fas star--full', 'star') %>
-            <% end %>
-            <% (5 - review.rating).times do %>
-              <%= icon('fas star--empty', 'star') %>
-            <% end %>
-          </p>
-          <h4><%= review.created_at %></h4>
-          <h4><%= review.sender.first_name %></h4>
-
+    <div class="col-xs-12 col-sm-12 ">
+      <p><%= review.content %></p>
+      <p>
+        <% review.rating.times do %>
+          <%= icon('fas star--full', 'star') %>
+        <% end %>
+        <% (5 - review.rating).times do %>
+          <%= icon('fas star--empty', 'star') %>
+        <% end %>
+      </p>
+      <h4><%= review.created_at.strftime("%d/%m/%Y") %></h4>
+      <h4><%= review.sender.first_name %></h4>
     </div>
   </div>
 <% end %>

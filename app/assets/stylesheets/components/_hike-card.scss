@@ -113,7 +113,7 @@ h2.hike__card__title {
   }
 }
 
-#hike__more__details {
+div[id*=hike__more__details] {
   .modal-content {
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     border: none;

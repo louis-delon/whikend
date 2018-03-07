@@ -1,5 +1,6 @@
 <div id="submission__area">
   <% count_seats = [@trip.seats - @submissions.where(accepted: true).to_a.size, 0].max %>
+
   <% if policy(@trip).date_passed? %>
     <h3 class="main__title">Too late, this hike has passed!</h3>
   <% elsif count_seats == 0 %>
@@ -7,35 +8,40 @@
   <% else %>
     <h3 class="main__title"><%= pluralize(count_seats, "seat") %> available</h3>
   <% end %>
+
   <% if @submissions.where(accepted: true).present? %>
     <div class="submission__buddies">
       <div class="submission__buddies__list">
         <% @submissions.where(accepted: true).each do |submission| %>
           <div class="submission__buddies__buddy">
             <%= link_to user_path(submission.user) do %>
-                <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
-                <%= image_tag user_avatar, class: "avatar" %>
+              <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
+              <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
 
-                <% if policy(submission).reject? %>
-                  <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
-                    <%= icon('fas', 'times') %>
-                  <% end %>
+              <% if policy(submission).reject? %>
+                <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+                  <%= icon('fas', 'times') %>
                 <% end %>
+              <% end %>
 
-                <% if policy(submission).reject? %>
-                  <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
-                    <%= icon('fas', 'times') %>
-                  <% end %>
+              <% if policy(submission).reject? %>
+                <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+                  <%= icon('fas', 'times') %>
                 <% end %>
+              <% end %>
             <% end %>
           </div>
+
         <% end %>
       </div>
+
       <a href="#hike__buddies" class="btn btn--secondary"><%= icon('fas', 'users') %> See buddies details</a>
     </div>
+
   <% end  %>
-    <% if !policy(@trip).date_passed? %>
-      <% if policy(@submission).create? %>
+
+  <% if !policy(@trip).date_passed? %>
+    <% if policy(@submission).create? %>
       <div class="submission__form">
         <%= simple_form_for([@trip, @submission]) do |f| %>
           <%= f.error_notification %>
@@ -47,22 +53,26 @@
               <%= icon('fab', 'telegram-plane') %> Join this hike
             <% end %>
           </div>
-        <% if policy(@trip).automatic? %>
-          <p>Submissions are automatically accepted</p>
-        <% else %>
+          <% if policy(@trip).automatic? %>
+            <p>Submissions are automatically accepted</p>
+          <% else %>
           <p>Submissions are manually validated by <%= @trip.user.first_name %></p>
-        <% end %>
+          <% end %>
         <% end %>
       </div>
-      <% end %>
     <% end %>
+  <% end %>
+
   <% if policy(@submission).submission_present? %>
     <p class="submission__approval__waiting">You will be notified by email when your submission will be treated by <%= @trip.user.first_name %>.</p>
   <% end  %>
+
   <% if policy(@submission).current_user_is_driver? %>
+
     <% if policy(@submission).submissions_pending? %>
       <h3>Waiting for approval</h3>
     <% end %>
+
     <% if policy(@submission).submission_present? %>
       <div class="submission__approval">
         <% @submissions.where(accepted: nil).each do |submission| %>
@@ -76,24 +86,27 @@
             </div>
             <div class="submission__approval__actions">
               <% if policy(@submission).approve? && !policy(@submission).seat_full? %>
-                <%= link_to(approve_submission_path(@trip, submission)) do %>
+                <
+                %= link_to(approve_submission_path(@trip, submission)) do %>
                   <%= icon('fas', 'check') %>Accept
                 <% end %>
-                |
+                  |
                 <%= link_to(reject_submission_path(@trip, submission), class: "decline") do %>
                   <%= icon('fas', 'times') %>Decline
                 <% end %>
+
               <% end %>
             </div>
           </div>
         <% end %>
-      <span>
-        <% if policy(@trip).add_review? && policy(@trip).date_passed? %>
-          <%= link_to(new_trip_review_path(@trip), class: "btn btn-success") do %>
-          Add a Review
+        <span>
+          <% if policy(@trip).add_review? && policy(@trip).date_passed? %>
+            <%= link_to(new_trip_review_path(@trip), class: "btn btn-success") do %>
+              Add a Review
+            <% end %>
           <% end %>
-        <% end %>
-      </span>
-    </div>
-  <% end  %>
+        </span>
+      </div>
+    <% end %>
   <% end %>
+</div>

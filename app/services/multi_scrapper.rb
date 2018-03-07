@@ -24,7 +24,7 @@ class MultiScrapper
     @departments_url.each_with_index do |url, index|
       sleep(1)
       department_page = Nokogiri::HTML(open(url).read)
-      department_page.search('.rando').take(1).each do |rando|
+      department_page.search('.rando').take(4).each do |rando|
         if rando.search('.rando-title-sansDetail a').text.strip != ""
           title = rando.search('.rando-title-sansDetail a').text.strip.chomp("PDF")
           department = @departments_names[index]
