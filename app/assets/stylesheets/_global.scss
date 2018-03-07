@@ -43,10 +43,6 @@ a {
   transition: $transition;
   font-weight: 600;
 
-  i {
-    margin-right: 5px;
-  }
-
   &:hover {
     color: adjust-color($primary-color, $saturation: 10, $lightness: 5);
     text-decoration: none;
@@ -55,6 +51,7 @@ a {
 
 p {
   line-height: 1.8rem;
+  font-weight: 400;
 }
 
 ::selection {

@@ -20,17 +20,28 @@
           <% user_avatar = current_user.facebook_picture_url || current_user.avatar || "default-avatar.png" %>
           <%= image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to user_path(current_user) do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+            <li >
+              <%= link_to(user_path(current_user), class: "user__profile") do %>
+                <div class="user__profile__avatar">
+                  <% user_avatar = current_user.facebook_picture_url || current_user.avatar || "default-avatar.png" %>
+                  <%= image_tag user_avatar, class: "avatar" %>
+                </div>
+                <div class="user__profile__name">
+                  <%= current_user.first_name.capitalize %><%= current_user.last_name.capitalize %>
+                </div>
+                <div class="user__profile__email">
+                  <%= current_user.email %>
+                </div>
               <% end %>
             </li>
             <li>
-              <%= link_to "My Trips", user_path(current_user , anchor: "trips"), class: "navbar-wagon-item navbar-wagon-link" %>
+              <%= link_to(user_path(current_user, anchor: "trips"), class: "navbar-wagon-item navbar-wagon-link") do %>
+                <%= icon('fas', 'location-arrow') %><%= t(".profile", default: "My trips") %>
+              <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <%= icon('fas', 'sign-out-alt') %><%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
           </ul>
