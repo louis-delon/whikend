@@ -13,12 +13,27 @@ p tables
 
 
 def create_hikes
-  MultiScrapper.departments_list
+  hike_solutre = Hike.create!
+  hike_corse = Hike.create!
   UniScrapper.new(hike_solutre, "https://www.visorando.com/randonnee-sur-les-pas-de-tonton/")
   UniScrapper.new(hike_corse, "https://www.visorando.com/randonnee-gr20-de-bibi/")
+  MultiScrapper.departments_list
 end
 
 def create_users
+
+  30.times do
+    User.create!(
+      email: Faker::Internet.email,
+      password: Faker::Internet.password,
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      description: Faker::Hipster.paragraph,
+      age: (25..40).to_a.sample,
+      remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/random'
+    )
+  end
+
   User.create!(
     email: 'francois@whikend.com',
     password: 'aaaaaa',
@@ -119,17 +134,6 @@ def create_users
     remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk'
   )
 
-  30.times do
-    User.create!(
-      email: Faker::Internet.email,
-      password: Faker::Internet.password,
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-      description: Faker::Hipster.paragraph,
-      age: (25..40).to_a.sample,
-      remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/random'
-    )
-  end
 
 end
 
