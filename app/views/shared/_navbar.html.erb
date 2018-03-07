@@ -18,6 +18,7 @@
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <% user_avatar = current_user.facebook_picture_url || current_user.avatar || "default-avatar.png" %>
+
           <%= cl_image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face, width: 300, height: 300 %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li >
@@ -27,7 +28,7 @@
                   <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
                 </div>
                 <div class="user__profile__name">
-                  <%= current_user.first_name.capitalize %><%= current_user.last_name.capitalize %>
+                  <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %>
                 </div>
                 <div class="user__profile__email">
                   <%= current_user.email %>
