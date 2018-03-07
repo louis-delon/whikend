@@ -26,7 +26,7 @@ class TripsController < ApplicationController
     Hike.all.each { |hike| @departments_list << hike.department }
     @departments_list = @departments_list.uniq.sort
     @hikes = Hike.all.sort_by { |hike| hike.title }
-    @trip_types = ["Chill", "Heavy walk", "Challenge", "Photo", "Activities"]
+    @trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
   end
 
   def create
