@@ -3,10 +3,56 @@
   border-radius: $border-radius;
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   transition: $transition;
-  background-color: #fff;
+  background-color: $light-gray;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.buddies__card__header {
+  background-color: #fff;
+  padding-bottom: 20px;
+}
+
+.buddies__card__avatar {
+  display: flex;
+  justify-content: center;
+
+  .avatar {
+    margin: -80px auto 20px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    display: block;
+    border: 5px solid #fff;
+  }
+}
+
+.buddies__card__info {
+  text-align: center;
+}
+
+.buddies__card__rating a {
+  color: $dark;
+}
+
+.buddies__card .btn {
+  margin-top: 20px;
+}
+
+h3.buddies__card__name {
+  color: $dark;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.buddies__card__body {
+  padding: 20px;
+
+  .btn {
+    margin: -50px auto 0;
   }
 }

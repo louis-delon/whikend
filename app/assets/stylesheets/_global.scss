@@ -33,14 +33,15 @@ h1 {
   margin-bottom: 50px;
 }
 
+h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
 a {
   color: $primary-color;
   transition: $transition;
   font-weight: 600;
-
-  i {
-    margin-right: 5px;
-  }
 
   &:hover {
     color: adjust-color($primary-color, $saturation: 10, $lightness: 5);
@@ -50,6 +51,7 @@ a {
 
 p {
   line-height: 1.8rem;
+  font-weight: 400;
 }
 
 ::selection {
@@ -61,4 +63,12 @@ p {
 
 section {
   padding: 40px 0;
+}
+
+.fa-star {
+  color: $primary-color;
+}
+
+.fa-star.star--empty {
+  color: #ddd;
 }

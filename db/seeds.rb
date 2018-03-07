@@ -1,6 +1,5 @@
-
-
 dependencies = %w(Review Submission Message Trip User Hike)
+
 
 
 

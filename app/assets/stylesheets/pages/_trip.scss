@@ -85,13 +85,12 @@
   h3 {
     text-align: center;
     padding: 10px;
-    font-size: 1.5rem;
     background-color: lighten($primary-color, 48%);
     color: $primary-color;
-    font-weight: 600;
   }
 
   h3.main__title {
+    border-radius: 2px 2px 0 0;
     background-color: lighten($secondary-color, 48%);
     color: $secondary-color;
   }
@@ -189,7 +188,6 @@
 
 .submission__form {
   padding: 40px 20px;
-  border-top: 1px solid #ddd;
 
   label {
     display: none;
@@ -204,6 +202,10 @@
     margin-top: 10px;
     color: #999;
   }
+}
+
+.submission__buddies + .submission__form {
+  border-top: 1px solid #ddd;
 }
 
 #hike__details {
@@ -226,6 +228,14 @@
   margin-bottom: 10px;
 }
 
+.trip__details__description + .trip__details__messages {
+  margin-top: 40px;
+}
+
+.trip__details__messages h3 {
+  margin-bottom: 20px;
+}
+
 .trip__details__map {
   margin-top: 45px;
 }
@@ -235,8 +245,9 @@
   background-size: 101%;
   background-repeat: no-repeat;
   background-position: center bottom;
+  padding-top: 120px;
 
-  .col-lg-6:nth-child(n + 3) {
-    margin-top: 30px;
+  .col-lg-4:nth-child(n + 4) {
+    margin-top: 110px;
   }
 }
