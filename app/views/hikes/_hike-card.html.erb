@@ -14,7 +14,7 @@
   </div>
 
   <div class="hike__card__actions">
-    <button type="button" class="btn btn--primary details" data-toggle="modal" data-target="#hike__more__details">
+    <button type="button" class="btn btn--primary details" data-toggle="modal" data-target="#hike__more__details__<%= hike.id %>">
       More details
     </button>
     <label for="hike-<%= hike.id %>" class="hike__radio btn btn--primary">Select this hike</label>
@@ -25,7 +25,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="hike__more__details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="hike__more__details__<%= hike.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
