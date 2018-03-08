@@ -15,8 +15,6 @@ class SubmissionsController < ApplicationController
   def create
     @trip = Trip.find(params[:trip_id])
     @submission = Submission.new(trip: @trip, user: current_user)
-    # @submission.trip = @trip
-    # @submission.user = current_user
     authorize @submission
     @submission.accepted = true if @trip.auto_accept
     if @submission.save
@@ -27,9 +25,10 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
-    @submission.destroy
-    @trip = Trip.find(params[:trip_id])
+    @submission = Submission.find(params[:id])
     authorize @submission
+    @trip = @submission.trip
+    @submission.destroy
     redirect_to trip_path(@trip)
   end
 
@@ -44,6 +43,11 @@ class SubmissionsController < ApplicationController
     UserMailer.reject(@submission).deliver_now
     save_submission
   end
+
+  def page_title
+      "Submit to a Hike"
+  end
+
 
 private
 

@@ -19,10 +19,13 @@ Rails.application.routes.draw do
 
   get 'trips/hikes_by_department', to: 'trips#hikes_by_department'
   resources :trips do
-    resources :submissions, except: [:update, :edit, :show]
+    resources :submissions, except: [:update, :edit, :show, :destroy]
     resources :messages, only: [:new, :create]
     resources :reviews, only: [:new, :create]
   end
+
+  resources :submissions, only: :destroy
+
 
   get 'trips/:trip_id/submissions/:id/approve', to: 'submissions#approve', as: :approve_submission
   get 'trips/:trip_id/submissions/:id/reject', to: 'submissions#reject', as: :reject_submission

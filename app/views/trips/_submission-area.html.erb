@@ -31,7 +31,7 @@
               <% end %>
 
               <% if policy(submission).destroy? %>
-                <%= link_to(trip_submission_path(@trip, submission), class: "reject--self", :method => :delete) do %>
+                <%= link_to(submission_path(@submission), method: :delete, data: { confirm: "Are you sure?" }, class: "reject--self") do %>
                   <%= icon('fas', 'times') %>
                 <% end %>
               <% end %>
@@ -69,7 +69,12 @@
   <% end %>
 
   <% if policy(@submission).submission_present? %>
-    <p class="submission__approval__waiting">You will be notified by email when your submission will be treated by <%= @trip.user.first_name %>.</p>
+    <div class="submission__approval__waiting">
+      <p>You will be notified by email when your submission will be treated by <%= @trip.user.first_name %>.</p>
+      <%= link_to(submission_path(@submission), method: :delete, data: { confirm: "Are you sure?" }, class: "decline") do %>
+        <%= icon('fas', 'trash') %>Cancel my submission
+      <% end %>
+    </div>
   <% end  %>
 
   <% if policy(@submission).current_user_is_driver? %>

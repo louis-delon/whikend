@@ -5,6 +5,7 @@ function changeButton(target) {
     hike.classList.remove('selected');
   });
   target.closest('.btn--primary').classList.add('selected');
+  target.closest('.btn--primary').innerHTML = "Hike selected";
 }
 
 if (hikesList) {

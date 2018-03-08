@@ -7,6 +7,7 @@ class TripsController < ApplicationController
     @trips = @trips.where('trips.seats > ?', params[:seats]) if params[:seats].present?
     @trips = @trips.where(date: params[:date]) if params[:date].present?
     @trips = @trips.global_search(params[:query]) if params[:query].present?
+    @title = "Whikend Search"
   end
 
   def show
@@ -16,7 +17,9 @@ class TripsController < ApplicationController
     @review = Review.where(trip_id: @trip).first
     @user = @trip.user
     @hike = Hike.find(@trip.hike_id)
-    new_submission
+    set_submission
+    @title = "#{@trip.title} Whikend"
+
   end
 
   def new
@@ -62,6 +65,11 @@ class TripsController < ApplicationController
     end
   end
 
+  def page_title
+    @title || "erreur"
+  end
+
+
   private
 
   def set_trip
@@ -73,8 +81,8 @@ class TripsController < ApplicationController
     params.require(:trip).permit(:hike_id, :title, :start_location, :date, :trip_type, :seats, :description, :user_id, :auto_accept, :fees)
   end
 
-  def new_submission
-    @submission = Submission.new(trip: @trip, user: current_user)
+  def set_submission
+    @submission = Submission.find_or_initialize_by(trip: @trip, user: current_user)
   end
 
 

@@ -63,6 +63,9 @@ class MultiScrapper
       photo_page = page.search(".liste-topics-blanc-inner div[@style='padding: 5px 5px 0 5px;'] .clearfix a").first.attribute("href").value
       photo_page_url = Nokogiri::HTML(open(photo_page).read)
       hike.photo_url = photo_page_url.search(".innerContentVR div[@onclick] a").attribute("href").value
+      if hike.photo_url.nil?
+        hike.update(photo_url: "https://images.unsplash.com/photo-1444405406630-ac78b6e0b1fb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=582c342742b3be84cff0face43d3c13d&auto=format&fit=crop&w=2088&q=80")
+      end
       hike.save
     end
 
