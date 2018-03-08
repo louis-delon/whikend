@@ -1,24 +1,37 @@
-<div>
-  <%= form_tag trips_path, method: :get do %>
-    <p>Preferred starting location</p>
+<%= form_tag trips_path, method: :get do %>
+
+  <div class="col-lg-3">
+    <label>Preferred starting location</label>
     <%= text_field_tag :query,
       params[:query],
       class: "form-control",
       placeholder: "Please enter a city"
     %>
-    <p>Date</p>
+  </div>
+
+  <div class="col-lg-3">
+    <label>Date</label>
     <%= date_field_tag :date,
       params[:date],
       class: "form-control"
     %>
-    <p>Seats needed</p>
+  </div>
+
+  <div class="col-lg-3">
+    <label>Seats needed</label>
     <%= select_tag :seats, options_for_select([1,2,3,4,5], params[:seats]),
       class: "form-control"
     %>
-    <p>Type of trip</p>
+  </div>
+
+  <div class="col-lg-3">
+    <label>Type of trip</label>
     <%= select_tag :type, options_for_select(["Chill", "Heavy walk", "Challenge", "Photo", "Activities"], params[:type]),
       class: "form-control"
     %>
-    <%= submit_tag "Search" %>
+  </div>
+
+  <%= button_tag class: "btn btn--primary" do %>
+    Search<%= icon('fa', 'search') %>
   <% end %>
-</div>
+<% end %>
