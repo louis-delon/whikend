@@ -27,6 +27,7 @@ gem "select2-rails"
 gem 'select2_simple_form', github: 'lndl/select2_simple_form', tag: '0.7.3'
 gem 'postmark-rails'
 gem 'nokogiri'
+gem 'administrate'
 
 group :development do
   gem 'letter_opener'
