@@ -553,7 +553,15 @@ def create_reviews
   etienne = User.find_by(email: "etienne.delorieux@gmail.com")
   joseph = User.find_by(email: "joseph@whikend.com")
   kevin = User.find_by(email: "kevin@whikend.com")
+  alix = User.find_by(email: "alix@whikend.com")
   meryem = User.find_by(email: "meryem@whikend.com")
+  maxime = User.find_by(email: "maxime@whikend.com")
+  antoine = User.find_by(email: "antoine@whikend.com")
+  kevin = User.find_by(email: "kevin@whikend.com")
+  joseph = User.find_by(email: "joseph@whikend.com")
+
+
+
 
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
@@ -601,6 +609,87 @@ def create_reviews
       receiver_id: benoit.id.to_i,
       trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
     )
+
+  Review.create!(
+      content: "Top, un dandy marcheur",
+      rating: 4,
+      sender_id: etienne.id.to_i,
+      receiver_id: jack.id.to_i,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
+    )
+
+  Review.create!(
+      content: "Un grand connoisseur des montagnes - savoir infini",
+      rating: 3,
+      sender_id: karine.id.to_i,
+      receiver_id: jacques.id.to_i,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
+    )
+
+  Review.create!(
+      content: "Il sait toujours ou il va - tres rassurant",
+      rating: 4,
+      sender_id: maxime.id.to_i,
+      receiver_id: francois.id.to_i,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
+    )
+
+  Review.create!(
+      content: "Une bonne humeur permanente!",
+      rating: 5,
+      sender_id: vincent.id.to_i,
+      receiver_id: karine.id.to_i,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
+    )
+
+  Review.create!(
+      content: "Quel humour!",
+      rating: 4,
+      sender_id: alix.id.to_i,
+      receiver_id: vincent.id.to_i,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
+    )
+
+  Review.create!(
+      content: "Un peu donneur de lecon mais tres bon marcheur",
+      rating: 4,
+      sender_id: antoine.id.to_i,
+      receiver_id: jacques.id.to_i,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
+    )
+
+  Review.create!(
+      content: "C'etait cool? Grave cool",
+      rating: 5,
+      sender_id: kevin.id.to_i,
+      receiver_id: benoit.id.to_i,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
+    )
+
+  Review.create!(
+      content: "C'etait cool? Grave cool",
+      rating: 4,
+      sender_id: kevin.id.to_i,
+      receiver_id: jack.id.to_i,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
+    )
+
+  Review.create!(
+      content: "Ca m'a rappele mes annees d'accrobranche! Super bol d'air",
+      rating: 4,
+      sender_id: joseph.id.to_i,
+      receiver_id: benoit.id.to_i,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
+    )
+
+  Review.create!(
+      content: "Un peu trop serieux - faut faire le fifou un peu",
+      rating: 3,
+      sender_id: joseph.id.to_i,
+      receiver_id: francois.id.to_i,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_vercors.id]).sample
+    )
+
 
   10.times do
     Review.create!(
