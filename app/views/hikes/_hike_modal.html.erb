@@ -1,0 +1,39 @@
+<div class="modal fade" id="hike__more__details__<%= hike.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel"><%= hike.title %></h3>
+        <p><%= hike.location %> - <%= hike.department %></p>
+      </div>
+      <div class="modal-photo" style="background-image: url(<%= hike.photo_url %>)">
+      </div>
+      <div class="modal-details">
+        <div class="row">
+          <div class="col-lg-6">
+            <p><strong>Distance :</strong> <%= hike.distance %></p>
+            <p><strong>Duration :</strong> <%= hike.duration %></p>
+            <p><strong>Min. Alt. :</strong> <%= hike.alt_max %></p>
+            <p><strong>Max. Alt. :</strong> <%= hike.alt_min %></p>
+          </div>
+          <div class="col-lg-6">
+            <p><strong>Difficulty :</strong> <%= hike.difficulty %></p>
+            <p><strong>Asc. elevation :</strong> <%= hike.asc_elevation %></p>
+            <p><strong>Desc. elevation :</strong> <%= hike.desc_elevation %></p>
+            <p>
+              <strong>Loop :</strong>
+              <% if hike.hike_type == true %>
+                Yes
+              <% else %>
+                No
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn--primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
