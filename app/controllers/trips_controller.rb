@@ -12,7 +12,7 @@ class TripsController < ApplicationController
 
   def show
     @submissions = @trip.submissions
-    @messages = @trip.messages
+    @messages = @trip.messages.order('created_at ASC')
     @message = Message.new
     @review = Review.where(trip_id: @trip).first
     @user = @trip.user
