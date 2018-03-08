@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
-
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authenticate_user!, only: :index
+  
   def index
     @trips = policy_scope(Trip).where('trips.date > ?', Date.today)
     @trips = @trips.where('trips.seats > ?', params[:seats]) if params[:seats].present?

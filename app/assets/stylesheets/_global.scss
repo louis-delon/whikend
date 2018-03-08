@@ -43,9 +43,11 @@ a {
   transition: $transition;
   font-weight: 600;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: adjust-color($primary-color, $saturation: 10, $lightness: 5);
     text-decoration: none;
+    outline: none;
   }
 }
 
@@ -71,4 +73,9 @@ section {
 
 .fa-star.star--empty {
   color: #ddd;
+}
+
+abbr[title], abbr[data-original-title] {
+  border: none;
+  text-decoration: none;
 }
