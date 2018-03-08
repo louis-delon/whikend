@@ -15,8 +15,6 @@ class SubmissionsController < ApplicationController
   def create
     @trip = Trip.find(params[:trip_id])
     @submission = Submission.new(trip: @trip, user: current_user)
-    # @submission.trip = @trip
-    # @submission.user = current_user
     authorize @submission
     @submission.accepted = true if @trip.auto_accept
     if @submission.save
@@ -27,8 +25,11 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
+    @submission = Submission.find(params[:id])
+    authorize @submission
+    @trip = @submission.trip
     @submission.destroy
-    redirect_to root_path
+    redirect_to trip_path(@trip)
   end
 
   def approve

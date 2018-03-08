@@ -146,20 +146,29 @@
   i {
     margin-right: 5px;
   }
+}
 
-  a.decline {
-    color: #df2800;
+a.decline {
+  color: #df2800;
 
-    &:hover {
-      color: lighten(#df2800, 5%);
-    }
+  i {
+    margin-right: 5px;
+  }
+
+  &:hover {
+    color: lighten(#df2800, 5%);
   }
 }
 
 .submission__approval__waiting {
-  padding: 20px;
+  padding: 40px 20px;
   text-align: center;
   border-top: 1px solid #ddd;
+
+  a {
+    display: inline-block;
+    margin-top: 20px;
+  }
 }
 
 .submission__buddies__buddy.seat--available img {
