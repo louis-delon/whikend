@@ -15,6 +15,10 @@ before_action :set_user, only: [:show, :edit, :update]
     redirect_to user_path(@user)
   end
 
+  def page_title
+      "Profil #{@user.first_name} on Whikend"
+  end
+
   private
 
   def set_user

@@ -20,6 +20,11 @@ class MessagesController < ApplicationController
     end
   end
 
+  def page_title
+      "Whikend Messages"
+  end
+
+
 private
 
   def message_params

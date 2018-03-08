@@ -44,6 +44,11 @@ class SubmissionsController < ApplicationController
     save_submission
   end
 
+  def page_title
+      "Submit to a Hike"
+  end
+
+
 private
 
   def set_params
