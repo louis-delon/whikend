@@ -1,6 +1,6 @@
 dependencies = %w(Review Submission Message Trip User Hike)
 
-level_seed = (ENV['LEVEL_SEED'] || "Trip")
+level_seed = (ENV['LEVEL_SEED'] || "User")
 
 tables = dependencies[0, dependencies.index(level_seed) + 1]
 
@@ -96,7 +96,7 @@ def create_users
   )
 
   User.create!(
-    email: 'etienne@gmail.com',
+    email: 'etienne.delorieux@gmail.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Etienne',
@@ -107,7 +107,7 @@ def create_users
   )
 
   User.create!(
-    email: 'louis@gmail.com',
+    email: 'louis@holdies.com',
     admin: true,
     password: 'aaaaaa',
     first_name: 'Louis',
@@ -118,7 +118,7 @@ def create_users
   )
 
   User.create!(
-    email: 'sebastien@gmail.com',
+    email: 'sebastien@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Sebastien',
@@ -129,7 +129,7 @@ def create_users
   )
 
   User.create!(
-    email: 'isabelle@gmail.com',
+    email: 'isabelle@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Isabelle',
@@ -140,7 +140,7 @@ def create_users
   )
 
   User.create!(
-    email: 'antoine@gmail.com',
+    email: 'antoine@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Antoine',
@@ -151,7 +151,7 @@ def create_users
   )
 
   User.create!(
-    email: 'alix@gmail.com',
+    email: 'alix@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Alix',
@@ -162,7 +162,7 @@ def create_users
   )
 
   User.create!(
-    email: 'maxime@gmail.com',
+    email: 'maxime@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Maxime',
@@ -173,7 +173,7 @@ def create_users
   )
 
   User.create!(
-    email: 'joseph@gmail.com',
+    email: 'joseph@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Joseph',
@@ -184,7 +184,7 @@ def create_users
   )
 
   User.create!(
-    email: 'kevin@gmail.com',
+    email: 'kevin@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Kevin',
@@ -195,7 +195,7 @@ def create_users
   )
 
   User.create!(
-    email: 'kylian@gmail.com',
+    email: 'kylian@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Kylian',
@@ -206,7 +206,7 @@ def create_users
   )
 
   User.create!(
-    email: 'mike@gmail.com',
+    email: 'mike@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Mike',
@@ -217,7 +217,7 @@ def create_users
   )
 
     User.create!(
-    email: 'francoisho@gmail.com',
+    email: 'francoisho@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Flamby',
@@ -228,7 +228,7 @@ def create_users
   )
 
     User.create!(
-    email: 'meryem@gmail.com',
+    email: 'meryem@whikend.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Meryem',
@@ -243,18 +243,18 @@ def create_trips
   puts "creation trips"
   trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
   francois = User.find_by(email: "francois@whikend.com")
-  francoisho = User.find_by(email: "francoisho@gmail.com")
+  francoisho = User.find_by(email: "francoisho@whikend.com")
   roger = User.find_by(email: "roger@whikend.com")
   jack = User.find_by(email: "jack@whikend.com")
   jacques = User.find_by(email: "jacques@whikend.com")
   benoit = User.find_by(email: "benoit@whikend.com")
-  meryem = User.find_by(email: "meryem@gmail.com")
+  meryem = User.find_by(email: "meryem@whikend.com")
   vincent = User.find_by(email: "vincent@whikend.com")
   karine = User.find_by(email: "karine@whikend.com")
-  louis = User.find_by(email: "louis@gmail.com")
-  etienne = User.find_by(email: "etienne@gmail.com")
-  joseph = User.find_by(email: "joseph@gmail.com")
-  kevin = User.find_by(email: "kevin@gmail.com")
+  louis = User.find_by(email: "louis@holdies.com")
+  etienne = User.find_by(email: "etienne.delorieux@gmail.com")
+  joseph = User.find_by(email: "joseph@whikend.com")
+  kevin = User.find_by(email: "kevin@whikend.com")
 
   hikes_tmp = Hike.all.sample(2)
 
@@ -354,18 +354,18 @@ end
 def create_submissions
   puts "creation submissions"
     francois = User.find_by(email: "francois@whikend.com")
-  francoisho = User.find_by(email: "francoisho@gmail.com")
+  francoisho = User.find_by(email: "francoisho@whikend.com")
   roger = User.find_by(email: "roger@whikend.com")
   jack = User.find_by(email: "jack@whikend.com")
   jacques = User.find_by(email: "jacques@whikend.com")
   benoit = User.find_by(email: "benoit@whikend.com")
   vincent = User.find_by(email: "vincent@whikend.com")
   karine = User.find_by(email: "karine@whikend.com")
-  louis = User.find_by(email: "louis@gmail.com")
-  etienne = User.find_by(email: "etienne@gmail.com")
-  joseph = User.find_by(email: "joseph@gmail.com")
-  kevin = User.find_by(email: "kevin@gmail.com")
-  meryem = User.find_by(email: "meryem@gmail.com")
+  louis = User.find_by(email: "louis@holdies.com")
+  etienne = User.find_by(email: "etienne.delorieux@gmail.com")
+  joseph = User.find_by(email: "joseph@whikend.com")
+  kevin = User.find_by(email: "kevin@whikend.com")
+  meryem = User.find_by(email: "meryem@whikend.com")
 
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
@@ -432,18 +432,18 @@ end
 def create_messages
   puts "creation messages"
     francois = User.find_by(email: "francois@whikend.com")
-  francoisho = User.find_by(email: "francoisho@gmail.com")
+  francoisho = User.find_by(email: "francoisho@whikend.com")
   roger = User.find_by(email: "roger@whikend.com")
   jack = User.find_by(email: "jack@whikend.com")
   jacques = User.find_by(email: "jacques@whikend.com")
   benoit = User.find_by(email: "benoit@whikend.com")
   vincent = User.find_by(email: "vincent@whikend.com")
   karine = User.find_by(email: "karine@whikend.com")
-  louis = User.find_by(email: "louis@gmail.com")
-  etienne = User.find_by(email: "etienne@gmail.com")
-  joseph = User.find_by(email: "joseph@gmail.com")
-  kevin = User.find_by(email: "kevin@gmail.com")
-  meryem = User.find_by(email: "meryem@gmail.com")
+  louis = User.find_by(email: "louis@holdies.com")
+  etienne = User.find_by(email: "etienne.delorieux@gmail.com")
+  joseph = User.find_by(email: "joseph@whikend.com")
+  kevin = User.find_by(email: "kevin@whikend.com")
+  meryem = User.find_by(email: "meryem@whikend.com")
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la decouverte du Vercors!")
@@ -542,18 +542,18 @@ def create_reviews
 
   puts "creation reviews"
   francois = User.find_by(email: "francois@whikend.com")
-  francoisho = User.find_by(email: "francoisho@gmail.com")
+  francoisho = User.find_by(email: "francoisho@whikend.com")
   roger = User.find_by(email: "roger@whikend.com")
   jack = User.find_by(email: "jack@whikend.com")
   jacques = User.find_by(email: "jacques@whikend.com")
   benoit = User.find_by(email: "benoit@whikend.com")
   vincent = User.find_by(email: "vincent@whikend.com")
   karine = User.find_by(email: "karine@whikend.com")
-  louis = User.find_by(email: "louis@gmail.com")
-  etienne = User.find_by(email: "etienne@gmail.com")
-  joseph = User.find_by(email: "joseph@gmail.com")
-  kevin = User.find_by(email: "kevin@gmail.com")
-  meryem = User.find_by(email: "meryem@gmail.com")
+  louis = User.find_by(email: "louis@holdies.com")
+  etienne = User.find_by(email: "etienne.delorieux@gmail.com")
+  joseph = User.find_by(email: "joseph@whikend.com")
+  kevin = User.find_by(email: "kevin@whikend.com")
+  meryem = User.find_by(email: "meryem@whikend.com")
 
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
