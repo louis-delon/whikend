@@ -1,9 +1,16 @@
-<section class="search">
+<div class="banner banner--searchindex">
+  <div class="container">
+    <h1>We've found <%= @trips.count %> trips for you!</h1>
+  </div>
+</div>
+
+<section id="search__filters">
   <div class="container">
     <%= render "shared/search-filters" %>
   </div>
 </section>
-<section class="trip__presentation">
+
+<section id="trip__presentation">
   <div class="container">
     <div class="row">
 
@@ -12,6 +19,7 @@
            <%= render "trips/trip-card", trip: trip %>
         </div>
       <% end %>
+
     </div>
   </div>
 </section>

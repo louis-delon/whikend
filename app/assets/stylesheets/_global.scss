@@ -63,6 +63,10 @@ p {
   background: $primary-color;
 }
 
+.wrapper--global {
+  min-height: calc(100vh - 140px);
+}
+
 section {
   padding: 40px 0;
 }
