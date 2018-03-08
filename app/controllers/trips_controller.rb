@@ -7,7 +7,7 @@ class TripsController < ApplicationController
     @trips = @trips.where('trips.seats > ?', params[:seats]) if params[:seats].present?
     @trips = @trips.where(date: params[:date]) if params[:date].present?
     @trips = @trips.global_search(params[:query]) if params[:query].present?
-    @title = "Whikend Search"
+    @title = "Whikend | Search results"
   end
 
   def show
@@ -18,7 +18,7 @@ class TripsController < ApplicationController
     @user = @trip.user
     @hike = Hike.find(@trip.hike_id)
     set_submission
-    @title = "#{@trip.title} Whikend"
+    @title = "Whikend | #{@trip.title}"
 
   end
 
@@ -30,6 +30,7 @@ class TripsController < ApplicationController
     @departments_list = @departments_list.uniq.sort
     @hikes = Hike.all.sort_by { |hike| hike.title }
     @trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
+    @title = "Whikend | Create a new trip"
   end
 
   def create
@@ -66,7 +67,7 @@ class TripsController < ApplicationController
   end
 
   def page_title
-    @title || "erreur"
+    @title || "Whikend"
   end
 
 

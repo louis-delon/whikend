@@ -50,3 +50,19 @@
     background-color: lighten(#3b5998, 10%);
   }
 }
+
+.btn--addtrip {
+  background-color: $primary-color;
+  display: flex;
+  align-items: center;
+
+  i {
+    font-size: 0.6rem;
+    margin-left: 5px;
+  }
+
+  &:hover {
+    background-color: adjust-color($primary-color, $saturation: 10, $lightness: 2);
+    box-shadow: 0 3px 12px -2px rgba(0, 0, 0, 0.25);
+  }
+}
