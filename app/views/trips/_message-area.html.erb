@@ -2,7 +2,7 @@
   <% @messages.each do |message| %>
     <div class="trip__message">
       <div class="trip__message__avatar">
-        <% user_avatar = @user.facebook_picture_url || message.user.avatar %>
+        <% user_avatar = message.user.facebook_picture_url || message.user.avatar || "default-avatar.png" %>
         <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
       </div>
       <div class="trip__message__content">
