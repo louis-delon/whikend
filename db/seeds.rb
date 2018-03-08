@@ -1,6 +1,6 @@
 dependencies = %w(Review Submission Message Trip User Hike)
 
-level_seed = (ENV['LEVEL_SEED'] || "User")
+level_seed = (ENV['LEVEL_SEED'] || "Trip")
 
 tables = dependencies[0, dependencies.index(level_seed) + 1]
 
@@ -104,6 +104,17 @@ def create_users
     description: 'Mangez des pommes!',
     age: 27,
     remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
+  )
+
+  User.create!(
+    email: 'lorenzo@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Lorenzo',
+    last_name: 'Del Castillo Detoeuf',
+    description: 'En voiture Michele!',
+    age: 25,
+    remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/ldeld'
   )
 
   User.create!(
@@ -264,14 +275,14 @@ def create_trips
   hike_etienne = hikes_tmp[1]
 
   Trip.create!(
-    title: "A la decouverte du Vercors!",
+    title: "A la découverte du Vercors!",
     description: "Grosse rando sympa dans la bonne humeur. Venez si vous voulez décompresser de la ville, de ses bruits et de ses pigeons.",
     start_location: "Lyon",
     hike_id: hike_vercors.id,
     user_id: benoit.id,
     date: Date.today+(1),
     trip_type: "Sportive",
-    seats: 4,
+    seats: 5,
     auto_accept: false,
     fees: (2..7).to_a.sample
   )
@@ -284,21 +295,21 @@ def create_trips
     user_id: francois.id,
     date: Date.today+(1),
     trip_type: "Détente",
-    seats: 7,
+    seats: 8,
     auto_accept: true,
     fees: (2..7).to_a.sample
   )
 
 
   Trip.create!(
-    description: "Venez decouvrir le grand GR20 - Au programme : beaute, beaute, beaute",
+    description: "Venez découvrir le grand GR20 - Au programme : effort ",
     start_location: "Lyon",
     hike_id: hike_corse.id,
-    title: "Grand depart pour le GR20",
+    title: "Grand départ pour le GR20",
     user_id: louis.id,
     date: Date.today+(1),
     trip_type: trip_types.sample,
-    seats: (2..6).to_a.sample,
+    seats: 2,
     auto_accept: false,
     fees: (2..7).to_a.sample
   )
@@ -369,8 +380,8 @@ def create_submissions
 
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
-  trip_vercors = Trip.find_by(title: "A la decouverte du Vercors!")
-  trip_corse = Trip.find_by(title: "Grand depart pour le GR20")
+  trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
+  trip_corse = Trip.find_by(title: "Grand départ pour le GR20")
 
   Submission.create!(
     user_id: roger.id.to_i,
@@ -446,10 +457,10 @@ def create_messages
   meryem = User.find_by(email: "meryem@whikend.com")
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
-  trip_vercors = Trip.find_by(title: "A la decouverte du Vercors!")
-  trip_corse = Trip.find_by(title: "Grand depart pour le GR20")
+  trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
+  trip_corse = Trip.find_by(title: "Grand départ pour le GR20")
 
-  messages = ["Quel est le temps prevu pour ce weekend?", "Pour les connaisseurs, une idee de quelques indispensables pour cette rando?", "Je vais faire un tour au Vieux Campeur - je peux prendre des trucs si vous voulez, n'heistez pas", "Hate d'y etre!", "Comment on s'organise pour le depart?", "C'est possible de changer la date de depart", "Le parcours a l'air super", "Je prends ma camera!!", "Quelqu'un a une paire de chaussettes du 42?", "J'ai perdu ma gourde - depannage possible?", "Je suis dispo pour conduire sur une partie du trajet", "N'oubliez pas vos lunettes de soleil", "Attention - grosse chaleur prevu ce weekend", "Pensez bien a la creme solaire", "Je prends un jeu de carte pour se faire une petite coinche a la fraiche", "Un Ricard?", "Un saucisson, du pinard, je suis pret pour le grand depart", "Je peux ramener un +1", "C'est quel modele ta voiture?", "On fait les courses sur la route si vous etes ok?"]
+  messages = ["Quel est le temps prévu pour ce weekend?", "Pour les connaisseurs, une idée de quelques indispensables pour cette rando?", "Je vais faire un tour au Vieux Campeur - je peux prendre des trucs si vous voulez, n'hésitez pas", "Hâte d'y être!", "Comment on s'organise pour le départ?", "C'est possible de changer la date de depart?", "Le parcours a l'air super", "Je prends ma camera!!", "Quelqu'un a une paire de chaussettes du 42?", "J'ai perdu ma gourde - dépannage possible?", "Je suis dispo pour conduire sur une partie du trajet", "N'oubliez pas vos lunettes de soleil", "Attention - grosse chaleur prévue ce weekend", "Pensez bien à la creme solaire", "Je prends un jeu de carte pour se faire une petite coinche à la fraiche", "Un Ricard?", "Un saucisson, du pinard, je suis prêt pour le grand départ", "Je peux ramener un +1?", "C'est quel modèle ta voiture?", "On fait les courses sur la route si vous êtes ok?"]
 
   Message.create!(
     content: "Bonjour je suis super content d'avoir été accepté à votre rando",
@@ -458,19 +469,19 @@ def create_messages
   )
 
   Message.create!(
-    content: "Plaisir partage :) - on attend de nouveaux compagnons et c'est parti",
+    content: "Plaisir partagé :) - on attend de nouveaux compagnons et c'est parti",
     user_id: louis.id,
     trip_id: trip_corse.id
   )
 
   Message.create!(
-    content: "Je constate avec bonheur que les habitues sont bien presents",
+    content: "Je constate avec bonheur que les habitués sont bien presents",
     user_id: francois.id,
     trip_id: trip_solutre.id
   )
 
   Message.create!(
-    content: "Bien suuuuur, toujours au rendez-vous Tonton! On va s'amuser #lol",
+    content: "Of course, toujours au rendez-vous Tonton! On va s'amuser #lol",
     user_id: jack.id,
     trip_id: trip_solutre.id
   )
@@ -500,7 +511,7 @@ def create_messages
   )
 
   Message.create!(
-    content: "Benoit, ta rando c'est plutot tranquille? ",
+    content: "Benoit, ta rando c'est plutôt tranquille? ",
     user_id: karine.id,
     trip_id: trip_vercors.id
   )
@@ -565,10 +576,10 @@ def create_reviews
 
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
-  trip_vercors = Trip.find_by(title: "A la decouverte du Vercors!")
-  trip_corse = Trip.find_by(title: "Grand depart pour le GR20")
+  trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
+  trip_corse = Trip.find_by(title: "Grand départ pour le GR20")
 
-  reviews_generator = ["Vraiment une belle rando - je recommande", "Toujours le meme plaisir", "Vraiment pas mal", "Au top", "Je recommande a fond", "N'hesitez pas", "Belles rigolades, belle marche - que du bonheur", "Merci Whikend pour cet extraordinaire", "Que demandez de plus?", "Le petit rouge au sommet fait plaisir", "Le roi du matos pour la reine des randos - parfait", "Une descente de Ricard que j'aimerais pas remonter en velo", "Hyper intense - le Kylian Jornet du dimanche"]
+  reviews_generator = ["Vraiment une belle rando - je recommande", "Toujours le même plaisir", "Vraiment pas mal", "Au top", "Je recommande à fond", "N'hésitez pas", "Belles rigolades, belle marche - que du bonheur", "Merci Whikend pour cet extraordinaire rando", "Que demandez de plus?", "Le petit rouge au sommet fait plaisir", "Le roi du matos pour la reine des randos - parfait", "Une descente de Ricard que j'aimerais pas remonter en velo", "Hyper intense - le Kylian Jornet du dimanche"]
 
   Review.create!(
     content: "Mec super cool, super balade",
@@ -587,7 +598,7 @@ def create_reviews
     )
 
   Review.create!(
-      content: "Bon vivant et très très marrant malgré un fort accent belge - je repars des que possible avec lui",
+      content: "Bon vivant et très très marrant malgré un fort accent belge - cette rando en Corse était légendaire",
       rating: 5,
       sender_id: vincent.id.to_i,
       receiver_id: benoit.id.to_i,
@@ -627,7 +638,7 @@ def create_reviews
     )
 
   Review.create!(
-      content: "Il sait toujours ou il va - tres rassurant",
+      content: "Il sait toujours où il va - très rassurant",
       rating: 4,
       sender_id: maxime.id.to_i,
       receiver_id: francois.id.to_i,
@@ -651,7 +662,7 @@ def create_reviews
     )
 
   Review.create!(
-      content: "Un peu donneur de lecon mais tres bon marcheur",
+      content: "Un peu donneur de leçon mais très bon marcheur",
       rating: 4,
       sender_id: antoine.id.to_i,
       receiver_id: jacques.id.to_i,
@@ -659,7 +670,7 @@ def create_reviews
     )
 
   Review.create!(
-      content: "C'etait cool? Grave cool",
+      content: "C'était cool? Grave cool",
       rating: 5,
       sender_id: kevin.id.to_i,
       receiver_id: benoit.id.to_i,
@@ -667,7 +678,7 @@ def create_reviews
     )
 
   Review.create!(
-      content: "C'etait cool? Grave cool",
+      content: "C'était cool? Grave cool",
       rating: 4,
       sender_id: kevin.id.to_i,
       receiver_id: jack.id.to_i,
@@ -675,7 +686,7 @@ def create_reviews
     )
 
   Review.create!(
-      content: "Ca m'a rappele mes annees d'accrobranche! Super bol d'air",
+      content: "Ca m'a rappelé mes années d'accrobranche! Super bol d'air",
       rating: 4,
       sender_id: joseph.id.to_i,
       receiver_id: benoit.id.to_i,
