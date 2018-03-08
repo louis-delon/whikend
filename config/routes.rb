@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :users
+    resources :hikes
+    resources :messages
+    resources :reviews
+    resources :submissions
+    resources :trips
+
+    root to: "users#index"
+  end
+
   root to: 'pages#home'
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
