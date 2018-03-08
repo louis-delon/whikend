@@ -74,3 +74,8 @@ section {
 .fa-star.star--empty {
   color: #ddd;
 }
+
+abbr[title], abbr[data-original-title] {
+  border: none;
+  text-decoration: none;
+}
