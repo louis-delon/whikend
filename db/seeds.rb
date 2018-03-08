@@ -350,7 +350,7 @@ def create_trips
     hike = Hike.all.sample
 
     Trip.create!(
-      description: "N'hésitez pas en cas de questions - description detaillée ci-dessous",
+      description: "N'hésitez pas en cas de questions - description détaillée ci-dessous",
       start_location: trip_start.sample,
       hike_id: hike.id,
       title: hike.title,
