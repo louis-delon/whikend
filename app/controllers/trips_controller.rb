@@ -7,6 +7,7 @@ class TripsController < ApplicationController
     @trips = @trips.where('trips.seats > ?', params[:seats]) if params[:seats].present?
     @trips = @trips.where(date: params[:date]) if params[:date].present?
     @trips = @trips.global_search(params[:query]) if params[:query].present?
+    @title = "Whikend Search"
   end
 
   def show
@@ -16,6 +17,7 @@ class TripsController < ApplicationController
     @review = Review.where(trip_id: @trip).first
     @user = @trip.user
     @hike = Hike.find(@trip.hike_id)
+    @title = "#{@trip.title} Whikend"
     new_submission
   end
 
@@ -61,6 +63,11 @@ class TripsController < ApplicationController
       format.html {render 'trips/hikes_by_department', layout: false}
     end
   end
+
+  def page_title
+    @title || "erreur"
+  end
+
 
   private
 

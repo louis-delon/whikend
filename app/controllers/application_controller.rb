@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     redirect_to(root_path)
   end
 
+  def page_title
+      "Whikend"
+  end
+
   private
 
   def skip_pundit?
