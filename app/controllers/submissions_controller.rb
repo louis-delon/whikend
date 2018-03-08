@@ -27,8 +27,10 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
+    # raise
     @submission.destroy
-    redirect_to root_path
+    authorize @submission
+    redirect_to trip_path
   end
 
   def approve

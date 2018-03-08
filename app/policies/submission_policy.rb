@@ -20,7 +20,7 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def destroy?
-    current_user_or_admin?
+    user_is_owner_or_admin?
   end
 
   def status_pending?
@@ -42,7 +42,7 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def current_user_is_driver?
-    @record.trip.user == user || user.admin
+    @record.trip.user == user
   end
 
   private
@@ -54,6 +54,9 @@ class SubmissionPolicy < ApplicationPolicy
     scope.all.where(trip_id: @trip_id, user_id: @user.id).exists?
   end
 
+  def user_is_owner_or_admin?
+    @record.user == user || user.admin
+  end
   # def status_rejected?
   #   @record.trip.submissions.where(user_id: @user.id, accepted: false).exists?
   # end
@@ -61,5 +64,4 @@ class SubmissionPolicy < ApplicationPolicy
   # def status_accepted?
   #   @record.trip.submissions.where(user_id: @user.id, accepted: true).exists?
   # end
-
 end

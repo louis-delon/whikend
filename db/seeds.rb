@@ -281,49 +281,42 @@ def create_submissions
   trip = Trip.find_by(title: "Rando dans le Vercors")
 
   Submission.create!(
-    content: "Youhou",
     user_id: roger.id.to_i,
     trip_id: trip_solutre.id.to_i,
     accepted: true
   )
 
   Submission.create!(
-    content: "Hate d'y etre",
     user_id: jacques.id.to_i,
     trip_id: trip_solutre.id.to_i,
     accepted: true
   )
 
   Submission.create!(
-    content: "C'est la fête",
     user_id: jack.id.to_i,
     trip_id: trip_solutre.id.to_i,
     accepted: true
   )
 
   Submission.create!(
-    content: "Mega chaud",
     user_id: vincent.id.to_i,
     trip_id: trip_corse.id.to_i,
     accepted: true
   )
 
   Submission.create!(
-    content: "On va bien se marrer",
     user_id: karine.id.to_i,
     trip_id: trip_corse.id.to_i,
     accepted: true
   )
 
   Submission.create!(
-    content: "Je suis tres interessé par votre randonnée",
     user_id: etienne.id.to_i,
     trip_id: trip.id.to_i,
     accepted: true
   )
 
   Submission.create!(
-    content: "Reste t-il des places?",
     user_id: alex.id.to_i,
     trip_id: trip.id.to_i,
     accepted: true
@@ -335,7 +328,6 @@ def create_submissions
     accepted = Submission.where(trip_id: trip_id).count < Trip.find(trip_id).seats
 
     Submission.create!(
-      content: Faker::Hipster.paragraph,
       user_id: user_id,
       trip_id: trip_id,
       accepted: accepted
@@ -344,7 +336,6 @@ def create_submissions
 
   14.times do
     Submission.create!(
-      content: Faker::Hipster.paragraph,
       user_id: ((User.first.id)..(User.last.id)).to_a.sample,
       trip_id: ((Trip.first.id)..(Trip.last.id)).to_a.first(10).sample,
       accepted: nil
