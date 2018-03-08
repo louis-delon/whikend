@@ -30,7 +30,7 @@
                 <% end %>
               <% end %>
 
-              <% if submission.user == current_user %>
+              <% if policy(submission).reject? %>
                 <%= link_to(reject_submission_path(@trip, submission), class: "reject--self") do %>
                   <%= icon('fas', 'times') %>
                 <% end %>
