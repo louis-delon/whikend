@@ -1,6 +1,6 @@
 dependencies = %w(Review Submission Message Trip User Hike)
 
-level_seed = (ENV['LEVEL_SEED'] || "Trip")
+level_seed = (ENV['LEVEL_SEED'] || "User")
 
 tables = dependencies[0, dependencies.index(level_seed) + 1]
 
@@ -248,6 +248,18 @@ def create_users
     age: 33,
     remote_avatar_url: "http://francais-express.com/upload/images/real/2017/09/19/j-suis-pas-venue-ici-pour-souffrir-ok-meryem-nouvelle-chroniqueuse-de-tpmp__668443_.jpg"
   )
+
+    User.create!(
+    email: 'jchirac@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Jacques',
+    last_name: 'Chirac',
+    description: "Vive la Republique, Vive la France",
+    age: 33,
+    remote_avatar_url: "https://www.thefamouspeople.com/profiles/images/jacques-chirac-10.jpg"
+  )
+
 end
 
 def create_trips
@@ -444,7 +456,7 @@ end
 
 def create_messages
   puts "creation messages"
-    francois = User.find_by(email: "francois@whikend.com")
+  francois = User.find_by(email: "francois@whikend.com")
   francoisho = User.find_by(email: "francoisho@whikend.com")
   roger = User.find_by(email: "roger@whikend.com")
   jack = User.find_by(email: "jack@whikend.com")
@@ -457,6 +469,8 @@ def create_messages
   joseph = User.find_by(email: "joseph@whikend.com")
   kevin = User.find_by(email: "kevin@whikend.com")
   meryem = User.find_by(email: "meryem@whikend.com")
+  chirac = User.find_by(email: "jchirac@whikend.com")
+
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
@@ -477,7 +491,7 @@ def create_messages
   )
 
   Message.create!(
-    content: "Je constate avec bonheur que les habitués sont bien presents",
+    content: "Je constate avec bonheur que les habitués sont bien présents",
     user_id: francois.id,
     trip_id: trip_solutre.id
   )
@@ -495,8 +509,8 @@ def create_messages
   )
 
   Message.create!(
-    content: "Il faut un imper?",
-    user_id: roger.id,
+    content: "Mangez des pommes!",
+    user_id: chirac.id,
     trip_id: trip_solutre.id
   )
 
@@ -513,19 +527,19 @@ def create_messages
   )
 
   Message.create!(
-    content: "Benoit, ta rando c'est plutôt tranquille? ",
+    content: "Benoit, quel est l'esprit de la rando? ",
     user_id: karine.id,
     trip_id: trip_vercors.id
   )
 
   Message.create!(
-    content: "Non. On va leur mettre le feu. Je peux vous dire que Johnny Hallyday au Stade de France, à côté c’est un Playmobil dans un évier !",
+    content: "On va mettre le feu, comme Johnny au Stade de France!",
     user_id: benoit.id,
     trip_id: trip_vercors.id
   )
 
   Message.create!(
-    content: "Ok... Et sinon, quid de la faune locale?",
+    content: "Ok. Et sinon, quid de la faune locale?",
     user_id: vincent.id,
     trip_id: trip_vercors.id
   )
@@ -572,10 +586,6 @@ def create_reviews
   antoine = User.find_by(email: "antoine@whikend.com")
   kevin = User.find_by(email: "kevin@whikend.com")
   joseph = User.find_by(email: "joseph@whikend.com")
-
-
-
-
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
