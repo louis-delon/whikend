@@ -13,11 +13,8 @@ class MessagesController < ApplicationController
     @message.trip = @trip
     @message.user = current_user
     authorize @message
-    if @message.save
-      redirect_to trip_path(params[:trip_id])
-    else
-      render :new
-    end
+    @message.save
+    @new_message = Message.new
   end
 
   def page_title

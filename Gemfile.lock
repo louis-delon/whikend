@@ -60,6 +60,8 @@ GEM
       momentjs-rails (~> 2.8)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
+    animate-rails (1.0.10)
+      rails
     arel (8.0.0)
     autoprefixer-rails (8.0.0)
       execjs
@@ -295,6 +297,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate
+  animate-rails
   autoprefixer-rails
   bootstrap-sass
   carrierwave (~> 1.2)
