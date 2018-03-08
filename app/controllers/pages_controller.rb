@@ -6,4 +6,9 @@ class PagesController < ApplicationController
     @trips = @trips.where(date: params[:date]) if params[:date].present?
     @trips = @trips.global_search(params[:query]) if params[:query].present?
   end
+
+  def page_title
+      "Whikend Home"
+  end
+
 end

@@ -19,6 +19,11 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def page_title
+      "Whikend Reviews"
+  end
+
+
   private
 
   def params_review
