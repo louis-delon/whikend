@@ -99,13 +99,6 @@
             </div>
           </div>
         <% end %>
-        <span>
-          <% if policy(@trip).add_review? && policy(@trip).date_passed? %>
-            <%= link_to(new_trip_review_path(@trip), class: "btn btn-success") do %>
-              Add a Review
-            <% end %>
-          <% end %>
-        </span>
       </div>
     <% end %>
   <% end %>
