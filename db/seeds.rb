@@ -253,6 +253,8 @@ end
 def create_trips
   puts "creation trips"
   trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
+  trip_start = ["Paris", "Lyon", "Saint-Etienne", "Marseille", "Rouen", "Grenoble", "Chambery", "Toulouse", "Annecy", "Metz", "Auray"]
+
   francois = User.find_by(email: "francois@whikend.com")
   francoisho = User.find_by(email: "francoisho@whikend.com")
   roger = User.find_by(email: "roger@whikend.com")
@@ -348,8 +350,8 @@ def create_trips
     hike = Hike.all.sample
 
     Trip.create!(
-      description: Faker::Hipster.paragraph,
-      start_location: Faker::Address.city,
+      description: "N'hésitez pas en cas de questions - description detaillée ci-dessous",
+      start_location: trip_start.sample,
       hike_id: hike.id,
       title: hike.title,
       user_id: (((User.first.id)..(User.last.id)).to_a - [jacques.id] - [jack.id] - [francoisho.id] - [francois.id] - [vincent.id] - [karine.id]).sample,
