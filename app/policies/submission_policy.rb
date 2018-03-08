@@ -60,7 +60,6 @@ class SubmissionPolicy < ApplicationPolicy
   # def status_rejected?
   #   @record.trip.submissions.where(user_id: @user.id, accepted: false).exists?
   # end
-
   # def status_accepted?
   #   @record.trip.submissions.where(user_id: @user.id, accepted: true).exists?
   # end

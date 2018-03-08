@@ -27,10 +27,10 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
-    # raise
     @submission.destroy
+    @trip = Trip.find(params[:trip_id])
     authorize @submission
-    redirect_to trip_path
+    redirect_to trip_path(@trip)
   end
 
   def approve
