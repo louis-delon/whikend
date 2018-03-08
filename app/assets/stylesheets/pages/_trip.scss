@@ -162,6 +162,12 @@
   border-top: 1px solid #ddd;
 }
 
+.submission__buddies__buddy.seat--available img {
+  width: 80px;
+  height: 80px;
+  opacity: 0.4;
+}
+
 .submission__buddies__buddy {
   position: relative;
   margin: 0 10px;

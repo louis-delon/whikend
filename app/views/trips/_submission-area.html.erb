@@ -37,8 +37,12 @@
               <% end %>
             <% end %>
           </div>
-
         <% end %>
+      <% end %>
+      <% (@trip.seats - @submissions.where(accepted: true).count).times do %>
+        <div class="submission__buddies__buddy seat--available">
+          <%= image_tag "default-avatar.png" %>
+        </div>
       <% end %>
     </div>
   </div>
