@@ -17,8 +17,9 @@ class TripsController < ApplicationController
     @review = Review.where(trip_id: @trip).first
     @user = @trip.user
     @hike = Hike.find(@trip.hike_id)
+    set_submission
     @title = "#{@trip.title} Whikend"
-    new_submission
+
   end
 
   def new
@@ -80,8 +81,8 @@ class TripsController < ApplicationController
     params.require(:trip).permit(:hike_id, :title, :start_location, :date, :trip_type, :seats, :description, :user_id, :auto_accept, :fees)
   end
 
-  def new_submission
-    @submission = Submission.new(trip: @trip, user: current_user)
+  def set_submission
+    @submission = Submission.find_or_initialize_by(trip: @trip, user: current_user)
   end
 
 

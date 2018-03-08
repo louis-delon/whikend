@@ -54,12 +54,10 @@ class SubmissionPolicy < ApplicationPolicy
     scope.all.where(trip_id: @trip_id, user_id: @user.id).exists?
   end
 
-  # def status_rejected?
-  #   @record.trip.submissions.where(user_id: @user.id, accepted: false).exists?
-  # end
+  private
 
-  # def status_accepted?
-  #   @record.trip.submissions.where(user_id: @user.id, accepted: true).exists?
-  # end
+    def current_user_or_admin?
+      user.admin || @record.user == user
+    end
 
 end
