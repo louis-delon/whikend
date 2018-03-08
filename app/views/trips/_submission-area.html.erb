@@ -29,6 +29,7 @@
                   <%= icon('fas', 'times') %>
                 <% end %>
               <% end %>
+
             <% end %>
           </div>
 
@@ -86,8 +87,7 @@
             </div>
             <div class="submission__approval__actions">
               <% if policy(@submission).approve? && !policy(@submission).seat_full? %>
-                <
-                %= link_to(approve_submission_path(@trip, submission)) do %>
+                <%= link_to(approve_submission_path(@trip, submission)) do %>
                   <%= icon('fas', 'check') %>Accept
                 <% end %>
                   |
