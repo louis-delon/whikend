@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
     @message.user = current_user
     authorize @message
     if @message.save
-      redirect_to trip_path(params[:trip_id]), notice: "Your message was successfuly send!"
+      redirect_to trip_path(params[:trip_id])
     else
       render :new
     end

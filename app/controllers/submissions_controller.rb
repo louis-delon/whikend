@@ -20,7 +20,7 @@ class SubmissionsController < ApplicationController
     authorize @submission
     @submission.accepted = true if @trip.auto_accept
     if @submission.save
-      redirect_to trip_path(params[:trip_id]), notice: "Your submission was successfuly send!"
+      redirect_to trip_path(params[:trip_id])
     else
       render :new
     end

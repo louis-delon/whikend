@@ -9,9 +9,13 @@
     <h3 class="main__title"><%= pluralize(count_seats, "seat") %> available</h3>
   <% end %>
 
-  <% if @submissions.where(accepted: true).present? %>
-    <div class="submission__buddies">
-      <div class="submission__buddies__list">
+  <div class="submission__buddies">
+    <div class="submission__buddies__list">
+        <%= link_to user_path(@trip.user) do %>
+          <% user_avatar = @trip.user.facebook_picture_url || @trip.user.avatar || "default-avatar.png" %>
+          <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
+        <% end %>
+      <% if @submissions.where(accepted: true).present? %>
         <% @submissions.where(accepted: true).each do |submission| %>
           <div class="submission__buddies__buddy">
             <%= link_to user_path(submission.user) do %>
@@ -33,10 +37,9 @@
           </div>
 
         <% end %>
-      </div>
-
-      <a href="#hike__buddies" class="btn btn--secondary"><%= icon('fas', 'users') %> See buddies details</a>
     </div>
+    <a href="#hike__buddies" class="btn btn--secondary">See buddies details<%= icon('fas', 'users') %></a>
+  </div>
 
   <% end  %>
 
@@ -45,12 +48,9 @@
       <div class="submission__form">
         <%= simple_form_for([@trip, @submission]) do |f| %>
           <%= f.error_notification %>
-          <div class="form-inputs">
-            <%= f.input :content, as: :text, placeholder: "Tell #{@trip.user.first_name} why you want to be buddies" %>
-          </div>
           <div class="form-actions">
             <%= button_tag class: "btn btn--primary" do %>
-              <%= icon('fab', 'telegram-plane') %> Join this hike
+              Join this hike<%= icon('fab', 'telegram-plane') %>
             <% end %>
           </div>
           <% if policy(@trip).automatic? %>
@@ -86,8 +86,7 @@
             </div>
             <div class="submission__approval__actions">
               <% if policy(@submission).approve? && !policy(@submission).seat_full? %>
-                <
-                %= link_to(approve_submission_path(@trip, submission)) do %>
+                <%= link_to(approve_submission_path(@trip, submission)) do %>
                   <%= icon('fas', 'check') %>Accept
                 <% end %>
                   |
