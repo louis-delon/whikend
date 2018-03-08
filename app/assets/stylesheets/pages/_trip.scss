@@ -91,8 +91,8 @@
 
   h3.main__title {
     border-radius: 2px 2px 0 0;
-    background-color: lighten($secondary-color, 48%);
-    color: $secondary-color;
+    background-color: lighten($primary-color, 48%);
+    color: $primary-color;
   }
 }
 
@@ -106,7 +106,6 @@
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-bottom: 40px;
 
   .avatar {
     width: 80px;
@@ -159,6 +158,8 @@
 
 .submission__approval__waiting {
   padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
 }
 
 .submission__buddies__buddy {
@@ -173,25 +174,55 @@
     margin: 0;
   }
 
-  a.reject {
+  a.reject,
+  a.reject--self {
     position: absolute;
-    top: -5px;
-    right: -5px;
-    width: 30px;
-    height: 30px;
-    background-color: #df2800;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     font-size: 1rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #fff;
+    opacity: 0;
+    transition: $transition;
+
+    &:after {
+      display: inline-block;
+      color: #111;
+      font-weight: 400;
+      position: absolute;
+      font-size: 0.9rem;
+      top: -15px;
+      width: 110px;
+      transition: $transition;
+    }
+
+    &:hover {
+      opacity: 1;
+
+      &:after {
+        top: -25px;
+      }
+    }
+  }
+
+  a.reject:after {
+    content: "Reject this buddy";
+  }
+
+  a.reject--self:after {
+    content: "Leave this trip";
   }
 }
 
 .submission__form {
   padding: 40px 20px;
+  border-top: 1px solid #ddd;
 
   label {
     display: none;
@@ -206,10 +237,6 @@
     margin-top: 10px;
     color: #999;
   }
-}
-
-.submission__buddies + .submission__form {
-  border-top: 1px solid #ddd;
 }
 
 #hike__details {
