@@ -14,13 +14,13 @@ class SubmissionsController < ApplicationController
 
   def create
     @trip = Trip.find(params[:trip_id])
-    @submission = Submission.new(submission_params)
-    @submission.trip = @trip
-    @submission.user = current_user
+    @submission = Submission.new(trip: @trip, user: current_user)
+    # @submission.trip = @trip
+    # @submission.user = current_user
     authorize @submission
     @submission.accepted = true if @trip.auto_accept
     if @submission.save
-      redirect_to trip_path(params[:trip_id]), notice: "Your submission was successfuly send!"
+      redirect_to trip_path(params[:trip_id])
     else
       render :new
     end
@@ -53,15 +53,5 @@ private
   def save_submission
     @submission.save
     redirect_to trip_path(params[:trip_id])
-  end
-
-  def submission_params
-    params
-      .require(:submission)
-      .permit(
-        :content,
-        :user_id,
-        :trip_id
-      )
   end
 end

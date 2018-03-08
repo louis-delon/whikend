@@ -9,9 +9,15 @@
     <h3 class="main__title"><%= pluralize(count_seats, "seat") %> available</h3>
   <% end %>
 
-  <% if @submissions.where(accepted: true).present? %>
-    <div class="submission__buddies">
-      <div class="submission__buddies__list">
+  <div class="submission__buddies">
+    <div class="submission__buddies__list">
+      <%= link_to user_path(@trip.user) do %>
+        <div class="submission__buddies__buddy">
+          <% user_avatar = @trip.user.facebook_picture_url || @trip.user.avatar || "default-avatar.png" %>
+          <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
+        </div>
+      <% end %>
+      <% if @submissions.where(accepted: true).present? %>
         <% @submissions.where(accepted: true).each do |submission| %>
           <div class="submission__buddies__buddy">
             <%= link_to user_path(submission.user) do %>
@@ -25,33 +31,31 @@
               <% end %>
 
               <% if policy(submission).reject? %>
-                <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
+                <%= link_to(reject_submission_path(@trip, submission), class: "reject--self") do %>
                   <%= icon('fas', 'times') %>
                 <% end %>
               <% end %>
 
             <% end %>
           </div>
-
         <% end %>
-      </div>
-
-      <a href="#hike__buddies" class="btn btn--secondary"><%= icon('fas', 'users') %> See buddies details</a>
+      <% end %>
+      <% (@trip.seats - @submissions.where(accepted: true).count).times do %>
+        <div class="submission__buddies__buddy seat--available">
+          <%= image_tag "default-avatar.png" %>
+        </div>
+      <% end %>
     </div>
-
-  <% end  %>
+  </div>
 
   <% if !policy(@trip).date_passed? %>
     <% if policy(@submission).create? %>
       <div class="submission__form">
         <%= simple_form_for([@trip, @submission]) do |f| %>
           <%= f.error_notification %>
-          <div class="form-inputs">
-            <%= f.input :content, as: :text, placeholder: "Tell #{@trip.user.first_name} why you want to be buddies" %>
-          </div>
           <div class="form-actions">
             <%= button_tag class: "btn btn--primary" do %>
-              <%= icon('fab', 'telegram-plane') %> Join this hike
+              Join this hike<%= icon('fab', 'telegram-plane') %>
             <% end %>
           </div>
           <% if policy(@trip).automatic? %>
@@ -71,10 +75,7 @@
   <% if policy(@submission).current_user_is_driver? %>
 
     <% if policy(@submission).submissions_pending? %>
-      <h3>Waiting for approval</h3>
-    <% end %>
-
-    <% if policy(@submission).submission_present? %>
+    <h3>Waiting for approval</h3>
       <div class="submission__approval">
         <% @submissions.where(accepted: nil).each do |submission| %>
           <div class="submission__approval__item">

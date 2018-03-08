@@ -3,7 +3,6 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @trips = Trip.all
     @trips = policy_scope(Trip).where('trips.date > ?', Date.today)
     @trips = @trips.where('trips.seats > ?', params[:seats]) if params[:seats].present?
     @trips = @trips.where(date: params[:date]) if params[:date].present?
@@ -35,7 +34,7 @@ class TripsController < ApplicationController
     @trip.user = current_user
     authorize @trip
     if @trip.save
-      redirect_to trip_path(@trip), notice: "Your trip was successfuly created!"
+      redirect_to trip_path(@trip)
     else
       render :new
     end
@@ -76,7 +75,6 @@ class TripsController < ApplicationController
 
   def new_submission
     @submission = Submission.new(trip: @trip, user: current_user)
-    # @submission = Trip.submissions.build
   end
 
 
