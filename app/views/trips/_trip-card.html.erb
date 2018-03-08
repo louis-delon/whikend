@@ -8,7 +8,7 @@
       <span class="trip__card__user">
         <% user_avatar = trip.user.facebook_picture_url || trip.user.avatar || "default-avatar.png" %>
         <%= cl_image_tag user_avatar, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown", crop: :thumb, gravity: :face, width: 300, height: 300 %>
-        <%= "#{trip.user.first_name.capitalize} #{trip.user.last_name}" %>
+        <%= "#{trip.user.first_name.capitalize}" %>
       </span>
     </div>
     <span class="trip__card__filter"></span>
