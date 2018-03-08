@@ -1,0 +1,9 @@
+var messageForm = document.querySelector('.trip__message__form');
+
+<% if @message.persisted? %>
+  var tripMessageList = document.querySelector('.trip__message__list');
+  tripMessageList.insertAdjacentHTML('beforeend', "<%= j render 'trips/message', message: @message, html_class: 'slideInUp animated'%>");
+  messageForm.innerHTML = "<%= j render 'message_form', message: @new_message, trip: @message.trip %>";
+<% else %>
+  messageForm.innerHTML = "<%= j render 'message_form', message: @message, trip: @message.trip %>";
+<% end %>
