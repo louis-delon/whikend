@@ -36,7 +36,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to(user_path(current_user, anchor: "trips"), class: "navbar-wagon-item navbar-wagon-link") do %>
+              <%= link_to(user_path(current_user, anchor: "user__trips"), class: "navbar-wagon-item navbar-wagon-link") do %>
                 <%= icon('fas', 'location-arrow') %><%= t(".profile", default: "My trips") %>
               <% end %>
             </li>
