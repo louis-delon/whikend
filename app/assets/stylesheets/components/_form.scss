@@ -20,7 +20,14 @@ textarea {
 
 .form-inline-group {
   display: flex;
-  flex-grow: 1;
+
+  .form-inputs {
+    flex-grow: 1;
+
+    // input, select {
+    //   width: 100%;
+    // }
+  }
 }
 
 .form-inline-group .form-inputs {
