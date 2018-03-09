@@ -1,5 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Trip, :type => :model do
-  it { expect(Trip.new).to belong_to(:user) }
+  it 'trip belongs to user' do
+    trip = Trip.new
+    expect(trip).to belong_to(:user)
+  end
 end
