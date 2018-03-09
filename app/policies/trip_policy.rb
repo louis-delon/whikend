@@ -51,7 +51,7 @@ class TripPolicy < ApplicationPolicy
 private
 
   def current_user_or_admin?
-    user.admin || @record == user
+    user.admin || @record.user == user
   end
 
 end
