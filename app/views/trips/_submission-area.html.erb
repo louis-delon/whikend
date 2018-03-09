@@ -15,6 +15,7 @@
         <div class="submission__buddies__buddy">
           <% user_avatar = @trip.user.facebook_picture_url || @trip.user.avatar || "default-avatar.png" %>
           <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
+          <span class="buddy__avatar__name"><%= @trip.user.first_name %></span>
         </div>
       <% end %>
       <% if @submissions.where(accepted: true).present? %>
@@ -23,6 +24,9 @@
             <%= link_to user_path(submission.user) do %>
               <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
               <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
+              <% if submission.user != current_user %>
+                <span class="buddy__avatar__name"><%= submission.user.first_name %></span>
+              <% end %>
 
               <% if policy(submission).reject? %>
                 <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>

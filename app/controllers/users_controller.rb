@@ -16,7 +16,7 @@ before_action :set_user, only: [:show, :edit, :update]
   end
 
   def page_title
-      "Profil #{@user.first_name} on Whikend"
+    "Whikend | #{@user.first_name} #{@user.last_name}"
   end
 
   private

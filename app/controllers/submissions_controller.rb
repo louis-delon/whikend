@@ -29,7 +29,7 @@ class SubmissionsController < ApplicationController
     authorize @submission
     @trip = @submission.trip
     @submission.destroy
-    redirect_to trip_path(@trip)
+    redirect_to trip_path(@trip), notice: "Your submission has been cancelled"
   end
 
   def approve

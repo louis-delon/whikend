@@ -11,11 +11,6 @@
   position: sticky;
   top: 0;
   z-index: 15;
-
-  i  {
-    margin-right: 10px;
-    font-size: 0.9rem;
-  }
 }
 
 /* Logo */
@@ -62,6 +57,10 @@
   border: none;
   padding: 0;
   border-radius: $border-radius;
+
+  i {
+    margin-right: 10px;
+  }
 
   li:nth-child(n + 2) {
     border-top: 1px solid #ddd;
