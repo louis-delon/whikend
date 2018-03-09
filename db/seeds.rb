@@ -434,6 +434,19 @@ def create_trips
   hike_etienne = hikes_tmp[1]
 
   Trip.create!(
+    description: "Venez découvrir le grand GR10 - Au programme : effort ",
+    start_location: "Lyon",
+    hike_id: hike_corse.id,
+    title: "Grand départ pour le GR10",
+    user_id: louis.id,
+    date: Date.today+(1),
+    trip_type: trip_types.sample,
+    seats: 2,
+    auto_accept: false,
+    fees: (2..7).to_a.sample
+  )
+
+  Trip.create!(
     title: "A la découverte du Vercors!",
     description: "Grosse rando sympa dans la bonne humeur. Venez si vous voulez décompresser de la ville, de ses bruits et de ses pigeons.",
     start_location: "Lyon",
@@ -456,20 +469,6 @@ def create_trips
     trip_type: "Détente",
     seats: 8,
     auto_accept: true,
-    fees: (2..7).to_a.sample
-  )
-
-
-  Trip.create!(
-    description: "Venez découvrir le grand GR20 - Au programme : effort ",
-    start_location: "Lyon",
-    hike_id: hike_corse.id,
-    title: "Grand départ pour le GR20",
-    user_id: louis.id,
-    date: Date.today+(1),
-    trip_type: trip_types.sample,
-    seats: 2,
-    auto_accept: false,
     fees: (2..7).to_a.sample
   )
 
@@ -527,7 +526,7 @@ def create_trips
     user_id: matthieu.id,
     date: Date.today+(3),
     trip_type: "Challenge",
-    seats: 23,
+    seats: 21,
     auto_accept: true,
     fees: 5500
   )
@@ -559,7 +558,6 @@ def create_submissions
   louis = User.find_by(email: "louis@holdies.com")
   wagon_tab << louis.id
   alexandre = User.find_by(email: "alexandre.b2506@gmail.com")
-  wagon_tab << alexandre.id
   theo = User.find_by(email: "theo@whikend.com")
   wagon_tab << theo.id
   sebastien = User.find_by(email: "sebastien@whikend.com")
@@ -639,6 +637,12 @@ def create_submissions
 
   Submission.create!(
     user_id: etienne.id.to_i,
+    trip_id: trip_corse.id.to_i,
+    accepted: true
+  )
+
+  Submission.create!(
+    user_id: meryem.id.to_i,
     trip_id: trip_corse.id.to_i,
     accepted: true
   )
