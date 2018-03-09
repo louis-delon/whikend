@@ -13,10 +13,11 @@
             <%= f.input :email, required: true, autofocus: true %>
             <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
             <%= f.input :password_confirmation, required: true %>
-            <!-- <%= f.input :first_name, required: true %>
+            <%= f.input :first_name, required: true %>
             <%= f.input :last_name, required: true %>
+            <label><abbr title="required">*</abbr> Profile picture</label>
             <%= f.file_field :avatar %>
-            <%= f.hidden_field :avatar_cache, as: :hidden %> -->
+            <%= f.hidden_field :avatar_cache, as: :hidden %>
           </div>
 
           <div class="form-actions">
