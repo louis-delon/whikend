@@ -6,7 +6,7 @@ if (tripDate) {
   new flatpickr(tripDate, { dateFormat: 'd-m-Y'});
 }
 
-const tripDate = document.getElementById('.banner--home__search #date');
-if (tripDate) {
-  new flatpickr(tripDate, { dateFormat: 'd-m-Y'});
+const searchDate = document.querySelector('.banner--home__search #date');
+if (searchDate) {
+  new flatpickr(searchDate, { dateFormat: 'd-m-Y'});
 }
