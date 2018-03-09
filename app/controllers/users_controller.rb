@@ -4,7 +4,8 @@ before_action :set_user, only: [:show, :edit, :update]
 
   def show
     @average = calcul_average_rating(@user)
-    @trips = trips_user_list(@user)
+    @user_trips = trips_user_list(@user)
+    @default_cover = "http://res.cloudinary.com/dvsmmztrt/image/upload/v1520585118/default_cover.jpg"
   end
 
   def edit

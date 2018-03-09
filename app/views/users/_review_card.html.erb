@@ -1,0 +1,14 @@
+<div class="user__reviews__card">
+  <div class="user__reviews__stars">
+    <% review.rating.times do %>
+    <%= icon('fas star--full', 'star') %>
+    <% end %>
+    <% (5 - review.rating).times do %>
+    <%= icon('fas star--empty', 'star') %>
+    <% end %>
+  </div>
+  <p class="user__reviews__content">
+    <%= review.content %>
+  </p>
+  <p class="user__reviews__details"><%= review.created_at.strftime("%m/%d/%y") %> par <%= review.sender.first_name %></p>
+</div>
