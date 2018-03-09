@@ -17,6 +17,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new(trip: @trip, user: current_user)
     authorize @submission
     @submission.accepted = true if @trip.auto_accept
+    UserMailer.select(@submission).deliver_now if @trip.auto_accept
     if @submission.save
       redirect_to trip_path(params[:trip_id])
     else
