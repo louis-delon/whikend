@@ -594,7 +594,7 @@ def create_submissions
   ############
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
-  trip_corse = Trip.find_by(title: "Grand départ pour le GR20")
+  trip_corse = Trip.find_by(title: "Grand départ pour le GR10")
   trip_wagon = Trip.find_by(title: "La Tres Grande Rando du Wagon Lyon")
 
   wagon_tab.each do |alumni|
@@ -690,7 +690,7 @@ def create_messages
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
-  trip_corse = Trip.find_by(title: "Grand départ pour le GR20")
+  trip_corse = Trip.find_by(title: "Grand départ pour le GR10")
   trip_wagon = Trip.find_by(title: "La Tres Grande Rando du Wagon Lyon")
 
   messages = ["Quel est le temps prévu pour ce weekend?", "Pour les connaisseurs, une idée de quelques indispensables pour cette rando?", "Je vais faire un tour au Vieux Campeur - je peux prendre des trucs si vous voulez, n'hésitez pas", "Hâte d'y être!", "Comment on s'organise pour le départ?", "C'est possible de changer la date de depart?", "Le parcours a l'air super", "Je prends ma camera!!", "Quelqu'un a une paire de chaussettes du 42?", "J'ai perdu ma gourde - dépannage possible?", "Je suis dispo pour conduire sur une partie du trajet", "N'oubliez pas vos lunettes de soleil", "Attention - grosse chaleur prévue ce weekend", "Pensez bien à la creme solaire", "Je prends un jeu de carte pour se faire une petite coinche à la fraiche", "Un Ricard?", "Un saucisson, du pinard, je suis prêt pour le grand départ", "Je peux ramener un +1?", "C'est quel modèle ta voiture?", "On fait les courses sur la route si vous êtes ok?"]
@@ -819,7 +819,7 @@ def create_reviews
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
-  trip_corse = Trip.find_by(title: "Grand départ pour le GR20")
+  trip_corse = Trip.find_by(title: "Grand départ pour le GR10")
 
   reviews_generator = ["Vraiment une belle rando - je recommande", "Toujours le même plaisir", "Vraiment pas mal", "Au top", "Je recommande à fond", "N'hésitez pas", "Belles rigolades, belle marche - que du bonheur", "Merci Whikend pour cet extraordinaire rando", "Que demandez de plus?", "Le petit rouge au sommet fait plaisir", "Le roi du matos pour la reine des randos - parfait", "Une descente de Ricard que j'aimerais pas remonter en velo", "Hyper intense - le Kylian Jornet du dimanche"]
 
