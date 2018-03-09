@@ -1,6 +1,6 @@
 dependencies = %w(Review Submission Message Trip User Hike)
 
-level_seed = (ENV['LEVEL_SEED'] || "User")
+level_seed = (ENV['LEVEL_SEED'] || "Trip")
 
 tables = dependencies[0, dependencies.index(level_seed) + 1]
 
@@ -10,9 +10,13 @@ def create_hikes
   hike_solutre = Hike.create!
   hike_vercors = Hike.create!
   hike_corse = Hike.create!
+  hike_wagon = Hike.create!
   UniScrapper.new(hike_solutre, "https://www.visorando.com/randonnee-sur-les-pas-de-tonton/")
   UniScrapper.new(hike_vercors, "https://www.visorando.com/randonnee-sur-les-sentiers-des-gorges-de-l-ardeche/")
   UniScrapper.new(hike_corse, "https://www.visorando.com/randonnee-gr20-de-bibi/")
+  UniScrapper.new(hike_wagon, "https://www.visorando.com/randonnee-/1008103")
+  hike_wagon.update(photo_url: "https://kitt.lewagon.com/placeholder/cities/lyon")
+  hike_wagon.update(distance: "101km")
   MultiScrapper.departments_list
 end
 
@@ -95,13 +99,15 @@ def create_users
     remote_avatar_url: 'https://sacrenathalie.files.wordpress.com/2015/08/randonneurs-1997-15-g.jpg'
   )
 
+###########################
+
   User.create!(
     email: 'etienne.delorieux@gmail.com',
     admin: false,
     password: 'aaaaaa',
     first_name: 'Etienne',
     last_name: 'Delorieux',
-    description: 'Mangez des pommes!',
+    description: 'Go le Canada',
     age: 27,
     remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/EtienneDelorieux'
   )
@@ -112,7 +118,7 @@ def create_users
     password: 'aaaaaa',
     first_name: 'Lorenzo',
     last_name: 'Del Castillo Detoeuf',
-    description: 'En voiture Michele!',
+    description: 'Yo',
     age: 25,
     remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/ldeld'
   )
@@ -123,9 +129,20 @@ def create_users
     password: 'aaaaaa',
     first_name: 'Louis',
     last_name: 'Delon',
-    description: 'Passionné de montagne et du grand air - toujours partant pour rejoindre ou organiser une petite rando',
+    description: 'Vous voulez un grand ecran?',
     age: 40,
     remote_avatar_url: 'http://kitt.lewagon.com/placeholder/users/louleman34'
+  )
+
+  User.create!(
+    email: 'alexandre.b2506@gmail.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Alexandre',
+    last_name: 'Bouvier',
+    description: "Un Parisien a Lyon",
+    age: 30,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/alexandrebk'
   )
 
   User.create!(
@@ -134,7 +151,7 @@ def create_users
     password: 'aaaaaa',
     first_name: 'Sebastien',
     last_name: 'Balas',
-    description: "La Suisse me manque - j\'ai besoin de prendre l\'air",
+    description: "La Suisse me manque :(",
     age: 24,
     remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/sebbbalas'
   )
@@ -156,7 +173,7 @@ def create_users
     password: 'aaaaaa',
     first_name: 'Antoine',
     last_name: 'Giret',
-    description: "La Croix Rousse c\'est sympa, mais on manque de verdure",
+    description: "A mort les agences",
     age: 32,
     remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/agiret'
   )
@@ -167,7 +184,7 @@ def create_users
     password: 'aaaaaa',
     first_name: 'Alix',
     last_name: 'Peyrot',
-    description: "Toujours dispo pour une rando - contactez si vous avez besoin d'une voiture",
+    description: "Besoin d'une voiture",
     age: 32,
     remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/AlixPS'
   )
@@ -178,7 +195,7 @@ def create_users
     password: 'aaaaaa',
     first_name: 'Maxime',
     last_name: 'Personnic',
-    description: "La Bourgogne c'est sympa pour les randos !",
+    description: "La Bourgogne c'est sympa pour les randos",
     age: 27,
     remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/maxime12345'
   )
@@ -189,7 +206,7 @@ def create_users
     password: 'aaaaaa',
     first_name: 'Joseph',
     last_name: 'Blanchard',
-    description: "Ca fait du bien de quitter de temps en temps l'Internet mondial",
+    description: "Allez on fait les fifous",
     age: 34,
     remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/jpheos'
   )
@@ -204,6 +221,129 @@ def create_users
     age: 34,
     remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/kevcha'
   )
+
+  User.create!(
+    email: 'matthieu@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Matthieu',
+    last_name: 'Cartiller',
+    description: "Comment y va?",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/cartosnet'
+  )
+
+  User.create!(
+    email: 'lahbib@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Lahbib',
+    last_name: 'Belhaddad',
+    description: "Danza Kuduro",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/lahbibSBK'
+  )
+
+  User.create!(
+    email: 'mathieu@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Mathieu',
+    last_name: 'Nicolas',
+    description: "La Thailande ma poule",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/matni94'
+  )
+
+  User.create!(
+    email: 'mathilde@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Mathilde',
+    last_name: 'Lesauvage',
+    description: "A mort les agences",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/mathildelesau'
+  )
+
+  User.create!(
+    email: 'mohamed@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Mohamed',
+    last_name: 'Diop',
+    description: "Il fait froid non?",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/MuhammadDiop'
+  )
+
+  User.create!(
+    email: 'romain@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Romain',
+    last_name: 'Duthel',
+    description: "Ce site est-il Open Source?",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/rduthel'
+  )
+
+  User.create!(
+    email: 'theo@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Theo',
+    last_name: 'Nazon',
+    description: "Moyen de randonner en velo?",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/theolal'
+  )
+
+  User.create!(
+    email: 'thomas@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Thomas',
+    last_name: 'Jouvel',
+    description: "Mr. Replique",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/ThomasJoujou'
+  )
+
+  User.create!(
+    email: 'christophe@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Christophe',
+    last_name: 'Gachet',
+    description: "Yo",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/crionline38'
+  )
+
+  User.create!(
+    email: 'guillaume@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Guillaume',
+    last_name: 'Noireaux',
+    description: "Yo",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/gnoireaux'
+  )
+
+  User.create!(
+    email: 'benoitw@whikend.com',
+    admin: false,
+    password: 'aaaaaa',
+    first_name: 'Benoit',
+    last_name: 'Duvignaud',
+    description: "Yo",
+    age: 34,
+    remote_avatar_url: 'https://kitt.lewagon.com/placeholder/users/bduvignaud'
+  )
+
+#############################
 
   User.create!(
     email: 'kylian@whikend.com',
@@ -280,12 +420,17 @@ def create_trips
   etienne = User.find_by(email: "etienne.delorieux@gmail.com")
   joseph = User.find_by(email: "joseph@whikend.com")
   kevin = User.find_by(email: "kevin@whikend.com")
+  alexandre = User.find_by(email: "alexandre.b2506@gmail.com")
+  matthieu = User.find_by(email: "matthieu@whikend.com")
+
+
 
   hikes_tmp = Hike.all.sample(2)
 
   hike_solutre = Hike.find_by(site_id: 523281)
   hike_corse = Hike.find_by(site_id: 2867)
   hike_vercors = Hike.find_by(site_id: 552975)
+  hike_wagon = Hike.find_by(site_id: 1008103)
   hike_etienne = hikes_tmp[1]
 
   Trip.create!(
@@ -349,7 +494,7 @@ def create_trips
     title: "Rando dans les Pyrénées et le Pays Basque",
     description: "J'organise une rando au départ de Bayonne mardi prochain. Je ramène du jambon de Bayonne pour le pic-nic :). J'ai un combi Volkswagen",
     start_location: "Bayonne",
-    hike_id: ((Hike.first.id)..(Hike.last.id)).to_a.sample,
+    hike_id: (((Hike.first.id)..(Hike.last.id)).to_a - [hike_wagon.id] - [hike_vercors.id] - [hike_corse.id] - [hike_solutre.id]).sample,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
     date: Date.today+(3),
     trip_type: trip_types.sample,
@@ -359,14 +504,13 @@ def create_trips
   )
 
   20.times do
-    hike = Hike.all.sample
-
+    hike = (((Hike.first.id)..(Hike.last.id)).to_a - [hike_wagon.id] - [hike_vercors.id] - [hike_corse.id] - [hike_solutre.id]).sample
     Trip.create!(
       description: "N'hésitez pas en cas de questions - description détaillée ci-dessous",
       start_location: trip_start.sample,
-      hike_id: hike.id,
-      title: hike.title,
-      user_id: (((User.first.id)..(User.last.id)).to_a - [jacques.id] - [jack.id] - [francoisho.id] - [francois.id] - [vincent.id] - [karine.id]).sample,
+      hike_id: hike,
+      title: Hike.find(hike).title,
+      user_id: (((User.first.id)..(User.last.id)).to_a - [jacques.id] - [jack.id] - [francoisho.id] - [francois.id] - [vincent.id] - [karine.id] - [alexandre.id]).sample,
       date: [Date.today-(7),Date.today+(1),Date.today+(3),Date.today+(7)].sample,
       trip_type: trip_types.sample,
       seats: (2..5).to_a.sample,
@@ -374,11 +518,25 @@ def create_trips
       fees: (2..7).to_a.sample
     )
   end
+
+  Trip.create!(
+    title: "La Tres Grande Rando du Wagon Lyon",
+    description: "Un grand merci à Matthieu, Kevin, Joseph ######### aux TAs Lorenzo / Christophe / Benoit / Guillaume ######### et au batch #121 : Alex, Alix, Antoine, Etienne, Isabelle, Lahbib, Louis, Mathieu, Mathilde, Maxime, Mohamed, Romain, Sebastien, Theo & Thomas !",
+    start_location: "Lyon",
+    hike_id: hike_wagon.id,
+    user_id: matthieu.id,
+    date: Date.today+(3),
+    trip_type: "Challenge",
+    seats: 23,
+    auto_accept: true,
+    fees: 5500
+  )
+
 end
 
 def create_submissions
   puts "creation submissions"
-    francois = User.find_by(email: "francois@whikend.com")
+  francois = User.find_by(email: "francois@whikend.com")
   francoisho = User.find_by(email: "francoisho@whikend.com")
   roger = User.find_by(email: "roger@whikend.com")
   jack = User.find_by(email: "jack@whikend.com")
@@ -386,16 +544,68 @@ def create_submissions
   benoit = User.find_by(email: "benoit@whikend.com")
   vincent = User.find_by(email: "vincent@whikend.com")
   karine = User.find_by(email: "karine@whikend.com")
-  louis = User.find_by(email: "louis@holdies.com")
-  etienne = User.find_by(email: "etienne.delorieux@gmail.com")
-  joseph = User.find_by(email: "joseph@whikend.com")
-  kevin = User.find_by(email: "kevin@whikend.com")
   meryem = User.find_by(email: "meryem@whikend.com")
+  ############
+  wagon_tab = []
+  ###
+  joseph = User.find_by(email: "joseph@whikend.com")
+  wagon_tab << joseph.id
+  kevin = User.find_by(email: "kevin@whikend.com")
+  wagon_tab << kevin.id
+  matthieu = User.find_by(email: "matthieu@whikend.com")
+  ###
+  etienne = User.find_by(email: "etienne.delorieux@gmail.com")
+  wagon_tab << etienne.id
+  louis = User.find_by(email: "louis@holdies.com")
+  wagon_tab << louis.id
+  alexandre = User.find_by(email: "alexandre.b2506@gmail.com")
+  wagon_tab << alexandre.id
+  theo = User.find_by(email: "theo@whikend.com")
+  wagon_tab << theo.id
+  sebastien = User.find_by(email: "sebastien@whikend.com")
+  wagon_tab << sebastien.id
+  antoine = User.find_by(email: "antoine@whikend.com")
+  wagon_tab << antoine.id
+  maxime = User.find_by(email: "maxime@whikend.com")
+  wagon_tab << maxime.id
+  mathilde = User.find_by(email: "mathilde@whikend.com")
+  wagon_tab << mathilde.id
+  isabelle = User.find_by(email: "isabelle@whikend.com")
+  wagon_tab << isabelle.id
+  mohamed = User.find_by(email: "mohamed@whikend.com")
+  wagon_tab << mohamed.id
+  lahbib = User.find_by(email: "lahbib@whikend.com")
+  wagon_tab << lahbib.id
+  mathieu = User.find_by(email: "mathieu@whikend.com")
+  wagon_tab << mathieu.id
+  alix = User.find_by(email: "alix@whikend.com")
+  wagon_tab << alix.id
+  romain = User.find_by(email: "romain@whikend.com")
+  wagon_tab << romain.id
+  thomas = User.find_by(email: "thomas@whikend.com")
+  wagon_tab << thomas.id
 
-
+  lorenzo = User.find_by(email: "lorenzo@whikend.com")
+  wagon_tab << lorenzo.id
+  christophe = User.find_by(email: "christophe@whikend.com")
+  wagon_tab << christophe.id
+  guillaume = User.find_by(email: "guillaume@whikend.com")
+  wagon_tab << guillaume.id
+  benoitw = User.find_by(email: "benoitw@whikend.com")
+  wagon_tab << benoitw.id
+  ############
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
   trip_corse = Trip.find_by(title: "Grand départ pour le GR20")
+  trip_wagon = Trip.find_by(title: "La Tres Grande Rando du Wagon Lyon")
+
+  wagon_tab.each do |alumni|
+    Submission.create!(
+    user_id: alumni,
+    trip_id: trip_wagon.id.to_i,
+    accepted: true
+  )
+  end
 
   Submission.create!(
     user_id: roger.id.to_i,
@@ -434,8 +644,8 @@ def create_submissions
   )
 
   26.times do
-    user_id = (User.first.id..User.last.id).to_a.sample
-    trip_id = ((Trip.first.id..Trip.last.id).to_a - [trip_solutre.id] - [trip_vercors.id] - [trip_corse.id]).sample
+    user_id = (((User.first.id)..(User.last.id)).to_a - [alexandre.id]).sample
+    trip_id = ((Trip.first.id..Trip.last.id).to_a - [trip_solutre.id] - [trip_vercors.id] - [trip_corse.id] - [trip_wagon.id]).sample
     accepted = Submission.where(trip_id: trip_id).count < Trip.find(trip_id).seats
 
     Submission.create!(
@@ -447,8 +657,8 @@ def create_submissions
 
   14.times do
     Submission.create!(
-      user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_solutre.id] - [trip_vercors.id] - [trip_corse.id]).sample,
+      user_id: (((User.first.id)..(User.last.id)).to_a - [alexandre.id]).sample,
+      trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_solutre.id] - [trip_vercors.id] - [trip_corse.id] - [trip_wagon.id]).sample,
       accepted: nil
     )
   end
@@ -470,11 +680,14 @@ def create_messages
   kevin = User.find_by(email: "kevin@whikend.com")
   meryem = User.find_by(email: "meryem@whikend.com")
   chirac = User.find_by(email: "jchirac@whikend.com")
+  alexandre = User.find_by(email: "alexandre.b2506@gmail.com")
+  isabelle = User.find_by(email: "isabelle@whikend.com")
 
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
   trip_corse = Trip.find_by(title: "Grand départ pour le GR20")
+  trip_wagon = Trip.find_by(title: "La Tres Grande Rando du Wagon Lyon")
 
   messages = ["Quel est le temps prévu pour ce weekend?", "Pour les connaisseurs, une idée de quelques indispensables pour cette rando?", "Je vais faire un tour au Vieux Campeur - je peux prendre des trucs si vous voulez, n'hésitez pas", "Hâte d'y être!", "Comment on s'organise pour le départ?", "C'est possible de changer la date de depart?", "Le parcours a l'air super", "Je prends ma camera!!", "Quelqu'un a une paire de chaussettes du 42?", "J'ai perdu ma gourde - dépannage possible?", "Je suis dispo pour conduire sur une partie du trajet", "N'oubliez pas vos lunettes de soleil", "Attention - grosse chaleur prévue ce weekend", "Pensez bien à la creme solaire", "Je prends un jeu de carte pour se faire une petite coinche à la fraiche", "Un Ricard?", "Un saucisson, du pinard, je suis prêt pour le grand départ", "Je peux ramener un +1?", "C'est quel modèle ta voiture?", "On fait les courses sur la route si vous êtes ok?"]
 
@@ -483,6 +696,18 @@ def create_messages
     user_id: etienne.id,
     trip_id: trip_corse.id
   )
+
+  Message.create!(
+    content: "Bravo à tous mes chers amis",
+    user_id: chirac.id,
+    trip_id: trip_wagon.id
+  )
+  Message.create!(
+    content: "Ce soir on se mettrait pas la PIRE RACE?",
+    user_id: isabelle.id,
+    trip_id: trip_wagon.id
+  )
+
 
   Message.create!(
     content: "Plaisir partagé :) - on attend de nouveaux compagnons et c'est parti",
@@ -559,8 +784,8 @@ def create_messages
   25.times do
     Message.create!(
       content: messages.sample,
-      user_id: (((User.first.id)..(User.last.id)).to_a - [francois.id] - [roger.id] - [jack.id] - [jacques.id] - [benoit.id] - [karine.id] - [vincent.id]).sample,
-      trip_id: (((Trip.first.id)..(Trip.last.id)).to_a - [trip_solutre.id] - [trip_corse.id] - [trip_vercors.id] ).sample
+      user_id: (((User.first.id)..(User.last.id)).to_a - [francois.id] - [roger.id] - [jack.id] - [jacques.id] - [benoit.id] - [karine.id] - [vincent.id] - [alexandre.id]).sample,
+      trip_id: (((Trip.first.id)..(Trip.last.id)).to_a - [trip_solutre.id] - [trip_corse.id] - [trip_vercors.id] - [trip_wagon.id]).sample
     )
   end
 end
@@ -586,6 +811,7 @@ def create_reviews
   antoine = User.find_by(email: "antoine@whikend.com")
   kevin = User.find_by(email: "kevin@whikend.com")
   joseph = User.find_by(email: "joseph@whikend.com")
+  alexandre = User.find_by(email: "alexandre.b2506@gmail.com")
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
@@ -718,7 +944,7 @@ def create_reviews
     Review.create!(
       content: reviews_generator,
       rating: (3..5).to_a.sample,
-      sender_id: ((User.first.id)..(User.last.id)).to_a.first(5).sample,
+      sender_id: (((User.first.id)..(User.last.id)).to_a.first(5) - [alexandre.id]).sample,
       receiver_id: ((User.first.id)..(User.last.id)).to_a.last(5).sample,
       trip_id: ((Trip.first.id..Trip.last.id).to_a - [trip_solutre.id] - [trip_vercors.id]).sample
     )
