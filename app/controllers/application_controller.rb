@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def page_title
-      "Whikend"
+      "Whikend | Find your next hiking buddies"
   end
 
   def default_url_options

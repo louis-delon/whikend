@@ -1,4 +1,4 @@
-meta_product_name: "Whikend"
+meta_product_name: "Whikend | Find your next hiking buddies"
 meta_description: "Whikend helps you organize hikes and find your next hiking buddies"
-meta_image: "logo-whikend.png"                       # should exist in `app/assets/images/`
+meta_image: "whikend-cover.jpg"                       # should exist in `app/assets/images/`
 meta_title: "Whikend | Find your next hiking buddies"
