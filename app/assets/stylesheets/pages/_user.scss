@@ -1,16 +1,45 @@
-.user__box {
-  background-color: #fff;
-  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+.banner--user {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 400px;
+  color: #fff;
+  padding-top: 80px;
   text-align: center;
-  padding-top: 20px;
-  margin-top: 20px;
+  display: flex;
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
 }
 
-.user__box h4 {
-  font-style: italic;
-  font-size: 14px;
-  color: $gray;
+#user__info {
+  background-color: #fff;
 }
+
+.user__info__average {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.user__review__stars {
+  margin-bottom: 5px;
+}
+
+.user__info__bio p {
+  text-align: center;
+  line-height: 1.5rem;
+}
+
+
+/* --- */
 
 .user__form__label {
   font-size: 10px;
@@ -45,19 +74,41 @@
   margin-left: 14px;
 }
 
+#user__reviews h2,
+#user__trips h2 {
+  margin-bottom: 40px;
+}
+
+.user__reviews__list .col-lg-3:nth-child(n + 5){
+  margin-top: 30px;
+}
+
 .user__reviews__card {
   background-color: #fff;
   border-radius: $border-radius;
-  margin: 10px 0px;
   box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   transition: $transition;
-  padding: 10px 0px;
+  padding: 20px;
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
   }
 }
 
-.user__review__average {
-  margin-bottom: 5px;
+.user__reviews__stars {
+  margin-bottom: 10px;
+}
+
+.user__reviews__content {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.user__reviews__details {
+  color: #999;
+}
+
+#user__trips {
+  background-color: #fff;
 }

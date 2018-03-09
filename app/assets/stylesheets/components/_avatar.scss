@@ -4,12 +4,12 @@
   border-radius: 100px;
 }
 
-.avatar__profile {
+.avatar--profile {
   width: 200px;
   height: 200px;
-  border-radius: 100px;
-  margin-bottom: 30px;
+  border-radius: 50%;
+  margin: -190px auto 20px;
+  border: 5px solid #fff;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  z-index: 10;
 }

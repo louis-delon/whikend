@@ -17,6 +17,7 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new(trip: @trip, user: current_user)
     authorize @submission
     @submission.accepted = true if @trip.auto_accept
+    UserMailer.select(@submission).deliver_now if @trip.auto_accept
     if @submission.save
       redirect_to trip_path(params[:trip_id])
     else
@@ -29,7 +30,7 @@ class SubmissionsController < ApplicationController
     authorize @submission
     @trip = @submission.trip
     @submission.destroy
-    redirect_to trip_path(@trip)
+    redirect_to trip_path(@trip), notice: "Your submission has been cancelled"
   end
 
   def approve
