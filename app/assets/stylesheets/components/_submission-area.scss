@@ -136,7 +136,7 @@ a.decline {
   a.reject,
   a.reject--self {
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
     width: 100%;
     height: 100%;
@@ -156,7 +156,7 @@ a.decline {
       font-weight: 400;
       position: absolute;
       font-size: 0.9rem;
-      top: -15px;
+      bottom: -15px;
       width: 110px;
       transition: $transition;
     }
@@ -165,7 +165,7 @@ a.decline {
       opacity: 1;
 
       &:after {
-        top: -25px;
+        bottom: -25px;
       }
     }
   }
