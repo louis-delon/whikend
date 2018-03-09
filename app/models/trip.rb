@@ -1,7 +1,7 @@
 class Trip < ApplicationRecord
   include PgSearch
 
-  belongs_to :user
+  # belongs_to :user
   belongs_to :hike
 
   has_many :reviews, dependent: :destroy
