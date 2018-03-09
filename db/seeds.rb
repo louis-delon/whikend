@@ -434,10 +434,10 @@ def create_trips
   hike_etienne = hikes_tmp[1]
 
   Trip.create!(
-    description: "Venez découvrir le grand GR20 - Au programme : effort ",
+    description: "Venez découvrir le grand GR10 - Au programme : effort ",
     start_location: "Lyon",
     hike_id: hike_corse.id,
-    title: "Grand départ pour le GR20",
+    title: "Grand départ pour le GR10",
     user_id: louis.id,
     date: Date.today+(1),
     trip_type: trip_types.sample,
