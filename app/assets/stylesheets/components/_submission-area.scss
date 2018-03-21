@@ -1,0 +1,199 @@
+#submission__area {
+  border-radius: $border-radius;
+  background-color: #fff;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  transition: $transition;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
+  }
+
+  h3 {
+    text-align: center;
+    padding: 10px;
+    background-color: lighten($primary-color, 48%);
+    color: $primary-color;
+  }
+
+  h3.main__title {
+    border-radius: 2px 2px 0 0;
+    background-color: lighten($primary-color, 48%);
+    color: $primary-color;
+  }
+}
+
+.submission__buddies {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.submission__buddies__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.submission__approval {
+  padding: 40px 20px;
+}
+
+.submission__approval__item {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:nth-child(n + 2) {
+    margin-top: 20px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .avatar {
+    margin-right: 5px;
+  }
+
+  a {
+    margin: 0 5px;
+  }
+
+  a.user {
+    color: $dark;
+  }
+
+  i {
+    margin-right: 5px;
+  }
+}
+
+a.decline {
+  color: #df2800;
+
+  i {
+    margin-right: 5px;
+  }
+
+  &:hover {
+    color: lighten(#df2800, 5%);
+  }
+}
+
+.submission__approval__waiting {
+  padding: 40px 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+
+  a {
+    display: inline-block;
+    margin-top: 20px;
+  }
+}
+
+.submission__buddies__buddy.seat--available img {
+  width: 80px;
+  height: 80px;
+  opacity: 0.4;
+}
+
+.submission__buddies__buddy {
+  position: relative;
+  margin: 0 10px;
+
+  .buddy__avatar__name {
+    position: absolute;
+    font-weight: 400;
+    color: #111;
+    text-align: center;
+    width: 120px;
+    top: -17px;
+    left: -20px;
+    opacity: 0;
+    transition: $transition;
+  }
+
+  &:hover .buddy__avatar__name {
+    top: -27px;
+    opacity: 1;
+  }
+
+  &:nth-child(n + 4) {
+    margin-top: 30px;
+  }
+
+  i {
+    margin: 0;
+  }
+
+  a.reject,
+  a.reject--self {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: $transition;
+
+    &:after {
+      display: inline-block;
+      color: #111;
+      font-weight: 400;
+      position: absolute;
+      font-size: 0.9rem;
+      bottom: -15px;
+      width: 110px;
+      transition: $transition;
+    }
+
+    &:hover {
+      opacity: 1;
+
+      &:after {
+        bottom: -25px;
+      }
+    }
+  }
+
+  a.reject:after {
+    content: "Reject this buddy";
+  }
+
+  a.reject--self:after {
+    content: "Leave this trip";
+  }
+}
+
+.submission__form {
+  padding: 40px 20px;
+  border-top: 1px solid #ddd;
+
+  label {
+    display: none;
+  }
+
+  .form-actions,
+  p {
+    text-align: center;
+  }
+
+  p {
+    margin-top: 10px;
+    color: #999;
+  }
+}

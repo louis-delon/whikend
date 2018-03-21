@@ -15,6 +15,7 @@
         <div class="submission__buddies__buddy">
           <% user_avatar = @trip.user.facebook_picture_url || @trip.user.avatar || "default-avatar.png" %>
           <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
+          <span class="buddy__avatar__name"><%= @trip.user.first_name %></span>
         </div>
       <% end %>
       <% if @submissions.where(accepted: true).present? %>
@@ -23,6 +24,7 @@
             <%= link_to user_path(submission.user) do %>
               <% user_avatar = submission.user.facebook_picture_url || submission.user.avatar || "default-avatar.png" %>
               <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
+              <span class="buddy__avatar__name"><%= submission.user.first_name %></span>
 
               <% if policy(submission).reject? %>
                 <%= link_to(reject_submission_path(@trip, submission), class: "reject") do %>
@@ -79,7 +81,7 @@
 
   <% if policy(@submission).current_user_is_driver? %>
 
-    <% if policy(@submission).submissions_pending? %>
+    <% if policy(@submission).submissions_pending? && !policy(@submission).seat_full?  %>
     <h3>Waiting for approval</h3>
       <div class="submission__approval">
         <% @submissions.where(accepted: nil).each do |submission| %>
@@ -92,7 +94,7 @@
               <% end %>
             </div>
             <div class="submission__approval__actions">
-              <% if policy(@submission).approve? && !policy(@submission).seat_full? %>
+              <% if policy(@submission).approve? %>
                 <%= link_to(approve_submission_path(@trip, submission)) do %>
                   <%= icon('fas', 'check') %>Accept
                 <% end %>

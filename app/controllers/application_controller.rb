@@ -17,7 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
   def page_title
-      "Whikend"
+      "Whikend | Find your next hiking buddies"
+  end
+
+  def default_url_options
+    { host: ENV["HOST"] || "localhost:3000" }
   end
 
   private

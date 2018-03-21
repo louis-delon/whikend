@@ -1,0 +1,35 @@
+.banner--searchindex {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), asset-url("background-searchindex.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #fff;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+#search__filters {
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .btn--primary {
+    margin: 20px 0 0 15px;
+  }
+}
+
+#search__results {
+  background-color: #fff;
+}

@@ -1,78 +1,80 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="user__box">
-        <% if policy(@user).update? %>
-            <h1><%= "My profile" %></h1>
-          <% else %>
-            <h1><%= "Profile of #{@user.first_name.capitalize}" %></h1>
-          <% end %>
-        <p>
-          <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
-          <%= cl_image_tag user_avatar, class: "avatar__profile", width: 400, height: 400, crop: :fill, gravity: :face %>
-        </p>
-        <p>
-          <% if @user.reviews.any? %>
-            <%= render "average_review_ratings" %>
-          <% end %>
-        </p>
-        <div class="user__form__details">
-          <% if policy(@user).edit? %>
-            <%= render "user_form" %>
-          <% else %>
-            <ul style="list-style-type: none;">
-              <li><%= " #{@user.first_name.capitalize}" %></li>
-              <li><%= " Age: #{@user.age}" %></li>
-              <li><%= " #{@user.description}" %></li>
-            </ul>
-          <% end %>
-        </div>
+<% cover = @user.cover || @default_cover %>
+<div class="banner banner--user" style="background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('<%= cover %>');">
+  <div class="container">
+    <h1><%= @user.first_name %> <%= @user.last_name.capitalize[0] %></h1>
+    <p><%= @user.age %> ans</p>
+  </div>
+</div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="user__box__title">
-              <% if policy(@user).update? %>
-                <% if @user.reviews.any? %>
-                  <h2><%= "My reviews" %></h2>
-                <% else %>
-                  <h2><%= "You have no review yet" %></h2>
-                <% end %>
-              <% else %>
-                <% if @user.reviews.any? %>
-                  <h3><%= "Reviews of #{@user.first_name.capitalize}" %></h3>
-                <% else %>
-                  <h2><%= "#{@user.first_name.capitalize} has no review yet" %></h2>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div class="user__review__details">
-          <%= render "reviews_details" %>
-        </div>
-        <div class="row" id="trips">
-          <div class="col-xs-12">
-            <div class="user__box__title" >
-              <% if @trips.any? %>
-                <% if policy(@user).show? %>
-                  <% if policy(@user).edit? %>
-                    <h2 style="text-align: center;"><%= "My trips" %></h2>
-                  <% else %>
-                    <h2 style="text-align: center;"><%= "Trips of #{@user.first_name}" %></h2>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <% @trips.each do |trip|%>
-            <div class="col-xs-12 col-sm-6">
-              <%= render "trips/trip-card", trip: trip %>
-            </div>
-          <% end %>
-        </div>
+<section id="user__info">
+  <div class="container">
+    <div class="user__info__avatar">
+      <% user_avatar = @user.facebook_picture_url || @user.avatar || "default-avatar.png" %>
+      <%= cl_image_tag user_avatar, class: "avatar--profile", width: 400, height: 400, crop: :fill, gravity: :face %>
+    </div>
+
+    <% if @user.reviews.any? %>
+      <div class="user__info__average">
+        <%= render "average_review_ratings" %>
+      </div>
+    <% end %>
+
+    <div class="row user__info__bio">
+      <div class="col-lg-6 col-lg-offset-3">
+        <% if policy(@user).edit? %>
+          <%= render "user_form" %>
+        <% else %>
+          <p><%= @user.description %></p>
+        <% end %>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<section id="user__reviews">
+  <div class="container">
+    <% if policy(@user).update? %>
+      <% if @user.reviews.any? %>
+        <h2><%= "My reviews" %></h2>
+      <% else %>
+        <h2><%= "You have no review yet" %></h2>
+      <% end %>
+    <% else %>
+      <% if @user.reviews.any? %>
+        <h2><%= "Reviews of #{@user.first_name.capitalize}" %></h2>
+      <% else %>
+        <h2><%= "#{@user.first_name.capitalize} has no review yet" %></h2>
+      <% end %>
+    <% end %>
+
+    <div class="row user__reviews__list">
+      <% @user.reviews.each do |review| %>
+        <div class="col-lg-3">
+          <%= render "review_card", review: review %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section id="user__trips">
+  <div class="container">
+    <% if @user_trips.any? %>
+      <% if policy(@user).show? %>
+        <% if policy(@user).edit? %>
+          <h2>My trips</h2>
+        <% else %>
+          <h2>Trips of <%= @user.first_name %></h2>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <div class="row">
+      <% @user_trips.each do |trip|%>
+        <div class="col-lg-6">
+          <%= render "trips/trip-card", trip: trip %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

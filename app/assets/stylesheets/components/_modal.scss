@@ -1,0 +1,68 @@
+.modal-content {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border: none;
+
+  h3 {
+    font-weight: 900;
+  }
+}
+
+.modal-backdrop {
+  z-index: 10;
+}
+
+header .modal-dialog {
+  width: 400px;
+}
+
+header .modal-content {
+  background-image: asset-url("login-bg.png"), linear-gradient(#cbeafc, #fff);
+  background-size: 101%;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  padding: 30px 50px 140px;
+  position: relative;
+
+  .modal-header {
+    border-bottom: none;
+    text-align: center;
+  }
+
+  .modal-header .close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+  }
+
+  .form-control {
+    border: none;
+    border-radius: $border-radius;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 40px;
+
+    .btn,
+    a {
+      flex-grow: 1;
+      display: block;
+    }
+
+    a.forgot-password {
+      margin-top: 10px;
+      color: $dark;
+    }
+
+    .btn--facebook {
+      margin-top: 40px;
+    }
+  }
+}
