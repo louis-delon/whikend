@@ -12,7 +12,7 @@
       <div class="buddies__card__info">
 
         <h3 class="buddies__card__name">
-          <%= @user.first_name&.capitalize %> <%= @user.last_name&.capitalize[0] %>
+          <%= @user.first_name&.capitalize %> <%= @user.last_name.capitalize[0] if @user.last_name.present? %>
         </h3>
 
         <div class="buddies__card__rating">
