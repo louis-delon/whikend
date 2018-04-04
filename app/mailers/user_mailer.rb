@@ -31,4 +31,22 @@ class UserMailer < ApplicationMailer
     mail to: @user.email, subject: "Refus Rando"
   end
 
+  def contact(message)
+    @message = message
+
+    mail to: 'contact@whikend.com', subject: "Contact de Whikend"
+  end
+
+  def new_message(message)
+    @sender = User.find(message.user_id)
+    @message = Message.find(message.id)
+
+    mail to: @user.email, subject: "Nouveau Message Rando"
+
+    # @user = @message.trip.submission
+    # @user.each do |user|
+    # mail to: user.email, subject: "Nouveau Message Rando #{@trip.title}"
+    # end
+  end
+
 end
