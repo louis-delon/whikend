@@ -19,7 +19,6 @@ class TripsController < ApplicationController
     @hike = Hike.find(@trip.hike_id)
     set_submission
     @title = "Whikend | #{@trip.title}"
-
   end
 
   def new
@@ -29,7 +28,9 @@ class TripsController < ApplicationController
     Hike.all.each { |hike| @departments_list << hike.department }
     @departments_list = @departments_list.uniq.sort
     @hikes = Hike.all.sort_by { |hike| hike.title }
-    @trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
+    # @trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
+    @trip_types = Trip.categories
+
     @title = "Whikend | Create a new trip"
   end
 

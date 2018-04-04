@@ -28,4 +28,8 @@ class Trip < ApplicationRecord
   using: {
     tsearch: { prefix: true }
   }
+
+  def self.categories
+    ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
+  end
 end
