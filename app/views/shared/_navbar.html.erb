@@ -28,7 +28,7 @@
                   <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
                 </div>
                 <div class="user__profile__name">
-                  <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %>
+                  <%= current_user.first_name&.capitalize %><%= current_user.last_name.capitalize[0] if current_user.last_name.present? %>
                 </div>
                 <div class="user__profile__email">
                   <%= current_user.email %>

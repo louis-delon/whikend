@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :set_submission, only: [:show]
   skip_before_action :authenticate_user!, only: :index
 
   def index
@@ -17,7 +18,6 @@ class TripsController < ApplicationController
     @review = Review.where(trip_id: @trip).first
     @user = @trip.user
     @hike = Hike.find(@trip.hike_id)
-    set_submission
     @title = "Whikend | #{@trip.title}"
 
   end
@@ -83,7 +83,7 @@ class TripsController < ApplicationController
   end
 
   def set_submission
-    @submission = Submission.find_or_initialize_by(trip: @trip, user: current_user)
+    @submission = Submission.find_by(trip: @trip, user: current_user)
   end
 
 
