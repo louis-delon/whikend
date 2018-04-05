@@ -33,15 +33,25 @@ class UserMailer < ApplicationMailer
 
   def contact(message)
     @message = message
+    @email = (ENV['EMAIL_CONTACT'] || "whikend@korium.com")
 
-    mail to: 'contact@whikend.com', subject: "Contact de Whikend"
+    mail to: @email, subject: "Contact de Whikend"
   end
 
   def new_message(message)
     @sender = User.find(message.user_id)
     @message = Message.find(message.id)
+    @submissions = Submission.where(trip_id: @message.trip_id)
 
-    mail to: @user.email, subject: "Nouveau Message Rando"
+    @submissions.each do |submission|
+      puts "------------"
+      puts "send email to:"
+      puts submission.user.email
+      mail to: submission.user.email, subject: "Nouveau Message dans #{@message.trip.title}"
+    end
+
+
+
 
     # @user = @message.trip.submission
     # @user.each do |user|

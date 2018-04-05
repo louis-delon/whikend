@@ -1,7 +1,9 @@
-<h1>New Message from  <%= @sender.first_name %> </h1>
+<h1>Nouveau message de  <%= @sender.first_name %> dans: <%= @message.trip.title %></h1>
 
-<p>Hi <%= @user.first_name %>,</p>
+<p>Bonjour,</p>
+
+<p>Le message ci-dessous a été envoyé pour: <%= @message.trip.title %> </p>
 
 <p><%= @message.content %></p>
 
-<p>See ya!</p>
+<p>A bientôt sur notre site!</p>

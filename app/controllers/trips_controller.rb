@@ -26,7 +26,9 @@ class TripsController < ApplicationController
     authorize @trip
     @departments_list = []
     Hike.all.each { |hike| @departments_list << hike.department }
-    @departments_list = @departments_list.uniq.sort
+    # @departments_list = @departments_list.uniq.sort --> impossible de le trier car ce n'est plus un tableau de nombres
+    @departments_list = @departments_list.uniq
+
     @hikes = Hike.all.sort_by { |hike| hike.title }
     # @trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
     @trip_types = Trip.categories

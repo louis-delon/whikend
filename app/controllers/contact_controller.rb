@@ -2,14 +2,15 @@ class ContactController < ApplicationController
 
   def new
     @contact = Contact.new
-    # authorize @contact
+    authorize @contact
   end
 
   def create
     @contact = Contact.new(contact_params)
     authorize @contact
     @contact.save
-    UserMailer.contact(@contact)
+    UserMailer.contact(@contact).deliver_now
+    redirect_to root_path
   end
 
 private
