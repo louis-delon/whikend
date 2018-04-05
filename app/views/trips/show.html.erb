@@ -4,12 +4,12 @@
     <div class="trip__banner__actions">
       <% if policy(@trip).destroy?%>
         <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
-          Delete<%= icon('fas', 'trash') %>
+          Supprimer<%= icon('fas', 'trash') %>
         <% end %>
       <% end %>
       <% if policy(@trip).update? %>
         <%= link_to(edit_trip_path(@trip), class: "btn btn--secondary") do %>
-          Edit<%= icon('fas', 'edit') %>
+          Editer<%= icon('fas', 'edit') %>
         <% end %>
       <% end %>
     </div>
