@@ -9,7 +9,7 @@
         <%= f.error_notification %>
 
         <div class="new__trip__step">
-          <h2>Step 1 - Sélectionnez une randonnée</h2>
+          <h2>Etape 1 - Sélectionnez une randonnée</h2>
 
           <div class="form-inputs">
             <%= f.input :hike, label: "Ou souhaitez vous aller?", placeholder: "Sélectionnez un departement", collection: @departments_list, id: "truc" %>
@@ -21,15 +21,15 @@
         </div>
 
         <div class="new__trip__step">
-          <h2>Step 2 - Renseignez les détails de votre sortie</h2>
+          <h2>Etape 2 - Renseignez les détails de votre sortie</h2>
 
           <div class="form-inputs">
-            <%= f.input :title, placeholder: "Donnez un titre à votre sortie" %>
+            <%= f.input :title, label: "Titre de votre sortie", placeholder: "Donnez un titre à votre sortie" %>
           </div>
 
           <div class="form-inline-group">
             <div class="form-inputs">
-              <%= f.input :start_location, placeholder: "e.g: 'Lyon'" %>
+              <%= f.input :start_location, label: "Ville de départ", placeholder: "e.g: 'Lyon'" %>
             </div>
             <div class="form-inputs">
               <%= f.input :date, as: :string %>
@@ -49,7 +49,7 @@
           </div>
 
           <div class="form-inputs">
-            <%= f.input :description, placeholder: "Vous aurez plus de demande avec une description précise" %>
+            <%= f.input :description, placeholder: "Vous aurez plus de demandes avec une description précise" %>
           </div>
 
           <div class="form-inputs">
