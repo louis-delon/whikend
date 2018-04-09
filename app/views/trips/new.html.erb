@@ -12,7 +12,7 @@
           <h2>Step 1 - Sélectionnez une randonnée</h2>
 
           <div class="form-inputs">
-            <%= f.input :hike, label: "Ou souhaitez vous aller?", placeholder: "Chose a department", collection: @departments_list, id: "truc" %>
+            <%= f.input :hike, label: "Ou souhaitez vous aller?", placeholder: "Sélectionnez un departement", collection: @departments_list, id: "truc" %>
           </div>
 
           <div class="hikes__list">
@@ -38,13 +38,13 @@
 
           <div class="form-inline-group">
             <div class="form-inputs">
-              <%= f.input :trip_type, include_blank: false, collection: @trip_types  %>
+              <%= f.input :trip_type, label: "Type de sortie" , include_blank: false, collection: @trip_types  %>
             </div>
             <div class="form-inputs">
               <%= f.input :seats, label: "Nombre de places disponibles" %>
             </div>
             <div class="form-inputs">
-              <%= f.input :fees, placeholder:"Participation au frais" %>
+              <%= f.input :fees, label: "Participation aux frais", placeholder:"Essence, péage..." %>
             </div>
           </div>
 
@@ -60,7 +60,7 @@
         <div class="new__trip__actions">
           <%= link_to "Annuler", root_path %>
           <%= button_tag class: "btn btn--primary" do %>
-            Create<%= icon('fa', 'location-arrow') %>
+            Créer<%= icon('fa', 'location-arrow') %>
           <% end %>
         </div>
       <% end %>

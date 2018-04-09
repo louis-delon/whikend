@@ -3,7 +3,7 @@
   <div class="container">
     <div class="trip__banner__actions">
       <% if policy(@trip).destroy?%>
-        <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn--secondary") do %>
+        <%= link_to(trip_path(@trip), method: :delete, data: { confirm: "Souhaitez vous annuler votre sortie?" }, class: "btn btn--secondary") do %>
           Supprimer<%= icon('fas', 'trash') %>
         <% end %>
       <% end %>
@@ -68,7 +68,7 @@
     <div class="row">
 
       <div class="col-lg-8">
-        <h2>Details about this hike</h2>
+        <h2>Details sur la sortie</h2>
 
         <div class="hike__details__infos">
           <span>

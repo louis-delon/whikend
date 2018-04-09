@@ -1,6 +1,6 @@
 <%= simple_form_for [trip, message], remote: true do |f| %>
-  <%= f.input :content, placeholder: "You can ask questions or just say hi to your buddies!" %>
+  <%= f.input :content, placeholder: "Vous pouvez interagir avec les participants de la sortie!" %>
   <%= button_tag class: "btn btn--secondary" do %>
-    Send your message<%= icon('fas', 'comments') %>
+    Envoyer votre message<%= icon('fas', 'comments') %>
   <% end %>
 <% end %>

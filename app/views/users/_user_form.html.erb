@@ -1,24 +1,24 @@
 <%= simple_form_for(@user) do |f| %>
   <%= f.error_notification %>
   <div class="form-row">
-      <%= f.input :first_name, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your first name" %>
+      <%= f.input :first_name, input_html: { class: 'user__form__text' }, label: "Prénom", label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "Entrez votre Prénom" %>
 
-      <%= f.input :last_name, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your last name" %>
+      <%= f.input :last_name, input_html: { class: 'user__form__text' }, label: "Nom", label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "Entrez votre Nom" %>
   </div>
 
   <div class="form-row">
-    <%= f.input :email, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: 'youremail@example.com' %>
+    <%= f.input :email, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: 'votreemail@example.com' %>
 
-    <%= f.input :age, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "enter your age" %>
+    <%= f.input :age, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-6"}, placeholder: "Entrez votre age" %>
   </div>
 
   <div class="form-row">
-      <%= f.input :description, as: :text, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-12"}, placeholder: 'enter a description of yourself', input_html:{ class: 'user__form__text' } %>
+      <%= f.input :description, as: :text, input_html: { class: 'user__form__text' }, label_html: { class: "user__form__label" }, wrapper_html: {class: "col-xs-12"}, placeholder: 'Décrivez-vous en quelques mots', input_html:{ class: 'user__form__text' } %>
   </div>
 
   <div class="form-row">
     <div class="form-actions user__form__button">
-      <%= f.submit "Validate", class: "btn btn-success" %>
+      <%= f.submit "Valider", class: "btn btn-success" %>
     </div>
   </div>
 <% end %>

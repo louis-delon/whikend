@@ -29,7 +29,7 @@ class TripsController < ApplicationController
     Hike.all.each { |hike| @departments_list << hike.department }
     @departments_list = @departments_list.uniq.sort
     @hikes = Hike.all.sort_by { |hike| hike.title }
-    @trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
+    @trip_types = ["Détente", "Soutenue", "Sportive", "Loisir", "Activities"]
     @title = "Whikend | Create a new trip"
   end
 
@@ -49,7 +49,7 @@ class TripsController < ApplicationController
 
   def update
     @trip.update(trip_params)
-    redirect_to trip_path(@trip), notice: "Your trip was successfuly updated!"
+    redirect_to trip_path(@trip), notice: "Votre sortie a été mise à jour!"
   end
 
   def destroy

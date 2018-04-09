@@ -12,7 +12,7 @@
           <h2>Step 1 - Select a hike</h2>
 
           <div class="form-inputs">
-            <%= f.input :hike, label: "Where do you wanna go?", placeholder: "Chose a department", collection: @departments_list, id: "truc" %>
+            <%= f.input :hike, label: "Ou souhaitez vous aller?", placeholder: "Choisissez un departement", collection: @departments_list, id: "truc" %>
           </div>
 
           <div class="hikes__list">
@@ -24,7 +24,7 @@
           <h2>Step 2 - Give details about your trip</h2>
 
           <div class="form-inputs">
-            <%= f.input :title, placeholder: "Give an explicit title for your trip" %>
+            <%= f.input :title, placeholder: "Donnez un titre explicite à votre rando" %>
           </div>
 
           <div class="form-inline-group">
@@ -41,25 +41,25 @@
               <%= f.input :trip_type, include_blank: false, collection: @trip_types  %>
             </div>
             <div class="form-inputs">
-              <%= f.input :seats, label: "Seats" %>
+              <%= f.input :seats, label: "Nombre de sièges disponibles" %>
             </div>
             <div class="form-inputs">
-              <%= f.input :fees, placeholder:"Toll/fuel charges/buddie" %>
+              <%= f.input :fees, placeholder:"participation aux frais/personne" %>
             </div>
           </div>
 
           <div class="form-inputs">
-            <%= f.input :description, placeholder: "You will have more answers with a nice description" %>
+            <%= f.input :description, placeholder: "Soignez votre description pour attirer plus de randonneurs" %>
           </div>
 
           <div class="form-inputs">
-            <%= f.input :auto_accept, label: "Automatically accept all submissions?" %>
+            <%= f.input :auto_accept, label: "Accepter automatiquement les demandes?" %>
           </div>
         </div>
 
         <div class="new__trip__actions">
-          <%= link_to "Cancel", root_path %>
-          <%= f.submit "Update", class: "btn btn--primary" %>
+          <%= link_to "Annuler", root_path %>
+          <%= f.submit "Mettre à jour", class: "btn btn--primary" %>
         </div>
       <% end %>
 
