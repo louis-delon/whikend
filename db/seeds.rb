@@ -443,7 +443,7 @@ def create_users
     last_name: 'OK',
     description: "Je suis pas venue pour souffrir okay?",
     age: 33,
-    remote_avatar_url: "http://francais-express.com/upload/images/real/2017/09/19/j-suis-pas-venue-ici-pour-souffrir-ok-meryem-nouvelle-chroniqueuse-de-tpmp__668443_.jpg"
+    remote_avatar_url: "https://www.thefamouspeople.com/profiles/images/jacques-chirac-10.jpg"
   )
 
     User.create!(
