@@ -31,4 +31,7 @@ class UserMailer < ApplicationMailer
     mail to: @user.email, subject: "Refus Rando"
   end
 
+  def send_reminders(email)
+    mail to: email, subject: "Rappel: Votre Rando de demaain"
+  end
 end
