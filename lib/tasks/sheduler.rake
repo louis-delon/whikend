@@ -6,7 +6,7 @@ end
 
 task :send_reminders => :environment do
   list_hikers = Array.new
-  tomorrow    = Date.today # + 1
+  tomorrow    = Date.today + 1
   trips       = Trip.where(date: tomorrow)
   puts trips
   trips.each do |trip|
