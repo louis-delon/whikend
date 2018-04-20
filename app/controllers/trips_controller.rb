@@ -12,14 +12,15 @@ class TripsController < ApplicationController
   end
 
   def show
-    @submissions = @trip.submissions
-    @messages = @trip.messages.order('created_at ASC')
-    @message = Message.new
-    @review = Review.where(trip_id: @trip).first
-    @user = @trip.user
-    @hike = Hike.find(@trip.hike_id)
-    @title = "Whikend | #{@trip.title}"
-
+    @submissions     = @trip.submissions
+    @messages        = @trip.messages.order('created_at ASC')
+    @message         = Message.new
+    @review          = Review.where(trip_id: @trip).first
+    @user            = @trip.user
+    @hike            = Hike.find(@trip.hike_id)
+    @title           = "Whikend | #{@trip.title}"
+    @submission      = Submission.new
+    @submission.user = current_user
   end
 
   def new

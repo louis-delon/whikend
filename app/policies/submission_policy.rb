@@ -42,7 +42,8 @@ class SubmissionPolicy < ApplicationPolicy
   end
 
   def current_user_is_driver?
-    @record.trip.user == user
+    # @record.trip.user == user
+    @record.user == user
   end
 
   private
