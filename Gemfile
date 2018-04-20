@@ -29,6 +29,7 @@ gem 'select2_simple_form', github: 'lndl/select2_simple_form', tag: '0.7.3'
 gem 'postmark-rails'
 gem 'nokogiri'
 gem 'administrate'
+# gem whenever: Cron jobs in Ruby in config/schedule.rb
 gem 'whenever', require: false
 
 group :development do
