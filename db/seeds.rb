@@ -407,30 +407,30 @@ def create_trips
   trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
   trip_start = ["Paris", "Lyon", "Saint-Etienne", "Marseille", "Rouen", "Grenoble", "Chambery", "Toulouse", "Annecy", "Metz", "Auray"]
 
-  francois = User.find_by(email: "francois@whikend.com")
+  francois   = User.find_by(email: "francois@whikend.com")
   francoisho = User.find_by(email: "francoisho@whikend.com")
-  roger = User.find_by(email: "roger@whikend.com")
-  jack = User.find_by(email: "jack@whikend.com")
-  jacques = User.find_by(email: "jacques@whikend.com")
-  benoit = User.find_by(email: "benoit@whikend.com")
-  meryem = User.find_by(email: "meryem@whikend.com")
-  vincent = User.find_by(email: "vincent@whikend.com")
-  karine = User.find_by(email: "karine@whikend.com")
-  louis = User.find_by(email: "louis@holdies.com")
-  etienne = User.find_by(email: "etienne.delorieux@gmail.com")
-  joseph = User.find_by(email: "joseph@whikend.com")
-  kevin = User.find_by(email: "kevin@whikend.com")
-  alexandre = User.find_by(email: "alexandre.b2506@gmail.com")
-  matthieu = User.find_by(email: "matthieu@whikend.com")
+  roger      = User.find_by(email: "roger@whikend.com")
+  jack       = User.find_by(email: "jack@whikend.com")
+  jacques    = User.find_by(email: "jacques@whikend.com")
+  benoit     = User.find_by(email: "benoit@whikend.com")
+  meryem     = User.find_by(email: "meryem@whikend.com")
+  vincent    = User.find_by(email: "vincent@whikend.com")
+  karine     = User.find_by(email: "karine@whikend.com")
+  louis      = User.find_by(email: "louis@holdies.com")
+  etienne    = User.find_by(email: "etienne.delorieux@gmail.com")
+  joseph     = User.find_by(email: "joseph@whikend.com")
+  kevin      = User.find_by(email: "kevin@whikend.com")
+  alexandre  = User.find_by(email: "alexandre.b2506@gmail.com")
+  matthieu   = User.find_by(email: "matthieu@whikend.com")
 
 
 
   hikes_tmp = Hike.all.sample(2)
 
   hike_solutre = Hike.find_by(site_id: 523281)
-  hike_corse = Hike.find_by(site_id: 2867)
+  hike_corse   = Hike.find_by(site_id: 2867)
   hike_vercors = Hike.find_by(site_id: 552975)
-  hike_wagon = Hike.find_by(site_id: 1008103)
+  hike_wagon   = Hike.find_by(site_id: 1008103)
   hike_etienne = hikes_tmp[1]
 
   Trip.create!(
@@ -439,7 +439,7 @@ def create_trips
     hike_id: hike_corse.id,
     title: "Grand départ pour le GR10",
     user_id: louis.id,
-    date: Date.today+(1),
+    date: Date.today+(365),
     trip_type: trip_types.sample,
     seats: 2,
     auto_accept: false,
@@ -452,7 +452,7 @@ def create_trips
     start_location: "Lyon",
     hike_id: hike_vercors.id,
     user_id: benoit.id,
-    date: Date.today+(1),
+    date: Date.today+(365),
     trip_type: "Sportive",
     seats: 5,
     auto_accept: false,
@@ -465,7 +465,7 @@ def create_trips
     start_location: "Lyon",
     hike_id: hike_solutre.id,
     user_id: francois.id,
-    date: Date.today+(1),
+    date: Date.today+(365),
     trip_type: "Détente",
     seats: 8,
     auto_accept: true,
@@ -482,7 +482,7 @@ def create_trips
     start_location: "Lyon",
     hike_id: hike_etienne,
     user_id: etienne.id,
-    date: Date.today+(2),
+    date: Date.today+(366),
     trip_type: trip_types.sample,
     seats: 3,
     auto_accept: true,
@@ -495,7 +495,7 @@ def create_trips
     start_location: "Bayonne",
     hike_id: (((Hike.first.id)..(Hike.last.id)).to_a - [hike_wagon.id] - [hike_vercors.id] - [hike_corse.id] - [hike_solutre.id]).sample,
     user_id: ((User.first.id)..(User.last.id)).to_a.sample,
-    date: Date.today+(3),
+    date: Date.today+(367),
     trip_type: trip_types.sample,
     seats: 6,
     auto_accept: true,
@@ -510,7 +510,7 @@ def create_trips
       hike_id: hike,
       title: Hike.find(hike).title,
       user_id: (((User.first.id)..(User.last.id)).to_a - [jacques.id] - [jack.id] - [francoisho.id] - [francois.id] - [vincent.id] - [karine.id] - [alexandre.id]).sample,
-      date: [Date.today-(7),Date.today+(3),Date.today+(7)].sample,
+      date: [Date.today+(365),Date.today+(366),Date.today+(367)].sample,
       trip_type: trip_types.sample,
       seats: (2..5).to_a.sample,
       auto_accept: [true, false].sample,
@@ -524,7 +524,7 @@ def create_trips
     start_location: "Lyon",
     hike_id: hike_wagon.id,
     user_id: matthieu.id,
-    date: Date.today+(3),
+    date: Date.today+(368),
     trip_type: "Challenge",
     seats: 21,
     auto_accept: true,
@@ -535,67 +535,67 @@ end
 
 def create_submissions
   puts "creation submissions"
-  francois = User.find_by(email: "francois@whikend.com")
+  francois   = User.find_by(email: "francois@whikend.com")
   francoisho = User.find_by(email: "francoisho@whikend.com")
-  roger = User.find_by(email: "roger@whikend.com")
-  jack = User.find_by(email: "jack@whikend.com")
-  jacques = User.find_by(email: "jacques@whikend.com")
-  benoit = User.find_by(email: "benoit@whikend.com")
-  vincent = User.find_by(email: "vincent@whikend.com")
-  karine = User.find_by(email: "karine@whikend.com")
-  meryem = User.find_by(email: "meryem@whikend.com")
+  roger      = User.find_by(email: "roger@whikend.com")
+  jack       = User.find_by(email: "jack@whikend.com")
+  jacques    = User.find_by(email: "jacques@whikend.com")
+  benoit     = User.find_by(email: "benoit@whikend.com")
+  vincent    = User.find_by(email: "vincent@whikend.com")
+  karine     = User.find_by(email: "karine@whikend.com")
+  meryem     = User.find_by(email: "meryem@whikend.com")
   ############
-  wagon_tab = []
+  wagon_tab  = []
   ###
-  joseph = User.find_by(email: "joseph@whikend.com")
-  wagon_tab << joseph.id
-  kevin = User.find_by(email: "kevin@whikend.com")
-  wagon_tab << kevin.id
-  matthieu = User.find_by(email: "matthieu@whikend.com")
+  joseph     = User.find_by(email: "joseph@whikend.com")
+  wagon_tab  << joseph.id
+  kevin      = User.find_by(email: "kevin@whikend.com")
+  wagon_tab  << kevin.id
+  matthieu   = User.find_by(email: "matthieu@whikend.com")
   ###
-  etienne = User.find_by(email: "etienne.delorieux@gmail.com")
-  wagon_tab << etienne.id
-  louis = User.find_by(email: "louis@holdies.com")
+  etienne    = User.find_by(email: "etienne.delorieux@gmail.com")
+  wagon_tab  << etienne.id
+  louis      = User.find_by(email: "louis@holdies.com")
   wagon_tab << louis.id
   alexandre = User.find_by(email: "alexandre.b2506@gmail.com")
-  theo = User.find_by(email: "theo@whikend.com")
+  theo      = User.find_by(email: "theo@whikend.com")
   wagon_tab << theo.id
   sebastien = User.find_by(email: "sebastien@whikend.com")
   wagon_tab << sebastien.id
-  antoine = User.find_by(email: "antoine@whikend.com")
+  antoine   = User.find_by(email: "antoine@whikend.com")
   wagon_tab << antoine.id
-  maxime = User.find_by(email: "maxime@whikend.com")
+  maxime    = User.find_by(email: "maxime@whikend.com")
   wagon_tab << maxime.id
-  mathilde = User.find_by(email: "mathilde@whikend.com")
+  mathilde  = User.find_by(email: "mathilde@whikend.com")
   wagon_tab << mathilde.id
-  isabelle = User.find_by(email: "isabelle@whikend.com")
+  isabelle  = User.find_by(email: "isabelle@whikend.com")
   wagon_tab << isabelle.id
-  mohamed = User.find_by(email: "mohamed@whikend.com")
+  mohamed   = User.find_by(email: "mohamed@whikend.com")
   wagon_tab << mohamed.id
-  lahbib = User.find_by(email: "lahbib@whikend.com")
+  lahbib    = User.find_by(email: "lahbib@whikend.com")
   wagon_tab << lahbib.id
-  mathieu = User.find_by(email: "mathieu@whikend.com")
+  mathieu   = User.find_by(email: "mathieu@whikend.com")
   wagon_tab << mathieu.id
-  alix = User.find_by(email: "alix@whikend.com")
+  alix      = User.find_by(email: "alix@whikend.com")
   wagon_tab << alix.id
-  romain = User.find_by(email: "romain@whikend.com")
+  romain    = User.find_by(email: "romain@whikend.com")
   wagon_tab << romain.id
-  thomas = User.find_by(email: "thomas@whikend.com")
+  thomas    = User.find_by(email: "thomas@whikend.com")
   wagon_tab << thomas.id
 
-  lorenzo = User.find_by(email: "lorenzo@whikend.com")
-  wagon_tab << lorenzo.id
+  lorenzo    = User.find_by(email: "lorenzo@whikend.com")
+  wagon_tab  << lorenzo.id
   christophe = User.find_by(email: "christophe@whikend.com")
-  wagon_tab << christophe.id
-  guillaume = User.find_by(email: "guillaume@whikend.com")
-  wagon_tab << guillaume.id
-  benoitw = User.find_by(email: "benoitw@whikend.com")
-  wagon_tab << benoitw.id
+  wagon_tab  << christophe.id
+  guillaume  = User.find_by(email: "guillaume@whikend.com")
+  wagon_tab  << guillaume.id
+  benoitw    = User.find_by(email: "benoitw@whikend.com")
+  wagon_tab  << benoitw.id
   ############
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
-  trip_corse = Trip.find_by(title: "Grand départ pour le GR10")
-  trip_wagon = Trip.find_by(title: "La Tres Grande Rando du Wagon Lyon")
+  trip_corse   = Trip.find_by(title: "Grand départ pour le GR10")
+  trip_wagon   = Trip.find_by(title: "La Tres Grande Rando du Wagon Lyon")
 
   wagon_tab.each do |alumni|
     Submission.create!(
@@ -690,8 +690,8 @@ def create_messages
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
-  trip_corse = Trip.find_by(title: "Grand départ pour le GR10")
-  trip_wagon = Trip.find_by(title: "La Tres Grande Rando du Wagon Lyon")
+  trip_corse   = Trip.find_by(title: "Grand départ pour le GR10")
+  trip_wagon   = Trip.find_by(title: "La Tres Grande Rando du Wagon Lyon")
 
   messages = ["Quel est le temps prévu pour ce weekend?", "Pour les connaisseurs, une idée de quelques indispensables pour cette rando?", "Je vais faire un tour au Vieux Campeur - je peux prendre des trucs si vous voulez, n'hésitez pas", "Hâte d'y être!", "Comment on s'organise pour le départ?", "C'est possible de changer la date de depart?", "Le parcours a l'air super", "Je prends ma camera!!", "Quelqu'un a une paire de chaussettes du 42?", "J'ai perdu ma gourde - dépannage possible?", "Je suis dispo pour conduire sur une partie du trajet", "N'oubliez pas vos lunettes de soleil", "Attention - grosse chaleur prévue ce weekend", "Pensez bien à la creme solaire", "Je prends un jeu de carte pour se faire une petite coinche à la fraiche", "Un Ricard?", "Un saucisson, du pinard, je suis prêt pour le grand départ", "Je peux ramener un +1?", "C'est quel modèle ta voiture?", "On fait les courses sur la route si vous êtes ok?"]
 
