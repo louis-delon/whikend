@@ -72,9 +72,6 @@
 
         <div class="hike__details__infos">
           <span>
-            <span class="hike__details__location">
-              <%= icon('fas', 'map-marker-alt') %><%= @hike.location %>
-            </span>
             <span class="hike__details__department">
               <%= icon('fas', 'map-marker-alt') %><%= @hike.department %>
             </span>
@@ -112,12 +109,6 @@
 
         <div class="hike__details__description">
           <p><%= simple_format(@hike.description) %></p>
-        </div>
-      </div>
-
-      <div class="col-lg-4">
-        <div class="trip__details__map">
-          <%= render "map" %>
         </div>
       </div>
 

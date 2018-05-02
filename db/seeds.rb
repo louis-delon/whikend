@@ -1,3 +1,5 @@
+require 'csv'
+
 dependencies = %w(Review Submission Message Trip User Hike)
 
 level_seed = (ENV['LEVEL_SEED'] || "Hike")
@@ -17,7 +19,62 @@ def create_hikes
   UniScrapper.new(hike_wagon, "https://www.visorando.com/randonnee-/1008103")
   hike_wagon.update(photo_url: "https://kitt.lewagon.com/placeholder/cities/lyon")
   hike_wagon.update(distance: "101km")
-  MultiScrapper.departments_list
+  # MultiScrapper.departments_list
+  # hike.duration        = data_1[0].split("[")[0]
+  # hike.distance        = data_1[1]
+  # hike.asc_elevation   = data_1[2]
+  # hike.desc_elevation  = data_1[3]
+  # hike.alt_min         = data_1[5]
+  # hike.alt_max         = data_1[4]
+  # hike.difficulty      = data_2[0]
+  # hike.hike_type       = data_2[1]
+
+  # 0 Identifiant;
+  # 1 Auteur;
+  # 2 Titre;
+  # 3 Moyen de locomotion;
+  # 4 Département;
+  # 5 Commune;
+  # 6 Latitude départ;
+  # 7 Longitude départ;
+  # 8 Retour départ;
+  # 9 Durée estimée;
+  # 10 Durée de l auteur;
+  # 11 Difficulté;
+  # 12 Distance;
+  # 13 Dénivelé +;
+  # 14 Dénivelé -;
+  # 15 Altitude point haut;
+  # 16 Altitude point bas;
+  # 17 Date de création;
+  # 18 Date de version;
+  # 19 Date de demande de sélection;
+  # 20 Date de sélection;
+  # 21 Url
+
+  puts "Create Hike"
+
+  puts Rails.root
+  csv_options = { col_sep: ';', quote_char: '"', headers: :first_row }
+  filepath = file = File.join(Rails.root, 'db', 'hike_from_visorando.csv')
+
+  CSV.foreach(filepath, csv_options) do |row|
+    Hike.create!(
+      title:          row[2],
+      department:     row[4],
+      duration:       row[9],
+      location:       row[5],
+      asc_elevation:  row[13],
+      desc_elevation: row[14],
+      alt_min:        row[16],
+      alt_max:        row[15],
+      difficulty:     row[11],
+      hike_type:      row[8],
+      department:     row[4],
+      link:           row[21],
+      site_id:        row[0]
+    )
+  end
 end
 
 def create_users
@@ -386,7 +443,7 @@ def create_users
     last_name: 'OK',
     description: "Je suis pas venue pour souffrir okay?",
     age: 33,
-    remote_avatar_url: "http://francais-express.com/upload/images/real/2017/09/19/j-suis-pas-venue-ici-pour-souffrir-ok-meryem-nouvelle-chroniqueuse-de-tpmp__668443_.jpg"
+    remote_avatar_url: "https://www.thefamouspeople.com/profiles/images/jacques-chirac-10.jpg"
   )
 
     User.create!(

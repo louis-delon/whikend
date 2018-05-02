@@ -31,6 +31,31 @@ class UserMailer < ApplicationMailer
     mail to: @user.email, subject: "Refus Rando"
   end
 
+  def contact(message)
+    @message = message
+    @email = (ENV['EMAIL_CONTACT'] || "whikend@korium.com")
+
+    mail to: @email, subject: "Contact de Whikend"
+  end
+
+  def new_message(message)
+    @sender = User.find(message.user_id)
+    @message = Message.find(message.id)
+    @submissions = Submission.where(trip_id: @message.trip_id)
+
+    @submissions.each do |submission|
+      puts "------------"
+      puts "send email to:"
+      puts submission.user.email
+      mail to: submission.user.email, subject: "Nouveau Message dans #{@message.trip.title}"
+    end
+
+    # @user = @message.trip.submission
+    # @user.each do |user|
+    # mail to: user.email, subject: "Nouveau Message Rando #{@trip.title}"
+    # end
+  end
+
   def send_reminders(email)
     mail to: email, subject: "Rappel: Votre Rando de demaain"
   end

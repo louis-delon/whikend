@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
     @message.user = current_user
     authorize @message
     @message.save
+    UserMailer.new_message(@message).deliver_now
     @new_message = Message.new
   end
 

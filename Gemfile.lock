@@ -386,6 +386,7 @@ DEPENDENCIES
   uglifier
   web-console (>= 3.3.0)
   webpacker
+  whenever
 
 RUBY VERSION
    ruby 2.4.3p205
