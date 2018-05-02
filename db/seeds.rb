@@ -970,3 +970,5 @@ tables.reverse.each do |table|
   puts "Creation of #{table}"
   send("create_#{table.constantize.table_name.to_sym}")
 end
+
+puts "Seeds are over, everything OK"
