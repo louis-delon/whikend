@@ -11,7 +11,7 @@
 
       <!-- Links when logged in -->
       <%= link_to((new_trip_path), class: "btn btn--addtrip") do %>
-        Add a trip<%= icon('fas', 'plus') %>
+        Créer une sortie<%= icon('fas', 'plus') %>
       <% end %>
 
       <!-- Avatar with dropdown menu -->
@@ -28,7 +28,7 @@
                   <%= cl_image_tag user_avatar, class: "avatar", crop: :thumb, gravity: :face, width: 300, height: 300 %>
                 </div>
                 <div class="user__profile__name">
-                  <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %>
+                  <%= current_user.first_name&.capitalize %><%= current_user.last_name.capitalize[0] if current_user.last_name.present? %>
                 </div>
                 <div class="user__profile__email">
                   <%= current_user.email %>
@@ -37,12 +37,12 @@
             </li>
             <li>
               <%= link_to(user_path(current_user, anchor: "user__trips"), class: "navbar-wagon-item navbar-wagon-link") do %>
-                <%= icon('fas', 'location-arrow') %><%= t(".profile", default: "My trips") %>
+                <%= icon('fas', 'location-arrow') %><%= t(".profile", default: "Mes sorties") %>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <%= icon('fas', 'sign-out-alt') %><%= t(".sign_out", default: "Log out") %>
+                <%= icon('fas', 'sign-out-alt') %><%= t(".sign_out", default: "Se déconnecter") %>
               <% end %>
             </li>
           </ul>
@@ -51,11 +51,8 @@
     <% else %>
       <!-- Login link (when logged out) -->
 
-      <!-- <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to t(".sign_up", default: "Sign up"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %> -->
-
-      <%= link_to "Login", "#login-modal", "data-toggle" => "modal", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Sign up", "#sign-up-modal", "data-toggle" => "modal", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Se connecter", "#login-modal", "data-toggle" => "modal", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "S'inscrire", "#sign-up-modal", "data-toggle" => "modal", class: "navbar-wagon-item navbar-wagon-link" %>
 
       <%= render "shared/login_modal" %>
       <%= render "shared/sign_up_modal" %>

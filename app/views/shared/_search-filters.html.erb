@@ -1,11 +1,11 @@
 <%= form_tag trips_path, method: :get do %>
 
   <div class="col-lg-3">
-    <label>Preferred starting location</label>
+    <label>Ville de départ</label>
     <%= text_field_tag :query,
       params[:query],
       class: "form-control",
-      placeholder: "Please enter a city"
+      placeholder: "Entrez le nom d'une ville"
     %>
   </div>
 
@@ -13,20 +13,21 @@
     <label>Date</label>
     <%= date_field_tag :date,
       params[:date],
-      class: "form-control"
+      class: "form-control",
+      placeholder: "Choisissez une date de départ"
     %>
   </div>
 
   <div class="col-lg-3">
-    <label>Seats needed</label>
+    <label>Nombre de places souhaitées</label>
     <%= select_tag :seats, options_for_select([1,2,3,4,5], params[:seats]),
       class: "form-control"
     %>
   </div>
 
   <div class="col-lg-3">
-    <label>Type of trip</label>
-    <%= select_tag :type, options_for_select(["Chill", "Heavy walk", "Challenge", "Photo", "Activities"], params[:type]),
+    <label>Type de sortie</label>
+    <%= select_tag :type, options_for_select(["Détente", "Heavy walk", "Challenge", "Photo", "Activities"], params[:type]),
       class: "form-control"
     %>
   </div>

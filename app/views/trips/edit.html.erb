@@ -2,17 +2,17 @@
   <div class="container">
     <div class="col-lg-8 col-lg-offset-2">
       <div class="new__trip__title">
-        <h1>Update your trip</h1>
+        <h1>Mettez à jour votre sortie</h1>
       </div>
 
       <%= simple_form_for(@trip) do |f| %>
         <%= f.error_notification %>
 
         <div class="new__trip__step">
-          <h2>Step 1 - Select a hike</h2>
+          <h2>Etape 1 - Séléctionnez une randonnée</h2>
 
           <div class="form-inputs">
-            <%= f.input :hike, label: "Where do you wanna go?", placeholder: "Chose a department", collection: @departments_list, id: "truc" %>
+            <%= f.input :hike, label: "Ou souhaitez vous aller?", placeholder: "Choisissez un departement", collection: @departments_list, id: "truc" %>
           </div>
 
           <div class="hikes__list">
@@ -21,15 +21,15 @@
         </div>
 
         <div class="new__trip__step">
-          <h2>Step 2 - Give details about your trip</h2>
+          <h2>Etape 2 - Donnez des détails sur votre sortie</h2>
 
           <div class="form-inputs">
-            <%= f.input :title, placeholder: "Give an explicit title for your trip" %>
+            <%= f.input :title, label: "Titre de la sortie", placeholder: "Donnez un titre explicite à votre rando" %>
           </div>
 
           <div class="form-inline-group">
             <div class="form-inputs">
-              <%= f.input :start_location, placeholder: "e.g: 'Lyon'" %>
+              <%= f.input :start_location, label: "Ville de départ", placeholder: "e.g: 'Lyon'" %>
             </div>
             <div class="form-inputs">
               <%= f.input :date, order: [:day, :month, :year] %>
@@ -41,25 +41,25 @@
               <%= f.input :trip_type, include_blank: false, collection: @trip_types  %>
             </div>
             <div class="form-inputs">
-              <%= f.input :seats, label: "Seats" %>
+              <%= f.input :seats, label: "Nombre de sièges disponibles" %>
             </div>
             <div class="form-inputs">
-              <%= f.input :fees, placeholder:"Toll/fuel charges/buddie" %>
+              <%= f.input :fees, label: "Frais de participation (€)", placeholder:"Essence, péage..." %>
             </div>
           </div>
 
           <div class="form-inputs">
-            <%= f.input :description, placeholder: "You will have more answers with a nice description" %>
+            <%= f.input :description, placeholder: "Soignez votre description pour attirer plus de randonneurs" %>
           </div>
 
           <div class="form-inputs">
-            <%= f.input :auto_accept, label: "Automatically accept all submissions?" %>
+            <%= f.input :auto_accept, label: "Accepter automatiquement les demandes?" %>
           </div>
         </div>
 
         <div class="new__trip__actions">
-          <%= link_to "Cancel", root_path %>
-          <%= f.submit "Update", class: "btn btn--primary" %>
+          <%= link_to "Annuler", root_path %>
+          <%= f.submit "Mettre à jour", class: "btn btn--primary" %>
         </div>
       <% end %>
 

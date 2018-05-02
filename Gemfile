@@ -33,6 +33,9 @@ gem 'administrate'
 group :development do
   gem 'letter_opener'
   gem 'web-console', '>= 3.3.0'
+  gem 'rspec-rails', '~> 3.7'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :development, :test do
@@ -41,4 +44,10 @@ group :development, :test do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+  gem 'launchy'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'shoulda-matchers', "~> 2.8"
 end

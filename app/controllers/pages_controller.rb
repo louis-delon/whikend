@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   end
 
   def page_title
-      "Whikend | Find your next hiking buddies!"
+      "Whikend | Trouvez des partenaires de randonnée!"
   end
 
 end

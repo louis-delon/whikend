@@ -35,9 +35,9 @@
   <div class="container">
     <% if policy(@user).update? %>
       <% if @user.reviews.any? %>
-        <h2><%= "My reviews" %></h2>
+        <h2><%= "Mes évaluations" %></h2>
       <% else %>
-        <h2><%= "You have no review yet" %></h2>
+        <h2><%= "Vous n'avez pas encore d'évaluations" %></h2>
       <% end %>
     <% else %>
       <% if @user.reviews.any? %>

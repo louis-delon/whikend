@@ -11,14 +11,18 @@ class TripsController < ApplicationController
   end
 
   def show
-    @submissions = @trip.submissions
-    @messages = @trip.messages.order('created_at ASC')
-    @message = Message.new
-    @review = Review.where(trip_id: @trip).first
-    @user = @trip.user
-    @hike = Hike.find(@trip.hike_id)
-    set_submission
-    @title = "Whikend | #{@trip.title}"
+    @submissions     = @trip.submissions
+    @messages        = @trip.messages.order('created_at ASC')
+    @message         = Message.new
+    @review          = Review.where(trip_id: @trip).first
+    @user            = @trip.user
+    @hike            = Hike.find(@trip.hike_id)
+    @title           = "Whikend | #{@trip.title}"
+    # On crée une fausse particpation pour le créateur de la rando
+    # Afin qu'il apparaisse dans la liste des inscrits!!
+    @submission      = Submission.new
+    @submission.user = current_user
+    @submission.trip = @trip
   end
 
   def new
@@ -31,8 +35,8 @@ class TripsController < ApplicationController
 
     @hikes = Hike.all.sort_by { |hike| hike.title }
     # @trip_types = ["Chill", "Heavy walk", "Challenge", "Leisure", "Activities"]
+    # La liste des categories est stocké dans la model Trip
     @trip_types = Trip.categories
-
     @title = "Whikend | Create a new trip"
   end
 
@@ -52,7 +56,7 @@ class TripsController < ApplicationController
 
   def update
     @trip.update(trip_params)
-    redirect_to trip_path(@trip), notice: "Your trip was successfuly updated!"
+    redirect_to trip_path(@trip), notice: "Votre sortie a été mise à jour!"
   end
 
   def destroy
@@ -84,10 +88,5 @@ class TripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(:hike_id, :title, :start_location, :date, :trip_type, :seats, :description, :user_id, :auto_accept, :fees)
   end
-
-  def set_submission
-    @submission = Submission.find_or_initialize_by(trip: @trip, user: current_user)
-  end
-
 
 end

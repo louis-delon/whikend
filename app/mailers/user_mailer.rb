@@ -50,13 +50,13 @@ class UserMailer < ApplicationMailer
       mail to: submission.user.email, subject: "Nouveau Message dans #{@message.trip.title}"
     end
 
-
-
-
     # @user = @message.trip.submission
     # @user.each do |user|
     # mail to: user.email, subject: "Nouveau Message Rando #{@trip.title}"
     # end
   end
 
+  def send_reminders(email)
+    mail to: email, subject: "Rappel: Votre Rando de demaain"
+  end
 end

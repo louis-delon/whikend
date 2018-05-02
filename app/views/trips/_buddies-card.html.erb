@@ -24,13 +24,13 @@
               <%= icon('fas star--empty', 'star') %>
             <% end %>
           <% else %>
-            <p>No reviews yet</p>
+            <p>Pas encore d'évaluation</p>
           <% end %>
         </div>
 
         <% if trip.date < Date.today && %>
           <%= link_to(user_path(@user), class: "btn btn--secondary") do %>
-            Leave a review to <%= @user.first_name.capitalize %>
+            Laisser une évaluation à <%= @user.first_name.capitalize %>
           <% end %>
         <% end %>
 

@@ -1,14 +1,14 @@
-<h1>Update your profile</h1>
+<h1>Mettez à jour votre profil</h1>
 
 <%= simple_form_for(@user) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :first_name, placeholder: "#{@user.first_name}" %>
+    <%= f.input :first_name, label: "Prénom",placeholder: "#{@user.first_name}" %>
   </div>
 
   <div class="form-inputs">
-    <%= f.input :last_name, placeholder: "#{@user.last_name}" %>
+    <%= f.input :last_name, label: "Nom",placeholder: "#{@user.last_name}" %>
   </div>
 
   <div class="form-inputs">
@@ -20,7 +20,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit "Validate", class: "btn btn--primary" %>
-    <%= link_to "Cancel", user_path(@user), class: "btn btn--secondary" %>
+    <%= f.submit "Valider", class: "btn btn--primary" %>
+    <%= link_to "Annuler", user_path(@user), class: "btn btn--secondary" %>
   </div>
 <% end %>
