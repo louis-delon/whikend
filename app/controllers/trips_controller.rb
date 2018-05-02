@@ -1,6 +1,5 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
-  before_action :set_submission, only: [:show]
   skip_before_action :authenticate_user!, only: :index
 
   def index
@@ -19,8 +18,11 @@ class TripsController < ApplicationController
     @user            = @trip.user
     @hike            = Hike.find(@trip.hike_id)
     @title           = "Whikend | #{@trip.title}"
+    # On crée une fausse particpation pour le créateur de la rando
+    # Afin qu'il apparaisse dans la liste des inscrits!!
     @submission      = Submission.new
     @submission.user = current_user
+    @submission.trip = @trip
   end
 
   def new
@@ -82,10 +84,5 @@ class TripsController < ApplicationController
   def trip_params
     params.require(:trip).permit(:hike_id, :title, :start_location, :date, :trip_type, :seats, :description, :user_id, :auto_accept, :fees)
   end
-
-  def set_submission
-    @submission = Submission.find_by(trip: @trip, user: current_user)
-  end
-
 
 end
