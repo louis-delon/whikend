@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 before_action :set_user, only: [:show, :edit, :update]
 
   def show
-    @average = calcul_average_rating(@user)
-    @user_trips = trips_user_list(@user)
+    @average       = calcul_average_rating(@user)
+    @user_trips    = trips_user_list(@user)
     @default_cover = "http://res.cloudinary.com/dvsmmztrt/image/upload/v1520585118/default_cover.jpg"
   end
 
@@ -27,12 +27,8 @@ before_action :set_user, only: [:show, :edit, :update]
     authorize(@user)
   end
 
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :age, :email, :description)
-  end
-
   def calcul_average_rating(user)
-    #calculates the average rating for a user
+    # Calculates the average rating for a user
     @ratings = []
     @reviews = user.reviews
     @reviews.each { |review| @ratings << review.rating }
@@ -40,11 +36,22 @@ before_action :set_user, only: [:show, :edit, :update]
   end
 
   def trips_user_list(user)
-    #gives an array of total trips in which the user is involved (submitted and created)
-    @trips_created_list = user.trips
-    @submission_list = user.submissions
+    # Gives an array of total trips in which the user is involved (submitted and created)
+    @trips_created_list   = user.trips
+    @submission_list      = user.submissions
     @trips_submitted_list = @submission_list.map { |submission_trip| submission_trip.trip }
-    @total_user_trips = @trips_submitted_list + @trips_created_list
+    @total_user_trips     = @trips_submitted_list + @trips_created_list
+  end
+
+  def user_params
+    params.require(:user)
+    .permit(
+      :first_name,
+      :last_name,
+      :age,
+      :email,
+      :description
+    )
   end
 
 end

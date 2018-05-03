@@ -26,18 +26,18 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new
+    @trip             = Trip.new
     authorize @trip
     @departments_list = []
-    Hike.all.each { |hike| @departments_list << hike.department }
+    Hike.all.each     { |hike| @departments_list << hike.department }
     @departments_list = @departments_list.uniq.sort
-    @hikes = Hike.all.sort_by { |hike| hike.title }
-    @trip_types = ["Détente", "Soutenue", "Sportive", "Loisir", "Activities"]
-    @title = "Whikend | Create a new trip"
+    @hikes            = Hike.all.sort_by { |hike| hike.title }
+    @trip_types       = ["Détente", "Soutenue", "Sportive", "Loisir", "Activities"]
+    @title            = "Whikend | Create a new trip"
   end
 
   def create
-    @trip = Trip.new(trip_params)
+    @trip      = Trip.new(trip_params)
     @trip.user = current_user
     authorize @trip
     if @trip.save
@@ -62,7 +62,7 @@ class TripsController < ApplicationController
 
   def hikes_by_department
     @department = params[:department]
-    @hikes = Hike.where department: @department
+    @hikes      = Hike.where department: @department
     authorize @hikes
     respond_to do |format|
       format.html {render 'trips/hikes_by_department', layout: false}
@@ -73,7 +73,6 @@ class TripsController < ApplicationController
     @title || "Whikend"
   end
 
-
   private
 
   def set_trip
@@ -82,7 +81,19 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:hike_id, :title, :start_location, :date, :trip_type, :seats, :description, :user_id, :auto_accept, :fees)
+    params.require(:trip)
+    .permit(
+      :hike_id,
+      :title,
+      :start_location,
+      :date,
+      :trip_type,
+      :seats,
+      :description,
+      :user_id,
+      :auto_accept,
+      :fees
+    )
   end
 
 end

@@ -7,13 +7,13 @@ class SubmissionsController < ApplicationController
   end
 
   def new
-    @trip = Trip.find(params[:trip_id])
+    @trip       = Trip.find(params[:trip_id])
     @submission = Submission.new
     authorize @submission
   end
 
   def create
-    @trip = Trip.find(params[:trip_id])
+    @trip       = Trip.find(params[:trip_id])
     @submission = Submission.new(trip: @trip, user: current_user)
     authorize @submission
     @submission.accepted = true if @trip.auto_accept
