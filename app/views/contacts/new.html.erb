@@ -1,0 +1,34 @@
+<section id="new__trip">
+  <div class="container">
+    <div class="col-lg-8 col-lg-offset-2">
+      <div class="new__trip__title">
+        <h1>Contact Us</h1>
+      </div>
+
+      <%= simple_form_for @contact , url: contacts_path do |f| %>
+        <%= f.error_notification %>
+
+
+        <div class="new__trip__step">
+          <h2>Nous vous répondrons dans les meilleurs délais</h2>
+
+          <div class="form-inputs">
+            <%= f.input :email, placeholder: "Quel est votre email?" %>
+          </div>
+
+          <div class="form-inputs">
+            <%= f.input :content, placeholder: "Quel est votre message?" %>
+          </div>
+        </div>
+
+        <div class="new__trip__actions">
+          <%= link_to "Cancel", root_path %>
+          <%= button_tag class: "btn btn--primary" do %>
+            Send<%= icon('fa', 'location-arrow') %>
+          <% end %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</section>

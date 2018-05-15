@@ -31,6 +31,13 @@ class UserMailer < ApplicationMailer
     mail to: @user.email, subject: "Refus Rando"
   end
 
+  def contact(message)
+    @message = message
+    @email = (ENV['EMAIL_CONTACT'] || "whikend@korium.com")
+
+    mail to: @email, subject: "Contact de Whikend"
+  end
+
   def send_reminders(email)
     mail to: email, subject: "Rappel: Votre Rando de demaain"
   end

@@ -32,7 +32,9 @@ class TripsController < ApplicationController
     Hike.all.each     { |hike| @departments_list << hike.department }
     @departments_list = @departments_list.uniq.sort
     @hikes            = Hike.all.sort_by { |hike| hike.title }
-    @trip_types       = ["Détente", "Soutenue", "Sportive", "Loisir", "Activities"]
+    # @trip_types     = ["Détente", "Soutenue", "Sportive", "Loisir", "Activities"]
+    # La liste des categories est désormais stocké dans la model Trip
++   @trip_types       = Trip.categories
     @title            = "Whikend | Create a new trip"
   end
 
