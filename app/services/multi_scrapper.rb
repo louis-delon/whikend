@@ -10,10 +10,12 @@ class MultiScrapper
 
     @departments_url = []
     @departments_names = []
-
+    puts "je rentre dans une boucle"
     randos_list.search('.content-module li a').each do |item|
       @departments_names << item.text.strip
       @departments_url << item.attribute('href').text.strip
+      p @departments_url
+      p @departments_names
     end
 
     hikes_list
@@ -43,10 +45,12 @@ class MultiScrapper
 
   def self.hike_info(hike)
     hike_url = hike.link
-    page = Nokogiri::HTML(open(hike_url).read)
+    puts "je bug ou pas???"
+    page     = Nokogiri::HTML(open(hike_url).read)
+    puts "je bug ou pas???"
 
-    data_1 = page.search(".col50").first.text.strip.split("\n").map{|value| value.split(": ")[1]}.reject(&:nil?).map(&:strip)
-    data_2 = page.search(".col50").last.text.strip.split("\n").map{|value| value.split(": ")[1]}.reject(&:nil?).map(&:strip)
+    data_1   = page.search(".col50").first.text.strip.split("\n").map{|value| value.split(": ")[1]}.reject(&:nil?).map(&:strip)
+    data_2   = page.search(".col50").last.text.strip.split("\n").map{|value| value.split(": ")[1]}.reject(&:nil?).map(&:strip)
     @check_region = page.search(".col50").last.text.strip.include?("Région")
 
     info_gatherer(hike, data_1, data_2)

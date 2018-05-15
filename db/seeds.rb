@@ -9,14 +9,15 @@ p tables
 def create_hikes
   hike_solutre = Hike.create!
   hike_vercors = Hike.create!
-  hike_corse = Hike.create!
-  hike_wagon = Hike.create!
+  hike_corse   = Hike.create!
+  hike_wagon   = Hike.create!
   UniScrapper.new(hike_solutre, "https://www.visorando.com/randonnee-sur-les-pas-de-tonton/")
   UniScrapper.new(hike_vercors, "https://www.visorando.com/randonnee-sur-les-sentiers-des-gorges-de-l-ardeche/")
   UniScrapper.new(hike_corse, "https://www.visorando.com/randonnee-gr20-de-bibi/")
   UniScrapper.new(hike_wagon, "https://www.visorando.com/randonnee-/1008103")
   hike_wagon.update(photo_url: "https://kitt.lewagon.com/placeholder/cities/lyon")
   hike_wagon.update(distance: "101km")
+  puts "jusqu'ici tout va bien"
   MultiScrapper.departments_list
 end
 
@@ -425,7 +426,7 @@ def create_trips
 
 
 
-  hikes_tmp = Hike.all.sample(2)
+  hikes_tmp    = Hike.all.sample(2)
 
   hike_solutre = Hike.find_by(site_id: 523281)
   hike_corse   = Hike.find_by(site_id: 2867)
@@ -556,33 +557,33 @@ def create_submissions
   etienne    = User.find_by(email: "etienne.delorieux@gmail.com")
   wagon_tab  << etienne.id
   louis      = User.find_by(email: "louis@holdies.com")
-  wagon_tab << louis.id
-  alexandre = User.find_by(email: "alexandre.b2506@gmail.com")
-  theo      = User.find_by(email: "theo@whikend.com")
-  wagon_tab << theo.id
-  sebastien = User.find_by(email: "sebastien@whikend.com")
-  wagon_tab << sebastien.id
-  antoine   = User.find_by(email: "antoine@whikend.com")
-  wagon_tab << antoine.id
-  maxime    = User.find_by(email: "maxime@whikend.com")
-  wagon_tab << maxime.id
-  mathilde  = User.find_by(email: "mathilde@whikend.com")
-  wagon_tab << mathilde.id
-  isabelle  = User.find_by(email: "isabelle@whikend.com")
-  wagon_tab << isabelle.id
-  mohamed   = User.find_by(email: "mohamed@whikend.com")
-  wagon_tab << mohamed.id
-  lahbib    = User.find_by(email: "lahbib@whikend.com")
-  wagon_tab << lahbib.id
-  mathieu   = User.find_by(email: "mathieu@whikend.com")
-  wagon_tab << mathieu.id
-  alix      = User.find_by(email: "alix@whikend.com")
-  wagon_tab << alix.id
-  romain    = User.find_by(email: "romain@whikend.com")
-  wagon_tab << romain.id
-  thomas    = User.find_by(email: "thomas@whikend.com")
-  wagon_tab << thomas.id
-
+  wagon_tab  << louis.id
+  alexandre  = User.find_by(email: "alexandre.b2506@gmail.com")
+  wagon_tab  << alexandre.id
+  theo       = User.find_by(email: "theo@whikend.com")
+  wagon_tab  << theo.id
+  sebastien  = User.find_by(email: "sebastien@whikend.com")
+  wagon_tab  << sebastien.id
+  antoine    = User.find_by(email: "antoine@whikend.com")
+  wagon_tab  << antoine.id
+  maxime     = User.find_by(email: "maxime@whikend.com")
+  wagon_tab  << maxime.id
+  mathilde   = User.find_by(email: "mathilde@whikend.com")
+  wagon_tab  << mathilde.id
+  isabelle   = User.find_by(email: "isabelle@whikend.com")
+  wagon_tab  << isabelle.id
+  mohamed    = User.find_by(email: "mohamed@whikend.com")
+  wagon_tab  << mohamed.id
+  lahbib     = User.find_by(email: "lahbib@whikend.com")
+  wagon_tab  << lahbib.id
+  mathieu    = User.find_by(email: "mathieu@whikend.com")
+  wagon_tab  << mathieu.id
+  alix       = User.find_by(email: "alix@whikend.com")
+  wagon_tab  << alix.id
+  romain     = User.find_by(email: "romain@whikend.com")
+  wagon_tab  << romain.id
+  thomas     = User.find_by(email: "thomas@whikend.com")
+  wagon_tab  << thomas.id
   lorenzo    = User.find_by(email: "lorenzo@whikend.com")
   wagon_tab  << lorenzo.id
   christophe = User.find_by(email: "christophe@whikend.com")
@@ -648,8 +649,8 @@ def create_submissions
   )
 
   26.times do
-    user_id = (((User.first.id)..(User.last.id)).to_a - [alexandre.id]).sample
-    trip_id = ((Trip.first.id..Trip.last.id).to_a - [trip_solutre.id] - [trip_vercors.id] - [trip_corse.id] - [trip_wagon.id]).sample
+    user_id  = (((User.first.id)..(User.last.id)).to_a - [alexandre.id]).sample
+    trip_id  = ((Trip.first.id..Trip.last.id).to_a - [trip_solutre.id] - [trip_vercors.id] - [trip_corse.id] - [trip_wagon.id]).sample
     accepted = Submission.where(trip_id: trip_id).count < Trip.find(trip_id).seats
 
     Submission.create!(
@@ -670,22 +671,22 @@ end
 
 def create_messages
   puts "creation messages"
-  francois = User.find_by(email: "francois@whikend.com")
+  francois   = User.find_by(email: "francois@whikend.com")
   francoisho = User.find_by(email: "francoisho@whikend.com")
-  roger = User.find_by(email: "roger@whikend.com")
-  jack = User.find_by(email: "jack@whikend.com")
-  jacques = User.find_by(email: "jacques@whikend.com")
-  benoit = User.find_by(email: "benoit@whikend.com")
-  vincent = User.find_by(email: "vincent@whikend.com")
-  karine = User.find_by(email: "karine@whikend.com")
-  louis = User.find_by(email: "louis@holdies.com")
-  etienne = User.find_by(email: "etienne.delorieux@gmail.com")
-  joseph = User.find_by(email: "joseph@whikend.com")
-  kevin = User.find_by(email: "kevin@whikend.com")
-  meryem = User.find_by(email: "meryem@whikend.com")
-  chirac = User.find_by(email: "jchirac@whikend.com")
-  alexandre = User.find_by(email: "alexandre.b2506@gmail.com")
-  isabelle = User.find_by(email: "isabelle@whikend.com")
+  roger      = User.find_by(email: "roger@whikend.com")
+  jack       = User.find_by(email: "jack@whikend.com")
+  jacques    = User.find_by(email: "jacques@whikend.com")
+  benoit     = User.find_by(email: "benoit@whikend.com")
+  vincent    = User.find_by(email: "vincent@whikend.com")
+  karine     = User.find_by(email: "karine@whikend.com")
+  louis      = User.find_by(email: "louis@holdies.com")
+  etienne    = User.find_by(email: "etienne.delorieux@gmail.com")
+  joseph     = User.find_by(email: "joseph@whikend.com")
+  kevin      = User.find_by(email: "kevin@whikend.com")
+  meryem     = User.find_by(email: "meryem@whikend.com")
+  chirac     = User.find_by(email: "jchirac@whikend.com")
+  alexandre  = User.find_by(email: "alexandre.b2506@gmail.com")
+  isabelle   = User.find_by(email: "isabelle@whikend.com")
 
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
@@ -819,7 +820,7 @@ def create_reviews
 
   trip_solutre = Trip.find_by(title: "Ascension de La Roche de Solutré - sur les pas de Tonton")
   trip_vercors = Trip.find_by(title: "A la découverte du Vercors!")
-  trip_corse = Trip.find_by(title: "Grand départ pour le GR10")
+  trip_corse   = Trip.find_by(title: "Grand départ pour le GR10")
 
   reviews_generator = ["Vraiment une belle rando - je recommande", "Toujours le même plaisir", "Vraiment pas mal", "Au top", "Je recommande à fond", "N'hésitez pas", "Belles rigolades, belle marche - que du bonheur", "Merci Whikend pour cet extraordinaire rando", "Que demandez de plus?", "Le petit rouge au sommet fait plaisir", "Le roi du matos pour la reine des randos - parfait", "Une descente de Ricard que j'aimerais pas remonter en velo", "Hyper intense - le Kylian Jornet du dimanche"]
 
