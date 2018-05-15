@@ -44,8 +44,9 @@ class MultiScrapper
 
 
   def self.hike_info(hike)
-    hike_url = hike.link
-    puts "je bug ou pas???"
+    hike_url = hike.link.strip
+    puts "URL"
+    p hike_url.strip
     page     = Nokogiri::HTML(open(hike_url).read)
     puts "je bug ou pas???"
 

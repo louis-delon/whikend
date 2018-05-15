@@ -5,19 +5,19 @@
         <h1>Contact Us</h1>
       </div>
 
-      <%= simple_form_for @contact , url: contact_index_path do |f| %>
+      <%= simple_form_for @contact , url: contacts_path do |f| %>
         <%= f.error_notification %>
 
 
         <div class="new__trip__step">
-          <h2>Step 2 - Give details about your trip</h2>
+          <h2>Nous vous répondrons dans les meilleurs délais</h2>
 
           <div class="form-inputs">
-            <%= f.input :email, placeholder: "Give us en email to answer you" %>
+            <%= f.input :email, placeholder: "Quel est votre email?" %>
           </div>
 
           <div class="form-inputs">
-            <%= f.input :content, placeholder: "What's your message" %>
+            <%= f.input :content, placeholder: "Quel est votre message?" %>
           </div>
         </div>
 
