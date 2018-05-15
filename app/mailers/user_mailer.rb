@@ -38,6 +38,17 @@ class UserMailer < ApplicationMailer
     mail to: @email, subject: "Contact de Whikend"
   end
 
+  def new_message(message, submissioner)
+    @sender = User.find(message.user_id)
+    @message = Message.find(message.id)
+
+    puts "------------"
+    puts "send email to:"
+    puts submissioner.user.email
+
+    mail to: submissioner.user.email, subject: "Nouveau Message dans #{@message.trip.title}"
+  end
+
   def send_reminders(email)
     mail to: email, subject: "Rappel: Votre Rando de demaain"
   end
