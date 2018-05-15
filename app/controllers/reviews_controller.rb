@@ -1,17 +1,16 @@
 class ReviewsController < ApplicationController
 
   def new
-    @trip = Trip.find(params[:trip_id])
-    @review = Review.new
+    @trip     = Trip.find(params[:trip_id])
+    @review   = Review.new
     @receiver = @trip.user
     authorize(@trip, :add_review?)
   end
 
   def create
-    @trip = Trip.find(params[trip_id])
+    @trip   = Trip.find(params[:trip_id])
     @review = Review.new(params_review)
     authorize(@review)
-
     if @review.save
       redirect_to trip_path(@trip)
     else
@@ -23,7 +22,6 @@ class ReviewsController < ApplicationController
       "Whikend Reviews"
   end
 
-
   private
 
   def params_review
@@ -33,7 +31,7 @@ class ReviewsController < ApplicationController
       :rating,
       :sender_id,
       :receiver_id
-       )
+    )
   end
 
 end
