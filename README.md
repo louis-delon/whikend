@@ -9,7 +9,7 @@ Ce projet a été réalisé en 2 semaines dans le cadre de la formation du [Wago
 
 Le site est développé en Ruby 2.4.3 et Rails 5.1.5.
 
-Vous trouverez [ici](https://www.youtube.com/watch?v=XGrov3ChC2Q&feature=youtu.be&t=38m27s) la vidéo de présentation de l'application.
+Vous trouverez [ici](https://www.youtube.com/watch?v=XGrov3ChC2Q&feature=youtu.be&t=38m27s) la vidéo de présentation de l'application et [ici](https://whikend.herokuapp.com/) le lien du siteweb.
 
 Pour lancer l'application sur votre ordinateur:
 
