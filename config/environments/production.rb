@@ -5,7 +5,7 @@ Rails.application.configure do
 
   config.webpacker.check_yarn_integrity = false
 
-  config.action_mailer.default_url_options = { host: "www.whikend.com" }
+  config.action_mailer.default_url_options = { host: "whikend.herokuapp.com" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
