@@ -20,6 +20,9 @@ class Trip < ApplicationRecord
   validates  :fees,           presence: true
   validates_inclusion_of :auto_accept, in: [true, false]
 
+  geocoded_by :start_location
+  after_validation :geocode, if: :start_location_changed
+
   pg_search_scope :global_search,
   against: [ :start_location, :description, :title ],
   associated_against: {

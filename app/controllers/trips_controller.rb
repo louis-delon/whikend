@@ -7,6 +7,14 @@ class TripsController < ApplicationController
     @trips = @trips.where('trips.seats > ?', params[:seats]) if params[:seats].present?
     @trips = @trips.where(date: params[:date]) if params[:date].present?
     @trips = @trips.global_search(params[:query]) if params[:query].present?
+    # @trips = Trip.near(params[:start_location], 20) # Les trips 20 km aux alentours de la start location.
+    @markers = @trips.map do |trip|
+      {
+        lat = trip.latitude,
+        lng = trip.longitude
+        infowindow = trip.title
+      }
+    end
     @title = "Whikend | Search results"
   end
 
