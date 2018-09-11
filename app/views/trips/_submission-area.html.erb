@@ -32,8 +32,8 @@
                 <% end %>
               <% end %>
 
-              <% if policy(submission).destroy? %>
-                <%= link_to(submission_path(@submission), method: :delete, data: { confirm: "Etes vous sûr?" }, class: "reject--self") do %>
+              <% if policy(submission).destroy? && @submission.id != nil %>
+                <%= link_to(submission_path(@submission), method: :get, data: { confirm: "Etes vous sûr?" }, class: "reject--self") do %>
                   <%= icon('fas', 'times') %>
                 <% end %>
               <% end %>
